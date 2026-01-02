@@ -1,0 +1,512 @@
+/* =====================================================
+   GOOGLE FONT
+===================================================== */
+
+
+/* =====================================================
+   GLOBAL STYLES
+
+
+/* =====================================================
+   SECTION 1 : HERO / TOP IMAGE
+===================================================== */
+.section-1 {
+  margin-bottom: 50px;
+}
+
+.image-container-top {
+  position: relative;
+}
+
+.overlay-top {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.section-1 h1 {
+  /* font-size: 92px; */
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   SECTION 2 : BREADCRUMB / LIST
+===================================================== */
+.section-2 li a{
+  /* font-size: 16px; */
+  color: #555;
+  text-decoration: none;
+}
+
+.section-2 li a:hover{
+  text-decoration: underline;
+}
+
+
+/* =====================================================
+   COMMON HEADING
+===================================================== */
+.heading-content {
+  margin-bottom: 50px;
+}
+
+
+/* =====================================================
+   DROPDOWN (PILL STYLE)
+===================================================== */
+.pill-dropdown {
+  border-radius: 50px;
+  padding: 14px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  font-weight: 500;
+}
+
+.pill-dropdown:hover,
+.pill-dropdown:focus {
+  box-shadow: none;
+  border-color: #000;
+}
+
+.dropdown-menu {
+  border-radius: 15px;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+
+/* =====================================================
+   SECTION 3
+===================================================== */
+.section-3 h5 {
+  /* font-size: 19px; */
+}
+
+
+/* =====================================================
+   TABS / FORM STYLES
+===================================================== */
+.custom-tabs .nav-link {
+  border: none;
+  color: #000;
+  padding: 12px 40px;
+  font-weight: 500;
+}
+
+.custom-tabs .nav-link.active {
+  background-color: #F2F8F1;
+  color: #379934;
+  border-bottom: 3px solid #379934;
+}
+
+.custom-tabs .nav-link i {
+  margin-right: 6px;
+}
+
+.custom-tabs .tab-content {
+  margin-top: 30px;
+}
+
+.nav-link {
+  padding: 0 20px;
+}
+
+.form-label {
+  font-weight: 700;
+  /* font-size: 18px; */
+}
+
+.form-control {
+  padding: 14px 20px;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #000;
+}
+
+
+/* =====================================================
+   SECTION 4 : CONTENT
+===================================================== */
+.section-4 p,
+.section-4 li {
+  /* font-size: 1.1rem; */
+}
+
+
+/* =====================================================
+   IMAGE COLLAGE
+===================================================== */
+.image-collage {
+  margin-top: 50px;
+}
+
+.image-box {
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   SECTION 5 : CTA / BOTTOM IMAGE
+===================================================== */
+.section-5 {
+  position: relative;
+  
+}
+
+.image-container-bottom {
+  position: relative;
+}
+
+a.btn-primary {
+  background-color: #379934;
+  border-color: #379934;
+  padding: 12px 30px;
+  font-weight: 500;
+  /* font-size: 16px; */
+}
+a.subscribe-btn:hover,
+a.subscribe-btn:focus,
+a.subscribe-btn:active {
+  --bs-btn-active-bg: #2c7a29;
+  --bs-btn-active-border-color: #2c7a29;
+  background-color: #2c7a29;
+  border-color: #2c7a29;
+}
+
+.overlay-bottom {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.overlay-bottom h5 {
+  color: #fff;
+  font-weight: 300;
+  /* font-size: 20px; */
+  text-transform: uppercase;
+}
+
+.overlay-bottom h2 {
+  font-weight: 700;
+  /* font-size: 48px; */
+}
+
+
+/* =====================================================
+   sfao-events-section
+===================================================== */
+
+.sfao-events-section{
+  margin-top: 50px;
+  
+  padding: 50px 0;
+}
+
+.color-limegreeen{
+  background-color: #F2F8F1;
+}
+.seemore{
+  text-align: center;
+  margin-top: 30px;
+}
+a.seemore-btn:hover,
+a.seemore-btn:focus,
+a.seemore-btn:active {
+  --bs-btn-active-bg: #2c7a29;
+  --bs-btn-active-border-color: #2c7a29;
+  background-color: #2c7a29;
+  border-color: #2c7a29;
+}
+
+
+
+
+
+
+
+
+/* =====================================================
+   SECTION 6 : FOOTER
+===================================================== */
+.section-6 {
+  background-color: #F2F8F1;
+}
+
+.bottom-bar {
+  background-color: #379934;
+}
+
+.uok-footer {
+  background: #f5faf2;
+  color: #333;
+}
+
+.footer-logo {
+  max-width: 180px;
+}
+
+.footer-text {
+  /* font-size: 14px; */
+  line-height: 1.6;
+}
+
+.footer-heading {
+  /* font-size: 27px; */
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.vertical-line {
+  width: 2px;
+  height: 220px;
+  background: #379934;
+  margin: auto;
+}
+
+
+/* FOOTER LISTS */
+.footer-list,
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.footer-links li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+}
+
+.bi-check-circle-fill {
+  color: #379934;
+}
+
+
+/* SOCIAL ICONS */
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  background: #379934;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 8px;
+  text-decoration: none;
+}
+
+
+/* ICON CIRCLE */
+.icon-circle {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dotted #379934;
+  border-radius: 50%;
+}
+
+
+/* =====================================================
+   RESPONSIVE : LARGE SCREENS
+===================================================== */
+@media (max-width: 1400px) {
+  .custom-tabs .nav-link {
+    padding: 10px 15px;
+  }
+}
+
+
+/* =====================================================
+   RESPONSIVE : MOBILE
+===================================================== */
+@media (max-width: 768px) {
+
+ 
+ 
+  .overlay h2 {
+    
+    text-align: center;
+  }
+
+/* Image size adjustment */
+  .custom-size img {
+    height: 500px;
+    
+  }
+
+
+
+  .image-container-top img {
+    height: 200px;
+  }
+
+  /* Breadcrumb */
+  .section-2 li {
+    font-size: 13px;
+  }
+
+
+
+  /* heading */
+  .process-heading,
+  .stories_heading{
+    text-align: center;
+  }
+
+  .divider_heading.align-sm-center {
+    text-align: center;
+}
+.divider_heading.align-sm-center:before {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+  .stories_heading.center-divider:before {
+    left: 50%;
+    /* -webkit-transform: translateX(-50%); */
+    transform: translateX(-50%);
+}
+ 
+
+  .process-heading.center-divider:before{
+    left: 50%;
+    /* -webkit-transform: translateX(-50%); */
+    transform: translateX(-50%);
+}
+
+  .text-cen{
+    text-align: center;
+  }
+ 
+
+
+
+  /* Tabs Scroll */
+  .custom-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 15px !important;
+  }
+
+  .custom-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .custom-tabs .nav-link {
+    padding: 5px;
+    /* font-size: 10px; */
+  }
+
+ 
+
+  .form-control {
+    padding: 10px 16px;
+    /* font-size: 10px; */
+  }
+
+
+  /* Images */
+  .image-collage {
+    margin-top: 30px;
+  }
+
+
+  /* seemore - button */
+
+
+
+
+  .overlay-bottom h2 {
+    /* font-size: 23px; */
+    text-align: center;
+  }
+
+  .image-container-bottom img {
+    height: 220px;
+  }
+
+  .section-5 .btn {
+    padding: 10px 24px;
+    /* font-size: 10px; */
+  }
+
+
+  /* Footer Divider */
+  .vertical-line {
+    width: 300px;
+    height: 2px;
+    margin-bottom: 50px;
+  }
+
+
+  
+ 
+}
+
+
+/* Accordion styling */
+.accordion-button {
+  font-weight: lighter;
+  border: 1px solid #ddd;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #F2F8F1;
+  color: #379934;
+}
+
+.accordion-item {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 576px) {
+.scholarship-btn {
+  overflow: hidden;
+}
+
+.scholarship-text {
+  display: block;
+  max-width: 100%;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.scholarship-btn i {
+  flex-shrink: 0;
+}
+.dropdown-menu {
+  overflow: auto;
+}
+}
