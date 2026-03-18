@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Karachi University - Scolarship Calendar Page</title>
+
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="theme-color" content="#379934" />
+
+  <link rel="apple-touch-icon" href="images/fav_icons/icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIlK0J0q+UQvC9c9nS4R8+R4Y2kX0zV+uQkK8d0C0Y=" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <!-- main holder start -->
+   <!-- main holder start -->
+  <div class="main_holder">
+    <!-- header start -->
+    <header>
+      <div class="container_content">
+        <div class="nav_holder clearfix">
+          <div class="header_row">
+            <a href="index.html" class="logo">
+              <img src="images/sfao-logo.png" alt="Student Financial Aid Office" />
+            </a>
+
+            <div class="lg_menu d-xl-block">
+              <nav>
+                <ul>
+                  <li>
+                    <a href="index.html">Home</a>
+                  </li>
+
+                  <li>
+                    <a href="about-us.html">About Us</a>
+                  </li>
+
+                  <li>
+                    <a href="stories.html">Stories</a>
+                  </li>
+
+
+                  <li>
+                    <a href="calendar.html">Calendar</a>
+                  </li>
+
+                  <li>
+                    <a href="scholarship.html">Scholarships</a>
+                  </li>
+
+                  <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+              </nav>
+            </div>
+
+            <a href="javascript:void(0);" class="search_btn searchClick btn_fill d-none">
+              <i class="icon-magnifier"></i>
+            </a>
+
+            <div class="menu_btn_holder">
+              <a href="javascript:void(0);" class="filter_overaly_trigger">
+                <span>
+                  <small></small>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <!-- search start -->
+          <div class="search_holder round_full">
+            <div class="search_content">
+              <form action="">
+                <input type="text" class="form-control" placeholder="Search" />
+              </form>
+            </div>
+
+            <span class="close_search searchOffClick">
+              <i class="ri-close-line"></i>
+            </span>
+          </div>
+          <!-- search end -->
+        </div>
+      </div>
+    </header>
+    <!-- header end -->
+
+    <!-- main content start -->
+    <main role="main" class="home_content nav_space clearfix">
+
+      <section class="section-1 home_hero_slider overflow-hidden">
+        <div class="container_content">
+          <div class="image-container-top">
+            <img src="./images/uok/scholarship-outerpage-background.jpg" alt="Scholarship Management" class="img-fluid w-100">
+  
+            <div class="overlay-top d-flex flex-column justify-content-center align-items-center text-center">
+              <h1 class="text-white h1 mb-4">Scholarship 2026</h1>
+            </div>
+  
+          </div>
+        </div>
+      </section>
+
+      <section class="section-2 overflow-hidden">
+        <div class="container">
+          <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="calendar.html">Scholarships</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="scholarship.html">Merit-Based Scholarships
+                  2025</a></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+
+
+      <!-- ================= SCHOLARSHIP LIST SECTION ================= -->
+      <style>
+        .scholarship-list-container {
+          padding: 0 0 60px 0;
+          font-family: 'Lexend', sans-serif;
+        }
+        .scholarship-list-title {
+          font-size: 32px;
+          font-weight: 700;
+          color: #1a1e29;
+          margin-bottom: 8px;
+        }
+        .scholarship-list-subtitle {
+          font-size: 16px;
+          color: #6c757d;
+          margin-bottom: 40px;
+        }
+        .scholarship-table-header {
+          display: flex;
+          font-weight: 600;
+          color: #1a1e29;
+          padding-bottom: 12px;
+          margin-bottom: 0;
+          border-bottom: 1px solid #f1f2f4;
+          font-size: 15px;
+        }
+        
+        .scholarship-col-name { flex: 0 0 54%; max-width: 54%; padding-right: 15px; }
+        .scholarship-col-deadline { flex: 0 0 16%; max-width: 16%; }
+        .scholarship-col-status { flex: 0 0 15%; max-width: 15%; text-align: center; }
+        .scholarship-col-details { flex: 0 0 15%; max-width: 15%; text-align: center; }
+        
+        .scholarship-row {
+          display: flex;
+          align-items: center;
+          padding: 24px 0;
+          border-bottom: 1px solid #f1f2f4;
+          font-size: 14px;
+          color: #1a1e29;
+          font-weight: 600;
+        }
+        
+        .scholarship-status-badge {
+          padding: 6px 10px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 500;
+          display: inline-block;
+          color: #fff;
+          text-align: center;
+          width: 80px;
+        }
+        .status-open { background-color: #4CAF50; }
+        .status-closed { background-color: #B71C1C; }
+        .status-pending { background-color: #1B5E20; }
+        
+        .scholarship-view-details {
+          color: #1a1e29;
+          text-decoration: underline;
+          font-weight: 600;
+        }
+        .scholarship-view-details:hover {
+          color: #4b9e4f;
+        }
+        
+        .scholarship-footer-area {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 30px;
+          font-size: 14px;
+        }
+        .scholarship-showing-text {
+          color: #4CAF50;
+          font-weight: 600;
+        }
+        .scholarship-pagination {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .scholarship-page-item {
+          color: #4CAF50;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: none;
+          font-size: 14px;
+        }
+        .scholarship-page-item.active {
+          background-color: #4CAF50;
+          color: #fff;
+          width: 26px;
+          height: 26px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+        }
+
+        /* Responsive fixes */
+        @media (max-width: 768px) {
+          .scholarship-table-header { display: none; }
+          .scholarship-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px 0;
+          }
+          .scholarship-col-name, .scholarship-col-deadline, .scholarship-col-status, .scholarship-col-details {
+            flex: 1 1 100%;
+            max-width: 100%;
+            text-align: left;
+          }
+          .scholarship-footer-area {
+            flex-direction: column;
+            gap: 16px;
+          }
+        }
+      </style>
+
+      <section class="scholarship-list-container">
+        <div class="container my-4">
+          <h2 class="scholarship-list-title">Merit-Based Scholarship 2025</h2>
+          <p class="scholarship-list-subtitle">Manage and update scholarship information across all sections</p>
+
+          <div class="scholarship-table-header">
+            <div class="scholarship-col-name">Scholarship Name List</div>
+            <div class="scholarship-col-deadline">Deadlines</div>
+            <div class="scholarship-col-status">Status</div>
+            <div class="scholarship-col-details">Details</div>
+          </div>
+
+          <!-- Item 1 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Haier Funded Scholarships 2025-26 (Based on Need<br>Cum Merit, Only for Morning Program Students)</div>
+            <div class="scholarship-col-deadline">May 30, 2025</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-open">Open</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-1.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">The Higher Education Commission (HEC)</div>
+            <div class="scholarship-col-deadline">Jun 25, 2025</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-2.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Sindh Education Endowment Fund (SEEF)</div>
+            <div class="scholarship-col-deadline">Aug 20, 2025</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-3.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Balochistan Education Endowment Fund</div>
+            <div class="scholarship-col-deadline">Sep 25, 2025</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-pending">Pending</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-4.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">KHAIRPUR NEED CUM MERIT (For Morning<br>Students Only)</div>
+            <div class="scholarship-col-deadline">Oct 21, 2025</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-5.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Pakistan Bait-ul-Maal (PBM) scholarships for University<br>of Karachi students</div>
+            <div class="scholarship-col-deadline">Nov 05, 2025</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-6.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 7 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Pakistan Bait-ul-Maal (PBM) scholarships for University<br>of Karachi students</div>
+            <div class="scholarship-col-deadline">Nov 05, 2025</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-7.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <div class="scholarship-footer-area">
+            <div class="scholarship-showing-text" id="scholarship-showing-text">Showing 1 to 6 of 6 entries</div>
+            <div class="scholarship-pagination" id="scholarship-pagination">
+              <!-- Generated by JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const rows = document.querySelectorAll(".scholarship-row");
+          const itemsPerPage = 6;
+          let currentPage = 1;
+          const totalItems = rows.length;
+          const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+          const paginationContainer = document.getElementById("scholarship-pagination");
+          const showingText = document.getElementById("scholarship-showing-text");
+
+          function renderTable() {
+            rows.forEach((row) => {
+              row.style.display = "none";
+            });
+
+            let start = (currentPage - 1) * itemsPerPage;
+            let end = start + itemsPerPage;
+            for (let i = start; i < end && i < totalItems; i++) {
+              rows[i].style.display = "";
+            }
+
+            let currentEnd = end > totalItems ? totalItems : end;
+            if (totalItems === 0) {
+              start = 0;
+              currentEnd = 0;
+            }
+            showingText.innerHTML = `Showing ${totalItems > 0 ? start + 1 : 0} to ${currentEnd} of ${totalItems} entries`;
+
+            renderPagination();
+          }
+
+          function renderPagination() {
+            paginationContainer.innerHTML = "";
+            if (totalPages <= 0) return;
+
+            const prevBtn = document.createElement("a");
+            prevBtn.href = "javascript:void(0)";
+            prevBtn.className = "scholarship-page-item";
+            prevBtn.innerHTML = "&lt;";
+            if (currentPage === 1) {
+              prevBtn.style.opacity = "0.5";
+              prevBtn.style.cursor = "not-allowed";
+            } else {
+              prevBtn.onclick = function () {
+                currentPage--;
+                renderTable();
+              };
+            }
+            paginationContainer.appendChild(prevBtn);
+
+            for (let i = 1; i <= totalPages; i++) {
+              const pageBtn = document.createElement("a");
+              pageBtn.href = "javascript:void(0)";
+              pageBtn.className = "scholarship-page-item";
+              if (i === currentPage) {
+                pageBtn.classList.add("active");
+              }
+              pageBtn.innerHTML = i;
+              pageBtn.onclick = function () {
+                currentPage = i;
+                renderTable();
+              };
+              paginationContainer.appendChild(pageBtn);
+            }
+
+            const nextBtn = document.createElement("a");
+            nextBtn.href = "javascript:void(0)";
+            nextBtn.className = "scholarship-page-item";
+            nextBtn.innerHTML = "&gt;";
+            if (currentPage === totalPages || totalPages === 0) {
+              nextBtn.style.opacity = "0.5";
+              nextBtn.style.cursor = "not-allowed";
+            } else {
+              nextBtn.onclick = function () {
+                currentPage++;
+                renderTable();
+              };
+            }
+            paginationContainer.appendChild(nextBtn);
+          }
+
+          renderTable();
+        });
+      </script>
+
+
+    </main>
+
+
+    <section class="section-5 overflow-hidden clearfix clear position-relative ">
+      <div class="image-container-bottom">
+        <img src="./images/uok/newsletterbg.jpg" alt="Newsletter" class="img-fluid w-100" />
+
+        <div class="overlay-bottom d-flex flex-column justify-content-center align-items-center text-center">
+          <h5 class="text-white">Subscribe to Our Newsletter</h5>
+          <h2 class="text-white">Updates from Students</h2>
+          <h2 class="text-white">Financial Aid Office (SFAO)</h2>
+          <a href="#" class="btn btn_fill round_full">Subscribe Now</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="uok-footer overflow-hidden">
+      <div class="container">
+        <div class="row align-items-start">
+
+          <!-- Logo & About -->
+          <div class="col-md-4 mb-4">
+            <img src="images/uok/footer-logo.png" alt="University of Karachi" class="footer-logo mb-3">
+
+            <p class="footer-text">
+              We Don't Just Work With Concrete And We Work With People
+              <strong>We Are Approachable</strong>, With Even Our Highest Work
+            </p>
+
+            <div class="social-icons mt-3">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-youtube"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="col-md-1 ">
+            <div class="vertical-line"></div>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="col-md-3 mb-4">
+            <h5 class="footer-heading">Contact Info</h5>
+            <ul class="footer-list">
+              <li>
+                <span class="icon-circle"><i class="bi bi-geo-alt-fill"></i></span>
+                <span>Administration Building (Old), Ground Floor, Room #04, University of Karachi – 75270</span>
+              </li>
+              <li>
+                <span class="icon-circle"><i class="bi bi-telephone-fill"></i></span>
+                +92-21-99261383
+              </li>
+              <li>
+                <span class="icon-circle"><i class="bi bi-envelope"></i></span>
+                sfao@uok.edu.pk
+              </li>
+            </ul>
+          </div>
+
+          <!-- Divider -->
+          <div class="col-md-1 ">
+            <div class="vertical-line"></div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-3">
+            <h5 class="footer-heading">Quick Links</h5>
+
+            <div class="row">
+              <div class="col-6">
+                <ul class="footer-links">
+
+                  <li><a href="index.html"><i class="bi bi-check-circle-fill me-2"></i>Home</a></li>
+
+
+                  <li><a href="about-us.html"><i class="bi bi-check-circle-fill me-2"></i>About Us</a></li>
+
+
+                  <li><a href="stories.html"><i class="bi bi-check-circle-fill me-2 "></i>Stories</a></li>
+
+
+                  <li><a href="calendar.html"><i class="bi bi-check-circle-fill me-2 "></i>Calendar</a></li>
+
+
+                  <li><a href="scholarship.html"><i class="bi bi-check-circle-fill me-2 "></i>Scholarships</a></li>
+
+                </ul>
+              </div>
+              <div class="col-6">
+                <ul class="footer-links">
+
+                  <li><a href="contact.html"><i class="bi bi-check-circle-fill me-2 "></i>Contact Us</a></li>
+
+
+                  <li><a href="index.html#faq"><i class="bi bi-check-circle-fill me-2 "></i>FAQ's</a></li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-6">
+        <div class="bottom-bar">
+          <div class="container text-center text-white py-4">
+            <p class="mb-0">&copy; 2025 University of Karachi | All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+  </div>
+
+
+
+  <div class="content_overlay_wrapper overlay_filter" data-lenis-prevent>
+    <article class="offcanvas_content">
+      <div class="overlay_content_holder">
+        <div class="overlay_content sm_menu">
+          <ul>
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+
+            <li>
+              <a href="about-us.html">About Us</a>
+            </li>
+
+            <li>
+              <a href="stories.html">Stories</a>
+            </li>
+            <li>
+              <a href="calendar.html">Calendar</a>
+            </li>
+
+
+            <li>
+              <a href="scholarship.html">Scholarships</a>
+            </li>
+
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <button class="btn btn_bkt" id="btnTop" type="button">
+    <i class="ri-arrow-up-s-line"></i>
+    <span> Go to top </span>
+  </button>
+
+
+
+
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery-migrate.js"></script>
+  <script src="js/vendor.js"></script>
+  <script src="js/main.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
