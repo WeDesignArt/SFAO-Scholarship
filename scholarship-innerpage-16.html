@@ -105,8 +105,8 @@
             <li><span class="me-2">&bull;</span> Total available slots: 40 (15 BBA + 25 CS/IT).</li>
           </ul>
 
-          <div class="mb-5 p-3 rounded application-pending">
-            <h6 class="fw-bold mb-1">Awardees List Being Finalized</h6>
+          <div class="mb-5 p-3 rounded application-closed">
+            <h6 class="fw-bold mb-1">Applications Closed</h6>
             <p class="mb-0 text-secondary"><strong>Status:</strong> The official list of scholarship awardees for the 2026 academic year is currently being prepared.</p>
           </div>
 
@@ -139,7 +139,7 @@
                SELECTED CANDIDATES: uncomment year blocks in sch-res-candidates, add names year-wise
           ===================================================== -->
           <div class="sch-resources-section container mb-5">
-            <h6 class="fw-bold mb-3 text-dark">Forms, Notifications &amp; Selected Candidates</h6>
+            <h6 class="fw-bold mb-3 text-dark">Important details</h6>
 
             <div class="sch-res-tabs">
               <button class="sch-res-tab active" data-pane="sch-res-forms">
@@ -231,13 +231,48 @@
           (function () {
             var sec = document.querySelector('.sch-resources-section');
             if (!sec) return;
+
+            var defaultPane = 'sch-res-forms';
+            var locked = false;
+
+            var statusBox = document.querySelector('.application-open, .application-pending, .application-closed');
+            if (statusBox) {
+              if (statusBox.classList.contains('application-open')) {
+                defaultPane = 'sch-res-forms';
+                locked = false;
+              }
+              if (statusBox.classList.contains('application-pending')) {
+                defaultPane = 'sch-res-notifications';
+                locked = true;
+              }
+              if (statusBox.classList.contains('application-closed')) {
+                defaultPane = 'sch-res-candidates';
+                locked = true;
+              }
+            }
+
+            function activatePane(paneId) {
+              sec.querySelectorAll('.sch-res-tab').forEach(function (t) { t.classList.remove('active'); });
+              sec.querySelectorAll('.sch-res-pane').forEach(function (p) { p.style.display = 'none'; });
+              var tab = sec.querySelector('[data-pane="' + paneId + '"]');
+              var pane = document.getElementById(paneId);
+              if (tab)  tab.classList.add('active');
+              if (pane) pane.style.display = '';
+            }
+
+            activatePane(defaultPane);
+
+            if (locked) {
+              sec.querySelectorAll('.sch-res-tab:not(.active)').forEach(function (t) {
+                t.classList.add('sch-res-tab-locked');
+                t.setAttribute('title', 'Not available in this phase');
+              });
+            }
+
             sec.querySelectorAll('.sch-res-tab').forEach(function (tab) {
               tab.addEventListener('click', function () {
-                sec.querySelectorAll('.sch-res-tab').forEach(function (t) { t.classList.remove('active'); });
-                sec.querySelectorAll('.sch-res-pane').forEach(function (p) { p.style.display = 'none'; });
-                tab.classList.add('active');
-                var pane = document.getElementById(tab.getAttribute('data-pane'));
-                if (pane) pane.style.display = '';
+                if (locked) return;
+                activatePane(tab.getAttribute('data-pane'));
               });
             });
           })();
@@ -252,7 +287,7 @@
           <h5 class="text-white">Subscribe to Our Newsletter</h5>
           <h2 class="text-white">Updates from Students</h2>
           <h2 class="text-white">Financial Aid Office (SFAO)</h2>
-          <a href="#" class="btn btn_fill round_full">Subscribe Now</a>
+          <a href="#" class="btn btn_fill round_full">Remain Connected via SFAO Page</a>
         </div>
       </div>
     </section>

@@ -919,6 +919,13 @@ a.seemore-btn:active {
   font-family: 'Lexend', sans-serif;
 }
 
+/* Locked tab — shown when status is pending or closed */
+.sch-res-tab.sch-res-tab-locked {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 @media (max-width: 768px) {
   .sch-res-tab {
     padding: 8px 14px;
