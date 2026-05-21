@@ -722,3 +722,19 @@ a.seemore-btn:active {
   line-height: 1.8;
   font-family: 'Lexend', sans-serif;
 }
+
+.scholarship-inner-content .application-open{
+  background-color: #f2fdf4;
+  border-left: 4px solid #4CAF50;
+}
+
+.scholarship-inner-content .application-open h6{
+  color: #2e7d32;
+  font-size: 16px;
+}
+
+.scholarship-inner-content .application-open p{
+  font-size: 14px;
+  line-height: 1.8;
+  font-family: 'Lexend', sans-serif;
+}
