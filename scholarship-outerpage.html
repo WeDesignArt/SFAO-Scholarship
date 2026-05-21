@@ -119,8 +119,7 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item active" aria-current="page"><a href="index.html">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page"><a href="calendar.html">Scholarships</a></li>
-              <li class="breadcrumb-item active" aria-current="page"><a href="scholarship-outerpage.html">Merit-Based Scholarships
-                  2025</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="scholarship-outerpage.html">Merit-Based Scholarships 2025&#8211;26</a></li>
             </ol>
           </nav>
         </div>
@@ -147,8 +146,24 @@
           <!-- ===== CURRENT TAB ===== -->
           <div class="sch-tab-content" id="tab-current">
 
-          <h2 class="scholarship-list-title">Merit-Based Scholarship 2025</h2>
-          <p class="scholarship-list-subtitle">Manage and update scholarship information across all sections</p>
+          <h2 class="scholarship-list-title">Merit-Based Scholarships 2025&#8211;26</h2>
+          <p class="scholarship-list-subtitle">Scholarship cycle running until mid-June 2026. Stay updated via SFAO for latest status.</p>
+
+          <!-- ===================================================
+               NOTICE / NEWS BANNER
+               To show: set style="display:block" on #sfao-notice-banner
+               To hide: set style="display:none"
+               Edit the message text between the <strong> and </p> tags
+          =================================================== -->
+          <div class="sfao-notice-banner" id="sfao-notice-banner" style="display:block;">
+            <div class="sfao-notice-inner">
+              <span class="sfao-notice-icon">&#128226;</span>
+              <div class="sfao-notice-text">
+                <strong>Notice:</strong> [Edit this message — e.g., "Selected students for Haier Scholarship 2025-26 are requested to visit SFAO office by June 30, 2026."]
+              </div>
+              <!-- <button class="sfao-notice-close"  onclick="document.getElementById('sfao-notice-banner').style.display='none'" title="Dismiss">&times;</button> -->
+            </div>
+          </div>
 
           <div class="scholarship-filter-bar">
             <button class="scholarship-filter-btn active" data-filter="all">All <span class="filter-count" id="count-all"></span></button>
@@ -159,6 +174,46 @@
           </div>
 
           <style>
+            /* ---- Notice Banner ---- */
+            .sfao-notice-banner {
+              background: #fff8e1;
+              border: 1px solid #ffe082;
+              border-left: 5px solid #f59e0b;
+              border-radius: 8px;
+              margin-bottom: 20px;
+            }
+            .sfao-notice-inner {
+              display: flex;
+              align-items: flex-start;
+              gap: 12px;
+              padding: 14px 16px;
+            }
+            .sfao-notice-icon {
+              font-size: 1.2rem;
+              line-height: 1.4;
+              flex-shrink: 0;
+            }
+            .sfao-notice-text {
+              flex: 1;
+              font-size: 0.9rem;
+              color: #555;
+              line-height: 1.6;
+            }
+            .sfao-notice-text strong {
+              color: #b45309;
+            }
+            .sfao-notice-close {
+              background: none;
+              border: none;
+              font-size: 1.3rem;
+              color: #999;
+              cursor: pointer;
+              padding: 0 4px;
+              line-height: 1;
+              flex-shrink: 0;
+            }
+            .sfao-notice-close:hover { color: #333; }
+
             .scholarship-filter-bar {
               display: flex;
               gap: 10px;
