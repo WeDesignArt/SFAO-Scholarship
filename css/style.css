@@ -738,3 +738,19 @@ a.seemore-btn:active {
   line-height: 1.8;
   font-family: 'Lexend', sans-serif;
 }
+
+.scholarship-inner-content .next-step-section{
+  background-color: #f0f7ff;
+  border-left: 4px solid #0d6efd;
+}
+
+.scholarship-inner-content .next-step-section h6{
+  color: #0d6efd;
+  font-size: 16px;
+}
+
+.scholarship-inner-content .next-step-section p{
+  font-size: 14px;
+  line-height: 1.8;
+  font-family: 'Lexend', sans-serif;
+}
