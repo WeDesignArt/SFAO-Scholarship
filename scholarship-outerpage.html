@@ -138,10 +138,10 @@
             <button class="sch-tab active" data-tab="current">
               Current Scholarships
             </button>
-            <button class="sch-tab" data-tab="upcoming">
+            <!-- <button class="sch-tab" data-tab="upcoming">
               Upcoming Scholarships
               <span class="tab-notify-dot" title="New announcements available!"></span>
-            </button>
+            </button> -->
           </div>
 
           <!-- ===== CURRENT TAB ===== -->
@@ -155,6 +155,7 @@
             <button class="scholarship-filter-btn filter-open" data-filter="open">Open <span class="filter-count" id="count-open"></span></button>
             <button class="scholarship-filter-btn filter-closed" data-filter="closed">Closed <span class="filter-count" id="count-closed"></span></button>
             <button class="scholarship-filter-btn filter-pending" data-filter="pending">Pending <span class="filter-count" id="count-pending"></span></button>
+            <button class="scholarship-filter-btn filter-upcoming" data-filter="upcoming">Upcoming <span class="filter-count" id="count-upcoming"></span></button>
           </div>
 
           <style>
@@ -189,10 +190,18 @@
             }
             .scholarship-filter-btn.filter-open.active  { background: #198754; border-color: #198754; }
             .scholarship-filter-btn.filter-open:not(.active):hover  { border-color: #198754; color: #198754; }
+
             .scholarship-filter-btn.filter-closed.active  { background: #dc3545; border-color: #dc3545; }
             .scholarship-filter-btn.filter-closed:not(.active):hover  { border-color: #dc3545; color: #dc3545; }
-            .scholarship-filter-btn.filter-pending.active  { background: #fd7e14; border-color: #fd7e14; }
-            .scholarship-filter-btn.filter-pending:not(.active):hover  { border-color: #fd7e14; color: #fd7e14; }
+
+            .scholarship-filter-btn.filter-pending.active  { background: #d39e00; border-color: #d39e00; }
+            .scholarship-filter-btn.filter-pending:not(.active):hover  { border-color: #d39e00; color: #d39e00; }
+
+            
+            .scholarship-filter-btn.filter-upcoming.active  { background: #fd7e14; border-color: #fd7e14; }
+            .scholarship-filter-btn.filter-upcoming:not(.active):hover  { border-color: #fd7e14; color: #fd7e14; }
+
+
             .filter-count {
               background: rgba(255,255,255,0.25);
               border-radius: 50px;
@@ -956,7 +965,7 @@
           // Populate count badges on filter buttons
           function updateCounts() {
             document.getElementById("count-all").textContent = allRows.length;
-            ["open", "closed", "pending"].forEach(function (status) {
+            ["open", "closed", "pending", "upcoming"].forEach(function (status) {
               var n = allRows.filter(function (row) {
                 var badge = row.querySelector(".scholarship-status-badge");
                 return badge && badge.classList.contains("status-" + status);
@@ -1168,7 +1177,7 @@
       <div class="section-6">
         <div class="bottom-bar">
           <div class="container text-center text-white py-4">
-            <p class="mb-0">&copy; 2025 University of Karachi | All Rights Reserved.</p>
+            <p class="mb-0">&copy; 2026 University of Karachi | All Rights Reserved.</p>
           </div>
         </div>
       </div>
