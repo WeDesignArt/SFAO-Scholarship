@@ -136,6 +136,73 @@
           <h2 class="scholarship-list-title">Merit-Based Scholarship 2025</h2>
           <p class="scholarship-list-subtitle">Manage and update scholarship information across all sections</p>
 
+          <div class="scholarship-filter-bar">
+            <button class="scholarship-filter-btn active" data-filter="all">All <span class="filter-count" id="count-all"></span></button>
+            <button class="scholarship-filter-btn filter-open" data-filter="open">Open <span class="filter-count" id="count-open"></span></button>
+            <button class="scholarship-filter-btn filter-closed" data-filter="closed">Closed <span class="filter-count" id="count-closed"></span></button>
+            <button class="scholarship-filter-btn filter-pending" data-filter="pending">Pending <span class="filter-count" id="count-pending"></span></button>
+          </div>
+
+          <style>
+            .scholarship-filter-bar {
+              display: flex;
+              gap: 10px;
+              flex-wrap: wrap;
+              margin-bottom: 18px;
+            }
+            .scholarship-filter-btn {
+              padding: 7px 20px;
+              border-radius: 50px;
+              border: 2px solid #d0d0d0;
+              background: #fff;
+              color: #555;
+              font-size: 0.88rem;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.2s;
+              display: flex;
+              align-items: center;
+              gap: 6px;
+            }
+            .scholarship-filter-btn:hover {
+              border-color: #379934;
+              color: #379934;
+            }
+            .scholarship-filter-btn.active {
+              background: #379934;
+              border-color: #379934;
+              color: #fff;
+            }
+            .scholarship-filter-btn.filter-open.active  { background: #198754; border-color: #198754; }
+            .scholarship-filter-btn.filter-open:not(.active):hover  { border-color: #198754; color: #198754; }
+            .scholarship-filter-btn.filter-closed.active  { background: #dc3545; border-color: #dc3545; }
+            .scholarship-filter-btn.filter-closed:not(.active):hover  { border-color: #dc3545; color: #dc3545; }
+            .scholarship-filter-btn.filter-pending.active  { background: #fd7e14; border-color: #fd7e14; }
+            .scholarship-filter-btn.filter-pending:not(.active):hover  { border-color: #fd7e14; color: #fd7e14; }
+            .filter-count {
+              background: rgba(255,255,255,0.25);
+              border-radius: 50px;
+              padding: 1px 8px;
+              font-size: 0.78rem;
+              font-weight: 700;
+            }
+            .scholarship-filter-btn:not(.active) .filter-count {
+              background: #f0f0f0;
+              color: #555;
+            }
+            .scholarship-no-results {
+              text-align: center;
+              padding: 40px 20px;
+              color: #888;
+              font-size: 0.95rem;
+              display: none;
+            }
+          </style>
+
+          <div class="scholarship-no-results" id="scholarship-no-results">
+            No scholarships found for this status.
+          </div>
+
           <div class="scholarship-table-header">
             <div class="scholarship-col-name">Scholarship Name List</div>
             <div class="scholarship-col-deadline">Deadlines</div>
@@ -217,13 +284,133 @@
 
           <!-- Item 7 -->
           <div class="scholarship-row">
-            <div class="scholarship-col-name">Pakistan Bait-ul-Maal (PBM) scholarships for University<br>of Karachi students</div>
-            <div class="scholarship-col-deadline">Nov 05, 2025</div>
+            <div class="scholarship-col-name">Sindh HEC Indigenous Scholarship<br>(M.Phil / Ph.D. Students)</div>
+            <div class="scholarship-col-deadline">—</div>
             <div class="scholarship-col-status">
               <span class="scholarship-status-badge status-closed">Closed</span>
             </div>
             <div class="scholarship-col-details">
               <a href="scholarship-innerpage-7.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 8 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">University of Karachi Alumni Association<br>(UKAA) Scholarship</div>
+            <div class="scholarship-col-deadline">—</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-pending">Pending</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-8.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 9 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">UKAHA Need-Based Financial Assistance Program<br>(Morning Program Students Only)</div>
+            <div class="scholarship-col-deadline">Jun 2025</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-9.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 10 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Need-Cum-Merit Scholarships — Zakat &amp; Ushr<br>Department, Government of Sindh</div>
+            <div class="scholarship-col-deadline">—</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-10.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 11 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Mitsubishi UFJ Foundation Scholarship<br>(Merit-Based, Morning Program)</div>
+            <div class="scholarship-col-deadline">—</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-11.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 12 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">The Citizens Foundation (TCF)<br>Tertiary Education Support Program</div>
+            <div class="scholarship-col-deadline">—</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-pending">Pending</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-12.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 13 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">USAID Merit &amp; Needs-Based Scholarship Program<br>(50% Seats Reserved for Female Students)</div>
+            <div class="scholarship-col-deadline">—</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-13.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 14 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Ihsan Trust Qarz-e-Hasna<br>(Interest-Free Loan — Morning &amp; Evening Program)</div>
+            <div class="scholarship-col-deadline">Year Round</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-open">Open</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-14.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 15 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Bismillah Bibi &amp; Mrs. Talat Jamil Scholarship Trust<br>(Science &amp; Pharmacy Faculties)</div>
+            <div class="scholarship-col-deadline">—</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-15.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 16 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Professional Education Foundation (PEF)<br>Scholarship 2026 (BBA &amp; CS/IT)</div>
+            <div class="scholarship-col-deadline">—</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-16.html" class="scholarship-view-details">View Details</a>
+            </div>
+          </div>
+
+          <!-- Item 17 -->
+          <div class="scholarship-row">
+            <div class="scholarship-col-name">Benazir Income Support Program (BISP)<br>HEC Need-Based Undergraduate Scholarship</div>
+            <div class="scholarship-col-deadline">—</div>
+            <div class="scholarship-col-status">
+              <span class="scholarship-status-badge status-closed">Closed</span>
+            </div>
+            <div class="scholarship-col-details">
+              <a href="scholarship-innerpage-17.html" class="scholarship-view-details">View Details</a>
             </div>
           </div>
 
@@ -632,41 +819,72 @@
 
       <script>
         document.addEventListener("DOMContentLoaded", function () {
-          const rows = document.querySelectorAll(".scholarship-row");
+          const allRows = Array.from(document.querySelectorAll(".scholarship-row"));
+          const filterButtons = document.querySelectorAll(".scholarship-filter-btn");
           const itemsPerPage = 6;
           let currentPage = 1;
-          const totalItems = rows.length;
-          const totalPages = Math.ceil(totalItems / itemsPerPage);
+          let currentFilter = "all";
 
           const paginationContainer = document.getElementById("scholarship-pagination");
           const showingText = document.getElementById("scholarship-showing-text");
+          const noResults = document.getElementById("scholarship-no-results");
 
-          function renderTable() {
-            rows.forEach((row) => {
-              row.style.display = "none";
+          // Populate count badges on filter buttons
+          function updateCounts() {
+            document.getElementById("count-all").textContent = allRows.length;
+            ["open", "closed", "pending"].forEach(function (status) {
+              var n = allRows.filter(function (row) {
+                var badge = row.querySelector(".scholarship-status-badge");
+                return badge && badge.classList.contains("status-" + status);
+              }).length;
+              document.getElementById("count-" + status).textContent = n;
             });
-
-            let start = (currentPage - 1) * itemsPerPage;
-            let end = start + itemsPerPage;
-            for (let i = start; i < end && i < totalItems; i++) {
-              rows[i].style.display = "";
-            }
-
-            let currentEnd = end > totalItems ? totalItems : end;
-            if (totalItems === 0) {
-              start = 0;
-              currentEnd = 0;
-            }
-            showingText.innerHTML = `Showing ${totalItems > 0 ? start + 1 : 0} to ${currentEnd} of ${totalItems} entries`;
-
-            renderPagination();
           }
 
-          function renderPagination() {
-            paginationContainer.innerHTML = "";
-            if (totalPages <= 0) return;
+          function getFilteredRows() {
+            if (currentFilter === "all") return allRows;
+            return allRows.filter(function (row) {
+              var badge = row.querySelector(".scholarship-status-badge");
+              return badge && badge.classList.contains("status-" + currentFilter);
+            });
+          }
 
-            const prevBtn = document.createElement("a");
+          function renderTable() {
+            var filtered = getFilteredRows();
+            var totalItems = filtered.length;
+            var totalPages = Math.ceil(totalItems / itemsPerPage);
+
+            if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+            // Hide every row first
+            allRows.forEach(function (row) { row.style.display = "none"; });
+
+            if (totalItems === 0) {
+              noResults.style.display = "block";
+              showingText.innerHTML = "Showing 0 entries";
+              paginationContainer.innerHTML = "";
+              return;
+            }
+            noResults.style.display = "none";
+
+            // Show current page slice of filtered rows
+            var start = (currentPage - 1) * itemsPerPage;
+            var end = start + itemsPerPage;
+            for (var i = start; i < end && i < totalItems; i++) {
+              filtered[i].style.display = "";
+            }
+
+            var currentEnd = end > totalItems ? totalItems : end;
+            showingText.innerHTML = "Showing " + (start + 1) + " to " + currentEnd + " of " + totalItems + " entries";
+
+            renderPagination(totalPages);
+          }
+
+          function renderPagination(totalPages) {
+            paginationContainer.innerHTML = "";
+            if (totalPages <= 1) return;
+
+            var prevBtn = document.createElement("a");
             prevBtn.href = "javascript:void(0)";
             prevBtn.className = "scholarship-page-item";
             prevBtn.innerHTML = "&lt;";
@@ -674,44 +892,47 @@
               prevBtn.style.opacity = "0.5";
               prevBtn.style.cursor = "not-allowed";
             } else {
-              prevBtn.onclick = function () {
-                currentPage--;
-                renderTable();
-              };
+              prevBtn.onclick = function () { currentPage--; renderTable(); };
             }
             paginationContainer.appendChild(prevBtn);
 
-            for (let i = 1; i <= totalPages; i++) {
-              const pageBtn = document.createElement("a");
-              pageBtn.href = "javascript:void(0)";
-              pageBtn.className = "scholarship-page-item";
-              if (i === currentPage) {
-                pageBtn.classList.add("active");
-              }
-              pageBtn.innerHTML = i;
-              pageBtn.onclick = function () {
-                currentPage = i;
-                renderTable();
-              };
-              paginationContainer.appendChild(pageBtn);
+            for (var i = 1; i <= totalPages; i++) {
+              (function (page) {
+                var pageBtn = document.createElement("a");
+                pageBtn.href = "javascript:void(0)";
+                pageBtn.className = "scholarship-page-item";
+                if (page === currentPage) pageBtn.classList.add("active");
+                pageBtn.innerHTML = page;
+                pageBtn.onclick = function () { currentPage = page; renderTable(); };
+                paginationContainer.appendChild(pageBtn);
+              })(i);
             }
 
-            const nextBtn = document.createElement("a");
+            var nextBtn = document.createElement("a");
             nextBtn.href = "javascript:void(0)";
             nextBtn.className = "scholarship-page-item";
             nextBtn.innerHTML = "&gt;";
-            if (currentPage === totalPages || totalPages === 0) {
+            if (currentPage === totalPages) {
               nextBtn.style.opacity = "0.5";
               nextBtn.style.cursor = "not-allowed";
             } else {
-              nextBtn.onclick = function () {
-                currentPage++;
-                renderTable();
-              };
+              nextBtn.onclick = function () { currentPage++; renderTable(); };
             }
             paginationContainer.appendChild(nextBtn);
           }
 
+          // Filter button click
+          filterButtons.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              filterButtons.forEach(function (b) { b.classList.remove("active"); });
+              this.classList.add("active");
+              currentFilter = this.getAttribute("data-filter");
+              currentPage = 1;
+              renderTable();
+            });
+          });
+
+          updateCounts();
           renderTable();
         });
       </script>
