@@ -806,3 +806,122 @@ a.seemore-btn:active {
   line-height: 1.8;
   font-family: 'Lexend', sans-serif;
 }
+
+
+/* =====================================================
+   SCHOLARSHIP RESOURCES TABS (Inner Pages)
+===================================================== */
+.sch-resources-section {
+  border-top: 1px solid #e9ecef;
+  padding-top: 30px;
+}
+
+.sch-res-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.sch-res-tab {
+  padding: 10px 22px;
+  border: none;
+  background: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #777;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  font-family: 'Lexend', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sch-res-tab:hover { color: #379934; }
+
+.sch-res-tab.active {
+  color: #379934;
+  border-bottom-color: #379934;
+  font-weight: 700;
+}
+
+.sch-res-pane {
+  padding: 20px 0;
+}
+
+.sch-res-placeholder {
+  background: #f8f9fa;
+  border: 1px dashed #ced4da;
+  border-radius: 8px;
+  padding: 28px 20px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  font-family: 'Lexend', sans-serif;
+  line-height: 1.6;
+}
+
+.sch-res-placeholder i {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+  opacity: 0.35;
+}
+
+.sch-res-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-family: 'Lexend', sans-serif;
+}
+
+.sch-res-table th {
+  background: #f2f8f1;
+  color: #1a1e29;
+  font-weight: 600;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid #c8e0c7;
+}
+
+.sch-res-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #f1f2f4;
+  color: #555;
+  vertical-align: middle;
+}
+
+.sch-res-table tr:last-child td { border-bottom: none; }
+
+.sch-res-table a {
+  color: #379934;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sch-res-table a:hover { text-decoration: underline; }
+
+.sch-year-block { margin-bottom: 30px; }
+
+.sch-year-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: #379934;
+  padding: 5px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 12px;
+  font-family: 'Lexend', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .sch-res-tab {
+    padding: 8px 14px;
+    font-size: 0.82rem;
+  }
+}

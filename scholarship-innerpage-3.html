@@ -163,22 +163,6 @@
             <h6 class="fw-bold mb-1">Next Step</h6>
             <p class="mb-0 text-secondary"><strong>What's Happening:</strong> Notifications will be sent to scholarship awarded students. Stay updated through the SFAO official page.</p>
           </div>
-
-    
-
-
-          <!-- =====================================================
-               SELECTED STUDENTS / AWARDEES
-               To display names: replace the placeholder div below with the table
-               To show table: uncomment the table block and remove the placeholder div
-          ===================================================== -->
-          <div class="mb-5 scholarship-awardees-section">
-            <h6 class="fw-bold mb-3 text-dark">Selected Students</h6>
-            <div class="awardees-placeholder p-3 rounded" style="background:#f8f9fa; border-left:4px solid #ced4da;">
-              <p class="mb-0 text-secondary" style="font-size:14px; font-family:'Lexend',sans-serif;">
-                <i>Results will be published here once the official list of awardees is confirmed. Please check back for updates.</i>
-              </p>
-            </div>
             <!-- Uncomment below and fill in student names when ready:
             <div class="table-responsive">
               <table class="table table-sm table-bordered mt-3" style="font-size:14px; font-family:'Lexend',sans-serif;">
@@ -196,7 +180,117 @@
               </table>
             </div>
             -->
-          </div>        </div>
+          </div>
+          <!-- =====================================================
+               SCHOLARSHIP RESOURCES TABS
+               FORMS: uncomment the table in sch-res-forms, add form links
+               NOTIFICATIONS: uncomment the table in sch-res-notifications, add announcements
+               SELECTED CANDIDATES: uncomment year blocks in sch-res-candidates, add names year-wise
+          ===================================================== -->
+          <div class="sch-resources-section container mb-5">
+            <h6 class="fw-bold mb-3 text-dark">Forms, Notifications &amp; Selected Candidates</h6>
+
+            <div class="sch-res-tabs">
+              <button class="sch-res-tab active" data-pane="sch-res-forms">
+                <i class="bi bi-file-earmark-arrow-down"></i> Forms
+              </button>
+              <button class="sch-res-tab" data-pane="sch-res-notifications">
+                <i class="bi bi-bell"></i> Notifications
+              </button>
+              <button class="sch-res-tab" data-pane="sch-res-candidates">
+                <i class="bi bi-people"></i> Selected Candidates
+              </button>
+            </div>
+
+            <!-- FORMS TAB -->
+            <div class="sch-res-pane" id="sch-res-forms">
+              <div class="sch-res-placeholder">
+                <i class="bi bi-file-earmark"></i>
+                No forms uploaded yet. Application forms will appear here when the scholarship cycle opens.
+              </div>
+              <!-- To add forms: remove the placeholder div above, then uncomment:
+              <div class="table-responsive mt-3">
+                <table class="sch-res-table">
+                  <thead>
+                    <tr><th>Form Title</th><th>Academic Year</th><th>Upload Date</th><th>Download</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Application Form 2025-26</td>
+                      <td>2025-26</td>
+                      <td>Jan 10, 2026</td>
+                      <td><a href="path/to/form.pdf" target="_blank">&#8681; Download</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              -->
+            </div>
+
+            <!-- NOTIFICATIONS TAB -->
+            <div class="sch-res-pane" id="sch-res-notifications" style="display:none">
+              <div class="sch-res-placeholder">
+                <i class="bi bi-bell-slash"></i>
+                No notifications yet. Official announcements and circulars will appear here.
+              </div>
+              <!-- To add notifications: remove the placeholder div above, then uncomment:
+              <div class="table-responsive mt-3">
+                <table class="sch-res-table">
+                  <thead>
+                    <tr><th>Title</th><th>Date</th><th>View</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Scholarship Advertisement 2025-26</td>
+                      <td>Dec 1, 2025</td>
+                      <td><a href="path/to/notice.pdf" target="_blank">View</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              -->
+            </div>
+
+            <!-- SELECTED CANDIDATES TAB -->
+            <div class="sch-res-pane" id="sch-res-candidates" style="display:none">
+              <div class="sch-res-placeholder">
+                <i class="bi bi-person-lines-fill"></i>
+                No results yet. Selected candidates will be listed here year-wise once confirmed.
+              </div>
+              <!-- To add candidates: remove the placeholder div above, then add one block per year:
+              <div class="sch-year-block">
+                <span class="sch-year-title">Academic Year 2025-26</span>
+                <div class="table-responsive mt-3">
+                  <table class="sch-res-table">
+                    <thead>
+                      <tr><th>#</th><th>Student Name</th><th>Roll No.</th><th>Program / Department</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>1</td><td>Student Name</td><td>Roll No.</td><td>Department</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              -->
+            </div>
+
+          </div>
+
+          <script>
+          (function () {
+            var sec = document.querySelector('.sch-resources-section');
+            if (!sec) return;
+            sec.querySelectorAll('.sch-res-tab').forEach(function (tab) {
+              tab.addEventListener('click', function () {
+                sec.querySelectorAll('.sch-res-tab').forEach(function (t) { t.classList.remove('active'); });
+                sec.querySelectorAll('.sch-res-pane').forEach(function (p) { p.style.display = 'none'; });
+                tab.classList.add('active');
+                var pane = document.getElementById(tab.getAttribute('data-pane'));
+                if (pane) pane.style.display = '';
+              });
+            });
+          })();
+          </script>        </div>
       </section>
     </main>
 
