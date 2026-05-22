@@ -167,24 +167,33 @@
                         <input type="email" class="form-control" required />
                       </div>
                     
-                      <!-- Department -->
-                      <div class="col">
-                        <label class="form-label">Department</label>
+                    <!-- Department -->
+                    <div class="col">
+                      <label class="form-label">Department</label>
                     
-                        <select class="form-control" required>
-                          <option value="">Select Department</option>
+                      <select class="form-control" id="departmentSelect" required>
+                        <option value="">Select Department</option>
                     
-                          <option>Computer Science</option>
-                          <option>Business Administration</option>
-                          <option>Commerce</option>
-                          <option>Mathematics</option>
-                          <option>Physics</option>
-                          <option>English</option>
-                          <option>Media Science</option>
-                          <option>Other</option>
+                        <option>Computer Science</option>
+                        <option>Business Administration</option>
+                        <option>Commerce</option>
+                        <option>Mathematics</option>
+                        <option>Physics</option>
+                        <option>English</option>
+                        <option>Media Science</option>
                     
-                        </select>
-                      </div>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    
+                    <!-- Other Department Field -->
+                    <div class="col mt-3 d-none" id="otherDepartmentField">
+                      <label class="form-label">
+                        Enter Your Department
+                      </label>
+                    
+                      <input type="text" class="form-control" id="otherDepartmentInput" placeholder="Type your department" />
+                    </div>
                     
                       <!-- Student ID -->
                       <div class="col">
