@@ -47,9 +47,9 @@
                   <li>
                     <a href="announcement.html">Stories</a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href="calendar.html">Calendar</a>
-                  </li>
+                  </li> -->
 
 
                   <li>
@@ -154,31 +154,72 @@
                   </div>
 
                   <div class="career-resume col-lg-9">
+
                     <form action="">
+                    
                       <div class="col">
-                        <lable class="form-label">Full Name</lable>
-                        <input type="text" class="form-control" />
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" required />
                       </div>
-
+                    
                       <div class="col">
-                        <lable class="form-label">Email</lable>
-                        <input type="email" class="form-control" />
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" required />
                       </div>
-
+                    
+                      <!-- Department -->
                       <div class="col">
-                        <lable class="form-label">Phone</lable>
+                        <label class="form-label">Department</label>
+                    
+                        <select class="form-control" required>
+                          <option value="">Select Department</option>
+                    
+                          <option>Computer Science</option>
+                          <option>Business Administration</option>
+                          <option>Commerce</option>
+                          <option>Mathematics</option>
+                          <option>Physics</option>
+                          <option>English</option>
+                          <option>Media Science</option>
+                          <option>Other</option>
+                    
+                        </select>
+                      </div>
+                    
+                      <!-- Student ID -->
+                      <div class="col">
+                        <label class="form-label">Student ID / Roll Number</label>
+                        <input type="text" class="form-control" required />
+                      </div>
+                    
+                      <!-- Optional Phone -->
+                      <div class="col">
+                        <label class="form-label">
+                          Contact Number
+                          <small>(Optional)</small>
+                        </label>
+                    
                         <input type="tel" class="form-control" />
                       </div>
-
+                    
+                      <!-- Message -->
                       <div class="col">
-                        <lable class="form-label">Message</lable>
-                        <textarea name="" id="" rows="9" class="form-control"></textarea>
+                        <label class="form-label">
+                          Message
+                          <small id="charCounter">(0 / 350 characters)</small>
+                        </label>
+                      
+                        <textarea id="messageBox" rows="7" class="form-control" placeholder="Write your message..." maxlength="350"
+                          required></textarea>
                       </div>
-
-                      <p>
+                    
+                      <p class="mt-4">
                         <input type="submit" value="Send" class="btn btn_fill text-uppercase" />
                       </p>
+                    
                     </form>
+
+
                   </div>
                 </div>
 
@@ -310,7 +351,7 @@
                   <li><a href="stories.html"><i class="bi bi-check-circle-fill me-2 "></i>Stories</a></li>
 
 
-                  <li><a href="calendar.html"><i class="bi bi-check-circle-fill me-2 "></i>Calendar</a></li>
+                  <!-- <li><a href="calendar.html"><i class="bi bi-check-circle-fill me-2 "></i>Calendar</a></li> -->
 
 
                   <li><a href="scholarship-outerpage.html"><i class="bi bi-check-circle-fill me-2 "></i>Scholarships</a></li>
@@ -360,9 +401,9 @@
             <li>
               <a href="stories.html">Stories</a>
             </li>
-            <li>
+            <!-- <li>
               <a href="calendar.html">Calendar</a>
-            </li>
+            </li> -->
 
 
             <li>
@@ -385,6 +426,42 @@
   <script src="js/jquery-migrate.js"></script>
   <script src="js/vendor.js"></script>
   <script src="js/main.js"></script>
+
+
+<script>
+  const messageBox = document.getElementById('messageBox');
+  const charCounter = document.getElementById('charCounter');
+
+  messageBox.addEventListener('input', function () {
+    charCounter.innerText = `(${this.value.length} / 350 characters)`;
+  });
+</script>
+<script>
+  const departmentSelect = document.getElementById('departmentSelect');
+  const otherDepartmentField = document.getElementById('otherDepartmentField');
+  const otherDepartmentInput = document.getElementById('otherDepartmentInput');
+
+  departmentSelect.addEventListener('change', function () {
+
+    if (this.value === 'other') {
+
+      otherDepartmentField.classList.remove('d-none');
+
+      otherDepartmentInput.setAttribute('required', true);
+
+    } else {
+
+      otherDepartmentField.classList.add('d-none');
+
+      otherDepartmentInput.removeAttribute('required');
+
+      otherDepartmentInput.value = '';
+
+    }
+
+  });
+</script>
+
 </body>
 
 </html>
