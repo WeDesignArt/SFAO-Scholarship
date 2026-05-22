@@ -11,6 +11,10 @@
    SECTION 1 : HERO / TOP IMAGE
 ===================================================== */
 
+html {
+  scroll-behavior: smooth;
+}
+
 .section-1 {
   margin-bottom: 50px;
 }
@@ -850,7 +854,9 @@ a.seemore-btn:active {
   gap: 6px;
 }
 
-.sch-res-tab:hover { color: #379934; }
+.sch-res-tab:hover {
+  color: #379934;
+}
 
 .sch-res-tab.active {
   color: #379934;
@@ -904,7 +910,9 @@ a.seemore-btn:active {
   vertical-align: middle;
 }
 
-.sch-res-table tr:last-child td { border-bottom: none; }
+.sch-res-table tr:last-child td {
+  border-bottom: none;
+}
 
 .sch-res-table a {
   color: #379934;
@@ -912,9 +920,13 @@ a.seemore-btn:active {
   text-decoration: none;
 }
 
-.sch-res-table a:hover { text-decoration: underline; }
+.sch-res-table a:hover {
+  text-decoration: underline;
+}
 
-.sch-year-block { margin-bottom: 30px; }
+.sch-year-block {
+  margin-bottom: 30px;
+}
 
 .sch-year-title {
   font-size: 13px;
