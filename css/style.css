@@ -184,6 +184,15 @@ a.btn-primary {
   /* font-size: 16px; */
 }
 
+a.btn-apply-closed,
+a.btn-apply-closed:hover,
+a.btn-apply-closed:focus {
+  background-color: #b71c1c !important;
+  border-color: #b71c1c !important;
+  opacity: 0.85;
+  cursor: pointer;
+}
+
 a.subscribe-btn:hover,
 a.subscribe-btn:focus,
 a.subscribe-btn:active {
