@@ -953,3 +953,73 @@ a.seemore-btn:active {
     font-size: 0.82rem;
   }
 }
+
+
+/* contact completion form  */
+
+/* SFAO Success Modal */
+.sfao-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+
+.sfao-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sfao-modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 24px;
+  padding: 45px 35px;
+  text-align: center;
+  position: relative;
+
+  transform: translateY(20px);
+  transition: 0.3s ease;
+}
+
+.sfao-modal.active .sfao-modal-content {
+  transform: translateY(0);
+}
+
+.success-icon {
+  width: 90px;
+  height: 90px;
+  background: #379934;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin: 0 auto 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 10px 30px rgba(55, 153, 52, 0.3);
+}
+
+.sfao-modal-content h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.sfao-modal-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 30px;
+}

@@ -155,7 +155,7 @@
 
                   <div class="career-resume col-lg-9">
 
-                    <form action="">
+                    <form action="" id="contactForm">
                     
                       <div class="col">
                         <label class="form-label">Full Name</label>
@@ -197,8 +197,8 @@
                     
                       <!-- Student ID -->
                       <div class="col">
-                        <label class="form-label">Student ID / Roll Number</label>
-                        <input type="text" class="form-control" required />
+                        <label class="form-label">Student ID / Roll Number (if available)</label>
+                        <input type="text" class="form-control"  />
                       </div>
                     
                       <!-- Optional Phone -->
@@ -431,6 +431,34 @@
     <span> Go to top </span>
   </button>
 
+
+  <!-- Success Modal -->
+  <div class="sfao-modal" id="successModal">
+    <div class="sfao-modal-content">
+  
+      <div class="success-icon">
+        ✓
+      </div>
+  
+      <h2>Message Submitted Successfully</h2>
+  
+      <p>
+        Thank you for contacting the
+        <strong>Student Financial Aid Office (SFAO)</strong>.
+        <br />
+        Your message has been received successfully.
+        Our team will get back to you shortly.
+      </p>
+  
+      <button class="btn btn_fill" id="closeModal">
+        Close
+      </button>
+  
+    </div>
+  </div>
+
+
+
   <script src="js/jquery.js"></script>
   <script src="js/jquery-migrate.js"></script>
   <script src="js/vendor.js"></script>
@@ -468,6 +496,42 @@
 
     }
 
+  });
+</script>
+
+<script>
+  const contactForm = document.getElementById('contactForm');
+  const successModal = document.getElementById('successModal');
+  const closeModal = document.getElementById('closeModal');
+
+  contactForm.addEventListener('submit', function (e) {
+
+    e.preventDefault();
+
+    // Show Modal
+    successModal.classList.add('active');
+
+    // Reset Form
+    contactForm.reset();
+
+    // Reset Counter
+    charCounter.innerText = '(0 / 350 characters)';
+
+    // Hide Other Department Field
+    otherDepartmentField.classList.add('d-none');
+
+  });
+
+  // Close Modal
+  closeModal.addEventListener('click', function () {
+    successModal.classList.remove('active');
+  });
+
+  // Close on Outside Click
+  successModal.addEventListener('click', function (e) {
+    if (e.target === successModal) {
+      successModal.classList.remove('active');
+    }
   });
 </script>
 
