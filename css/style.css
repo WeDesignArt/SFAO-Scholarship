@@ -1023,3 +1023,7 @@ a.seemore-btn:active {
   color: #666;
   margin-bottom: 30px;
 }
+
+.content_overlay_wrapper.active {
+  height: 313px !important;
+}
