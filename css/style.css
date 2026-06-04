@@ -236,7 +236,7 @@ a.subscribe-btn:active {
 }
 
 .color-limegreeen {
-  background-color: #F2F8F1;
+  /* background-color: #F2F8F1; */
 }
 
 .seemore {
@@ -1027,3 +1027,80 @@ a.seemore-btn:active {
 .content_overlay_wrapper.active {
   height: 313px !important;
 }
+
+.sfao_appreciation, .section_content_left {
+  background: #f4faf4;
+}
+
+
+/* 
+      <!-- ================= AWARDEES SECTION ================= --> 
+*/
+
+
+        .sfao-awardees-section {
+          /* background: #f4faf4; */
+        }
+        .awardee-card {
+          background: #fff;
+          border-radius: 16px;
+          padding: 32px 20px 24px;
+          text-align: center;
+          border: 1px solid #e0efe0;
+          box-shadow: 0 4px 18px rgba(55,153,52,0.08);
+          position: relative;
+          overflow: hidden;
+          transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .awardee-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 10px 32px rgba(55,153,52,0.15);
+        }
+        .awardee-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 4px;
+          background: linear-gradient(90deg, #379934, #6abf69);
+        }
+        .awardee-confetti-ribbon {
+          font-size: 1.6rem;
+          margin-bottom: 10px;
+        }
+        .awardee-avatar {
+          width: 62px;
+          height: 62px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #379934, #2d7a2a);
+          color: #fff;
+          font-size: 1.2rem;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 14px;
+          letter-spacing: 1px;
+          box-shadow: 0 3px 12px rgba(55,153,52,0.25);
+        }
+        .awardee-name {
+          font-size: 1rem;
+          font-weight: 700;
+          color: #1a3c2b;
+          margin-bottom: 6px;
+        }
+        .awardee-scholarship {
+          font-size: 0.8rem;
+          color: #666;
+          line-height: 1.5;
+          margin-bottom: 14px;
+        }
+        .awardee-badge {
+          display: inline-block;
+          background: linear-gradient(90deg, #379934, #6abf69);
+          color: #fff;
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 4px 14px;
+          border-radius: 50px;
+          letter-spacing: 0.04em;
+        }
