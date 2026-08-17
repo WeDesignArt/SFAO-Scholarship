@@ -3,6 +3,12 @@
 ===================================================== */
 
 
+ .section_para p {
+    text-align: justify !important;
+  }
+
+
+
 /* =====================================================
    GLOBAL STYLES
    ======================================================*/
@@ -454,8 +460,8 @@ a.seemore-btn:active {
     transform: translateX(-50%);
   }
 
-  .text-cen {
-    text-align: center;
+  .section_para p {
+    text-align: center !important;
   }
 
 
