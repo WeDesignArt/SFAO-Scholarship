@@ -1,0 +1,104 @@
+{
+  "key": "group_awardees_page_sfao",
+  "title": "Awardees Page Settings",
+  "fields": [
+    {
+      "key": "field_aw_page_tab_hero",
+      "label": "Banner & Hero",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_aw_banner_title",
+      "label": "Banner Title",
+      "name": "awardees_banner_title",
+      "type": "text",
+      "default_value": "Scholarship Awardees"
+    },
+    {
+      "key": "field_aw_banner_subtitle",
+      "label": "Banner Subtitle",
+      "name": "awardees_banner_subtitle",
+      "type": "textarea",
+      "default_value": "Honoring students who earned financial support through their dedication, merit, and need."
+    },
+    {
+      "key": "field_aw_banner_image",
+      "label": "Banner Background Image",
+      "name": "awardees_banner_image",
+      "type": "image",
+      "return_format": "array"
+    },
+    {
+      "key": "field_aw_page_tab_stats",
+      "label": "Impact Stats",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_aw_stats_repeater",
+      "label": "Impact Statistics",
+      "name": "awardees_stats",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Add Stat Box",
+      "sub_fields": [
+        {
+          "key": "field_stat_num",
+          "label": "Stat Number (e.g. 2,000+)",
+          "name": "stat_number",
+          "type": "text"
+        },
+        {
+          "key": "field_stat_lbl",
+          "label": "Stat Label (e.g. Students Supported)",
+          "name": "stat_label",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_aw_page_tab_intro",
+      "label": "Intro & Header",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_aw_intro_title",
+      "label": "Intro Box Title",
+      "name": "awardees_intro_title",
+      "type": "text",
+      "default_value": "A Legacy of Educational Empowerment"
+    },
+    {
+      "key": "field_aw_intro_text",
+      "label": "Intro Box Description",
+      "name": "awardees_intro_text",
+      "type": "textarea",
+      "default_value": "Since 2006, the Student Financial Aid Office (SFAO) at the University of Karachi has been a lifeline for thousands of deserving students. By bridging the gap between financial hardship and academic ambition, SFAO has grown its scholarship disbursements from Rs. 6 million to over Rs. 200 million, transforming more than 2,000 student lives across over 17 active scholarship programs."
+    },
+    {
+      "key": "field_aw_grid_title",
+      "label": "Awardees Grid Heading",
+      "name": "awardees_grid_title",
+      "type": "text",
+      "default_value": "Selected Candidates & Recipients"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-templates/page-awardees.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true
+}

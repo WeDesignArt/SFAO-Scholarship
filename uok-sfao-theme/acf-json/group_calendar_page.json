@@ -1,0 +1,82 @@
+{
+  "key": "group_calendar_page_sfao",
+  "title": "Calendar Page Settings",
+  "fields": [
+    {
+      "key": "field_cal_tab_hero",
+      "label": "Banner & Hero",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_cal_banner_title",
+      "label": "Banner Title",
+      "name": "calendar_banner_title",
+      "type": "text",
+      "default_value": "Calendar"
+    },
+    {
+      "key": "field_cal_banner_image",
+      "label": "Banner Background Image",
+      "name": "calendar_banner_image",
+      "type": "image",
+      "return_format": "array"
+    },
+    {
+      "key": "field_cal_tab_content",
+      "label": "Schedule & Announcements",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_cal_announcement_title",
+      "label": "Announcement Section Title",
+      "name": "calendar_announcement_title",
+      "type": "text",
+      "default_value": "Scholarship Announcement & Schedule"
+    },
+    {
+      "key": "field_cal_announcement_text",
+      "label": "Announcement Description",
+      "name": "calendar_announcement_text",
+      "type": "textarea",
+      "default_value": "At the start of the new academic year, the University is pleased to open its annual scholarship cycle. Check dates for forms, interviews, and result announcements below."
+    },
+    {
+      "key": "field_cal_tab_appreciation",
+      "label": "Appreciation Section",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_cal_app_title",
+      "label": "Appreciation Title",
+      "name": "calendar_appreciation_title",
+      "type": "text",
+      "default_value": "Appreciation"
+    },
+    {
+      "key": "field_cal_app_text",
+      "label": "Appreciation Message",
+      "name": "calendar_appreciation_text",
+      "type": "textarea",
+      "default_value": "The Student Financial Aid Office, University of Karachi, extends its deepest gratitude to the leadership and our sponsors: Al Kauser and The University of Karachi Alumni Association Houston (UKAHA) for their invaluable support."
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-templates/page-calendar.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true
+}

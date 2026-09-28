@@ -1,0 +1,20 @@
+/*
+Theme Name: UOK SFAO Theme (Latest)
+Theme URI: https://uok.edu.pk/sfao
+Author: Karachi University SFAO Web Team
+Author URI: https://uok.edu.pk
+Description: Latest Custom WordPress Theme for Student Financial Aid Office (SFAO), University of Karachi. Fully equipped with ACF PRO Repeaters, Custom Post Types, Awardees, and News Ticker.
+Version: 2.0.0
+Text Domain: uok-sfao
+*/
+
+/* Reset / WP Defaults */
+.alignwide {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.alignfull {
+    width: 100vw;
+    max-width: 100%;
+}

@@ -1,0 +1,68 @@
+{
+  "key": "group_events_page_sfao",
+  "title": "Events Page Settings",
+  "fields": [
+    {
+      "key": "field_ev_page_tab_hero",
+      "label": "Banner & Hero",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_ev_banner_title",
+      "label": "Banner Title",
+      "name": "events_banner_title",
+      "type": "text",
+      "default_value": "SFAO Events & Activities"
+    },
+    {
+      "key": "field_ev_banner_image",
+      "label": "Banner Background Image",
+      "name": "events_banner_image",
+      "type": "image",
+      "return_format": "array"
+    },
+    {
+      "key": "field_ev_page_tab_content",
+      "label": "Gallery & Highlights",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_ev_main_title",
+      "label": "Section Heading",
+      "name": "events_main_title",
+      "type": "text",
+      "default_value": "Event Highlights & Award Ceremonies"
+    },
+    {
+      "key": "field_ev_main_subtitle",
+      "label": "Section Subtitle / Description",
+      "name": "events_main_subtitle",
+      "type": "textarea",
+      "default_value": "A visual chronicle of scholarship distribution events, donor meetings, orientation sessions, and student recognition ceremonies held at the University of Karachi."
+    },
+    {
+      "key": "field_ev_gallery",
+      "label": "Events Photo Gallery",
+      "name": "events_gallery",
+      "type": "gallery",
+      "return_format": "array"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-templates/page-events.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true
+}

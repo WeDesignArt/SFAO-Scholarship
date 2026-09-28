@@ -1,0 +1,61 @@
+{
+  "key": "group_stories_page_sfao",
+  "title": "Stories Page Settings",
+  "fields": [
+    {
+      "key": "field_stories_tab_hero",
+      "label": "Banner & Hero",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stories_banner_title",
+      "label": "Banner Title",
+      "name": "stories_banner_title",
+      "type": "text",
+      "default_value": "Stories"
+    },
+    {
+      "key": "field_stories_banner_image",
+      "label": "Banner Background Image",
+      "name": "stories_banner_image",
+      "type": "image",
+      "return_format": "array"
+    },
+    {
+      "key": "field_stories_tab_content",
+      "label": "Section Content",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_stories_heading",
+      "label": "Section Heading",
+      "name": "stories_heading",
+      "type": "text",
+      "default_value": "Student Success Stories"
+    },
+    {
+      "key": "field_stories_subheading",
+      "label": "Section Subtitle / Description",
+      "name": "stories_subheading",
+      "type": "textarea",
+      "default_value": "Read how financial aid transformed the academic journey of students at University of Karachi."
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-templates/page-stories.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true
+}

@@ -1,0 +1,153 @@
+{
+  "key": "group_scholarships_page_sfao",
+  "title": "Scholarships Page Settings",
+  "fields": [
+    {
+      "key": "field_sch_page_tab_hero",
+      "label": "Banner & Hero",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_sch_banner_title",
+      "label": "Banner Title",
+      "name": "scholarships_banner_title",
+      "type": "text",
+      "default_value": "Scholarships 2025–26"
+    },
+    {
+      "key": "field_sch_banner_image",
+      "label": "Banner Background Image",
+      "name": "scholarships_banner_image",
+      "type": "image",
+      "return_format": "array"
+    },
+    {
+      "key": "field_sch_page_tab_notice",
+      "label": "Notice Banner",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_sch_show_notice",
+      "label": "Show Notice Banner",
+      "name": "scholarships_show_notice",
+      "type": "true_false",
+      "default_value": 1
+    },
+    {
+      "key": "field_sch_notice_text",
+      "label": "Notice Text (HTML Allowed)",
+      "name": "scholarships_notice_text",
+      "type": "textarea",
+      "default_value": "Selected students for Mitsubishi UFJ Foundation Scholarship 2025-26 are requested to visit SFAO office Room #4."
+    },
+    {
+      "key": "field_sch_page_tab_proc",
+      "label": "Processes Chart",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_sch_proc_title",
+      "label": "Processes Section Title",
+      "name": "processes_title",
+      "type": "text",
+      "default_value": "Scholarship Application Processes"
+    },
+    {
+      "key": "field_sch_proc_subtitle",
+      "label": "Processes Subtitle",
+      "name": "processes_subtitle",
+      "type": "text",
+      "default_value": "University of Karachi — Student Financial Aid Office (SFAO)"
+    },
+    {
+      "key": "field_sch_proc_note",
+      "label": "Processes Bottom Note",
+      "name": "processes_note",
+      "type": "textarea",
+      "default_value": "Applications must be submitted with all required supporting documents before the specified deadline. Incomplete submissions will not be processed. Regular morning program students have priority for most scholarships."
+    },
+    {
+      "key": "field_sch_page_tab_steps",
+      "label": "Steps Timeline",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_sch_steps_title",
+      "label": "Steps Section Title",
+      "name": "steps_title",
+      "type": "text",
+      "default_value": "Steps in Scholarships Process"
+    },
+    {
+      "key": "field_sch_steps_subtitle",
+      "label": "Steps Subtitle",
+      "name": "steps_subtitle",
+      "type": "text",
+      "default_value": "From application to award — key milestones in the scholarship journey at University of Karachi."
+    },
+    {
+      "key": "field_sch_page_tab_faq",
+      "label": "Scholarship FAQs",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_sch_faq_title",
+      "label": "FAQ Section Title",
+      "name": "faq_title",
+      "type": "text",
+      "default_value": "Frequently Asked Questions (FAQs)"
+    },
+    {
+      "key": "field_sch_faq_subtitle",
+      "label": "FAQ Subtitle",
+      "name": "faq_subtitle",
+      "type": "text",
+      "default_value": "Everything you need to know about scholarship applications, eligibility, and disbursements."
+    },
+    {
+      "key": "field_sch_faq_items",
+      "label": "FAQ Questions & Answers",
+      "name": "scholarship_faq_items",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Add FAQ Question",
+      "sub_fields": [
+        {
+          "key": "field_sch_faq_q",
+          "label": "Question",
+          "name": "faq_question",
+          "type": "text"
+        },
+        {
+          "key": "field_sch_faq_a",
+          "label": "Answer (HTML Allowed)",
+          "name": "faq_answer",
+          "type": "textarea"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-templates/page-scholarships.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true
+}

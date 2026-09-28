@@ -1,0 +1,161 @@
+{
+  "key": "group_about_page_sfao",
+  "title": "About Us Page Settings",
+  "fields": [
+    {
+      "key": "field_about_tab_hero",
+      "label": "Banner & Hero",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_about_banner_title",
+      "label": "Banner Title",
+      "name": "about_banner_title",
+      "type": "text",
+      "default_value": "About Us"
+    },
+    {
+      "key": "field_about_banner_image",
+      "label": "Banner Background Image",
+      "name": "about_banner_image",
+      "type": "image",
+      "return_format": "array"
+    },
+    {
+      "key": "field_about_tab_intro",
+      "label": "Introduction Section",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_about_intro_title",
+      "label": "Section Title",
+      "name": "about_intro_title",
+      "type": "text",
+      "default_value": "Student Financial Aid Office, University of Karachi (SFAO)"
+    },
+    {
+      "key": "field_about_intro_desc",
+      "label": "Section Description",
+      "name": "about_intro_desc",
+      "type": "wysiwyg",
+      "default_value": "The Student Financial Aid Office, University of Karachi, extends its deepest gratitude to the Honorable Vice Chancellor, University of Karachi, for his steadfast support and visionary leadership. His dedication to educational excellence has been a source of inspiration and instrumental to our success."
+    },
+    {
+      "key": "field_about_tab_vc",
+      "label": "VC Message",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_about_vc_heading",
+      "label": "VC Section Heading",
+      "name": "about_vc_heading",
+      "type": "text",
+      "default_value": "Message from Honorable Vice Chancellor"
+    },
+    {
+      "key": "field_about_vc_name",
+      "label": "VC Name / Designation",
+      "name": "about_vc_name",
+      "type": "text",
+      "default_value": "Prof. Dr. Muhammad Tufail"
+    },
+    {
+      "key": "field_about_vc_image",
+      "label": "VC Photograph",
+      "name": "about_vc_image",
+      "type": "image",
+      "return_format": "array"
+    },
+    {
+      "key": "field_about_vc_message",
+      "label": "VC Message Body",
+      "name": "about_vc_message",
+      "type": "textarea",
+      "default_value": "As the Vice Chancellor of the University of Karachi, I believe that one of the major challenges facing our student’s while pursing high quality education is the financial burden. Here I strongly advocate that the University of Karachi is actively minimizing tuition fees of meritorious students and making education accessible through freeship and need-based scholarships offered at SFAO."
+    },
+    {
+      "key": "field_about_tab_ic",
+      "label": "In-charge Message",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_about_ic_heading",
+      "label": "In-charge Section Heading",
+      "name": "about_ic_heading",
+      "type": "text",
+      "default_value": "Message from Student Financial Aid Office (SFAO) In charge"
+    },
+    {
+      "key": "field_about_ic_name",
+      "label": "In-charge Name / Designation",
+      "name": "about_ic_name",
+      "type": "text",
+      "default_value": "Prof. Dr. Ziasma Haneef Khan"
+    },
+    {
+      "key": "field_about_ic_image",
+      "label": "In-charge Photograph",
+      "name": "about_ic_image",
+      "type": "image",
+      "return_format": "array"
+    },
+    {
+      "key": "field_about_ic_message",
+      "label": "In-charge Message Body",
+      "name": "about_ic_message",
+      "type": "textarea",
+      "default_value": "The SFAO serves as a crucial bridge, connecting bright and deserving students with generous national and international donor organizations. Our mission is to ensure that financial support empowers students to achieve their academic dreams."
+    },
+    {
+      "key": "field_about_tab_appreciation",
+      "label": "Appreciation Section",
+      "name": "",
+      "type": "tab",
+      "placement": "top"
+    },
+    {
+      "key": "field_about_appreciation_title",
+      "label": "Appreciation Heading",
+      "name": "about_appreciation_title",
+      "type": "text",
+      "default_value": "Appreciation"
+    },
+    {
+      "key": "field_about_appreciation_paragraphs",
+      "label": "Appreciation Paragraphs",
+      "name": "about_appreciation_paragraphs",
+      "type": "repeater",
+      "layout": "row",
+      "button_label": "Add Paragraph",
+      "sub_fields": [
+        {
+          "key": "field_appreciation_p",
+          "label": "Paragraph Text",
+          "name": "paragraph_text",
+          "type": "textarea"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-templates/page-about.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "active": true
+}
