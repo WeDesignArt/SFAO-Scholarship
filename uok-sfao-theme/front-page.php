@@ -20,7 +20,7 @@ $hero_banner_text = function_exists('get_field') ? get_field('hero_banner_text')
 
 // About Section Fields
 $about_title = function_exists('get_field') ? get_field('about_title') : 'Student Financial Aid Office, University of Karachi (SFAO)';
-$about_desc = function_exists('get_field') ? get_field('about_description') : 'The Student Financial Aid Office, University of Karachi, extends its deepest gratitude to the <strong>Honorable Vice Chancellor, University of Karachi, Prof. Dr. Khalid M. Iraqi,</strong> for his steadfast support and visionary leadership. His dedication to educational excellence has been a source of inspiration and instrumental to our success.';
+$about_desc = function_exists('get_field') ? get_field('about_description') : 'The Student Financial Aid Office, University of Karachi, extends its deepest gratitude to the <strong>Honorable Vice Chancellor, University of Karachi, Prof. Dr. Muhammad Tufail Jokhio,</strong> for his steadfast support and visionary leadership. His dedication to educational excellence has been a source of inspiration and instrumental to our success.';
 
 // VC Message Fields
 $vc_image = function_exists('get_field') ? get_field('vc_image') : null;
@@ -462,7 +462,7 @@ $ic_message = function_exists('get_field') ? get_field('incharge_message') : 'Th
                   <?php endwhile; ?>
                 <?php else : ?>
                   <div class="gray_7">
-                    <p><?php esc_html_e('The Student Financial Aid Office, University of Karachi, extends its deepest gratitude to the Honorable Vice Chancellor, University of Karachi, Prof. Dr. Khalid M. Iraqi, for his steadfast support and visionary leadership. His dedication to educational excellence has been a source of inspiration and instrumental to our success.', 'uok-sfao'); ?></p>
+                    <p><?php esc_html_e('The Student Financial Aid Office, University of Karachi, extends its deepest gratitude to the Honorable Vice Chancellor, University of Karachi, Prof. Dr. Muhammad Tufail Jokhio, for his steadfast support and visionary leadership. His dedication to educational excellence has been a source of inspiration and instrumental to our success.', 'uok-sfao'); ?></p>
                   </div>
                   <div class="gray_7">
                     <p><?php esc_html_e('We are extremely thankful to all our scholarship donor organizations for empowering students through their generous support. Your dedication to fostering educational opportunities has transformed lives, enabling students to pursue their dreams without financial barriers. Thank you for shaping a brighter, more equitable future through your belief in the power of education.', 'uok-sfao'); ?></p>
