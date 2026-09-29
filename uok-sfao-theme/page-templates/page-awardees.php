@@ -1,34 +1,28 @@
 <?php
 /**
  * Template Name: Awardees Page (Latest Build)
+ * Mirrors awardees.html of the static site; empty ACF fields fall back to the static text.
+ * The featured cards come from the Awardees post type (static cards shown when there are none).
  *
  * @package UOK_SFAO
  */
 
 get_header();
 
-$theme_uri = get_template_directory_uri();
-$post_id = get_the_ID();
-
-// ACF Fields
-$banner_title = function_exists('get_field') && get_field('awardees_banner_title', $post_id) ? get_field('awardees_banner_title', $post_id) : 'Scholarship Awardees';
-$banner_subtitle = function_exists('get_field') && get_field('awardees_banner_subtitle', $post_id) ? get_field('awardees_banner_subtitle', $post_id) : 'Honoring students who earned financial support through their dedication, merit, and need.';
-$banner_image = function_exists('get_field') ? get_field('awardees_banner_image', $post_id) : null;
-$banner_image_url = ($banner_image && is_array($banner_image)) ? $banner_image['url'] : $theme_uri . '/assets/images/uok/scholarship-outerpage-background.jpg';
-
-$intro_title = function_exists('get_field') && get_field('awardees_intro_title', $post_id) ? get_field('awardees_intro_title', $post_id) : 'A Legacy of Educational Empowerment';
-$intro_text = function_exists('get_field') && get_field('awardees_intro_text', $post_id) ? get_field('awardees_intro_text', $post_id) : 'Since 2006, the Student Financial Aid Office (SFAO) at the University of Karachi has been a lifeline for thousands of deserving students. By bridging the gap between financial hardship and academic ambition, SFAO has grown its scholarship disbursements from Rs. 6 million to over Rs. 200 million, transforming more than 2,000 student lives across over 17 active scholarship programs.';
-
-$grid_title = function_exists('get_field') && get_field('awardees_grid_title', $post_id) ? get_field('awardees_grid_title', $post_id) : 'Mitsubishi UFJ Foundation Scholarship';
+$banner_title    = uok_field('awardees_banner_title', 'Scholarship Awardees');
+$banner_subtitle = uok_field('awardees_banner_subtitle', 'Honoring students who earned financial support through their dedication, merit, and need.');
+$banner_image    = uok_img_field('awardees_banner_image', 'uok/scholarship-outerpage-background.jpg');
+$intro_title     = uok_field('awardees_intro_title', 'A Legacy of Educational Empowerment');
+$intro_text      = uok_field('awardees_intro_text', '<p class="awardees-intro-text"> Since 2006, the Student Financial Aid Office (SFAO) at the University of Karachi has been a lifeline for thousands of deserving students. By bridging the gap between financial hardship and academic ambition, SFAO has grown its scholarship disbursements from <strong>Rs. 6 million to over Rs. 200 million</strong>, transforming more than <strong>2,000 student lives</strong> across over 17 active scholarship programs supported by national and international donor organizations. </p> <p class="awardees-intro-text"> Each year, SFAO proudly recognizes and congratulates the recipients of these scholarships — students who have demonstrated exceptional academic merit, financial need, or both. This page celebrates their achievement and acknowledges the generosity of our donor partners who make it all possible. </p>');
+$grid_title      = uok_field('awardees_grid_title', 'Mitsubishi UFJ Foundation Scholarship');
 ?>
 
     <main role="main" class="home_content nav_space clearfix">
 
-      <!-- Hero -->
       <section class="section-1 home_hero_slider overflow-hidden">
         <div class="container_content">
           <div class="image-container-top">
-            <img src="<?php echo esc_url($banner_image_url); ?>" alt="<?php echo esc_attr($banner_title); ?>" class="img-fluid w-100">
+            <img src="<?php echo esc_url($banner_image); ?>" alt="<?php echo esc_attr($banner_title); ?>" class="img-fluid w-100">
             <div class="overlay-top d-flex flex-column justify-content-center align-items-center text-center">
               <h1 class="text-white h1 mb-3"><?php echo esc_html($banner_title); ?></h1>
               <p class="text-white" style="font-size:1.05rem;max-width:520px;opacity:0.92;">
@@ -39,81 +33,58 @@ $grid_title = function_exists('get_field') && get_field('awardees_grid_title', $
         </div>
       </section>
 
-      <!-- Breadcrumb -->
       <section class="section-2 overflow-hidden">
         <div class="container">
           <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'uok-sfao'); ?></a></li>
-              <li class="breadcrumb-item"><a href="<?php echo esc_url(get_post_type_archive_link('scholarship')); ?>"><?php esc_html_e('Scholarships', 'uok-sfao'); ?></a></li>
-              <li class="breadcrumb-item active" aria-current="page"><?php echo esc_html($banner_title); ?></li>
+              <li class="breadcrumb-item"><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo esc_url(get_post_type_archive_link('scholarship')); ?>">Scholarships</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Awardees</li>
             </ol>
           </nav>
         </div>
       </section>
 
-      <!-- Impact Stats -->
       <section class="awardees-stats-bar">
         <div class="container">
           <div class="row g-3 justify-content-center text-center">
-            <?php if (function_exists('have_rows') && have_rows('awardees_stats', $post_id)) : ?>
-              <?php while (have_rows('awardees_stats', $post_id)) : the_row(); ?>
-                <div class="col-6 col-md-3">
-                  <div class="awardees-stat-box">
-                    <div class="awardees-stat-number"><?php echo esc_html(get_sub_field('stat_number')); ?></div>
-                    <div class="awardees-stat-label"><?php echo esc_html(get_sub_field('stat_label')); ?></div>
-                  </div>
-                </div>
-              <?php endwhile; ?>
-            <?php else : ?>
-              <div class="col-6 col-md-3">
-                <div class="awardees-stat-box">
-                  <div class="awardees-stat-number">2,000+</div>
-                  <div class="awardees-stat-label"><?php esc_html_e('Students Supported', 'uok-sfao'); ?></div>
-                </div>
+            <?php
+              $stats = array();
+              if (function_exists('have_rows') && have_rows('awardees_stats')) {
+                while (have_rows('awardees_stats')) { the_row(); $stats[] = array(get_sub_field('stat_number'), get_sub_field('stat_label')); }
+              } else {
+                $stats = array(
+                  array('2,000+', 'Students Supported'),
+                  array('Rs. 200M+', 'Scholarships Disbursed'),
+                  array('17+', 'Active Scholarship Programs'),
+                  array('Since 2006', 'Empowering Students')
+                );
+              }
+              foreach ($stats as $stat) :
+            ?>
+            <div class="col-6 col-md-3">
+              <div class="awardees-stat-box">
+                <div class="awardees-stat-number"><?php echo esc_html($stat[0]); ?></div>
+                <div class="awardees-stat-label"><?php echo esc_html($stat[1]); ?></div>
               </div>
-              <div class="col-6 col-md-3">
-                <div class="awardees-stat-box">
-                  <div class="awardees-stat-number">Rs. 200M+</div>
-                  <div class="awardees-stat-label"><?php esc_html_e('Scholarships Disbursed', 'uok-sfao'); ?></div>
-                </div>
-              </div>
-              <div class="col-6 col-md-3">
-                <div class="awardees-stat-box">
-                  <div class="awardees-stat-number">17+</div>
-                  <div class="awardees-stat-label"><?php esc_html_e('Active Scholarship Programs', 'uok-sfao'); ?></div>
-                </div>
-              </div>
-              <div class="col-6 col-md-3">
-                <div class="awardees-stat-box">
-                  <div class="awardees-stat-number">Since 2006</div>
-                  <div class="awardees-stat-label"><?php esc_html_e('Empowering Students', 'uok-sfao'); ?></div>
-                </div>
-              </div>
-            <?php endif; ?>
+            </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </section>
 
-      <!-- Intro Box -->
       <section class="awardees-intro-section">
         <div class="container">
           <div class="awardees-intro-box">
             <div class="awardees-intro-icon">&#127942;</div>
             <div>
               <h2 class="awardees-intro-title"><?php echo esc_html($intro_title); ?></h2>
-              <p class="awardees-intro-text">
-                <?php echo esc_html($intro_text); ?>
-              </p>
-              <p class="awardees-intro-text">
-                <?php esc_html_e('Each year, SFAO proudly recognizes and congratulates the recipients of these scholarships — students who have demonstrated exceptional academic merit, financial need, or both. This page celebrates their achievement and acknowledges the generosity of our donor partners who make it all possible.', 'uok-sfao'); ?>
-              </p>
+              <?php echo wp_kses_post($intro_text); ?>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Featured Awardees Section -->
       <section class="awardees-featured-section">
         <div class="container">
           <div class="awardees-section-header">
@@ -121,222 +92,568 @@ $grid_title = function_exists('get_field') && get_field('awardees_grid_title', $
               <span class="awardees-year-tag">2025&#8211;26</span>
               <h2 class="awardees-section-title"><?php echo esc_html($grid_title); ?></h2>
               <p class="awardees-section-subtitle">
-                <?php esc_html_e('SFAO warmly congratulates the following students on being selected for scholarship awards. This merit & need recognition honors outstanding academic dedication among morning program students.', 'uok-sfao'); ?>
+                SFAO warmly congratulates the following students on being selected for the
+                Mitsubishi UFJ Foundation Scholarship 2025&#8211;26. This merit-based award recognizes outstanding
+                academic performance among morning program students.
               </p>
             </div>
-            <a href="<?php echo esc_url(get_post_type_archive_link('scholarship')); ?>" class="awardees-sch-link">
-              <?php esc_html_e('View Scholarship Details &rarr;', 'uok-sfao'); ?>
-            </a>
+            <a href="<?php echo esc_url(uok_scholarship_url('mitsubishi-ufj-foundation-scholarship')); ?>" class="awardees-sch-link">View Scholarship Details &rarr;</a>
           </div>
 
-          <div class="row g-4 justify-content-center">
+          <div class="row g-4">
             <?php
-              $awardees = new WP_Query(array(
-                'post_type'      => 'awardee',
-                'posts_per_page' => -1,
-                'post_status'    => 'publish',
-              ));
-
-              if ($awardees->have_posts()) :
-                while ($awardees->have_posts()) : $awardees->the_post();
-                  $aw_id = get_the_ID();
-                  $aw_photo = function_exists('get_field') ? get_field('awardee_photo', $aw_id) : null;
-                  $aw_initials = function_exists('get_field') ? get_field('awardee_initials', $aw_id) : '';
-                  if (empty($aw_initials)) {
-                    $words = explode(' ', trim(get_the_title()));
-                    $aw_initials = '';
-                    foreach ($words as $w) {
-                      $aw_initials .= mb_substr($w, 0, 1);
-                      if (strlen($aw_initials) >= 2) break;
-                    }
-                  }
-                  $aw_scholarship = function_exists('get_field') ? get_field('awardee_program', $aw_id) : 'Mitsubishi UFJ Foundation Scholarship';
-
-                  $photo_url = '';
-                  if (!empty($aw_photo)) {
-                    if (is_array($aw_photo) && !empty($aw_photo['url'])) {
-                      $photo_url = $aw_photo['url'];
-                    } elseif (is_string($aw_photo)) {
-                      $photo_url = $aw_photo;
-                    }
-                  }
+              $awardees = get_posts(array('post_type' => 'awardee', 'posts_per_page' => -1));
+              if ($awardees) :
+                foreach ($awardees as $aw) :
+                  $photo = function_exists('get_field') ? get_field('awardee_photo', $aw->ID) : null;
             ?>
-              <div class="col-12 col-sm-6 col-lg-3">
-                <div class="awardee-full-card">
-                  <div class="awardee-full-card-ribbon"><?php esc_html_e('Selected Awardee', 'uok-sfao'); ?></div>
-                  
-                  <div class="awardee-full-avatar">
-                    <?php if (!empty($photo_url)) : ?>
-                      <img src="<?php echo esc_url($photo_url); ?>" alt="<?php the_title_attribute(); ?>" class="awardee-avatar-img">
-                    <?php else : ?>
-                      <span><?php echo esc_html(strtoupper($aw_initials ?: 'AK')); ?></span>
-                    <?php endif; ?>
-                  </div>
-
-                  <div class="awardee-full-name"><?php the_title(); ?></div>
-                  <div class="awardee-full-program"><?php echo esc_html($aw_scholarship); ?></div>
-                  <div class="awardee-full-badge">&#127881; <?php esc_html_e('Congratulations!', 'uok-sfao'); ?></div>
-                </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="awardee-full-card">
+                <div class="awardee-full-card-ribbon">Selected Awardee</div>
+                <?php if (is_array($photo) && !empty($photo['url'])) : ?>
+                  <img class="awardee-full-avatar" src="<?php echo esc_url($photo['url']); ?>" alt="<?php echo esc_attr($aw->post_title); ?>">
+                <?php else : ?>
+                  <div class="awardee-full-avatar"><?php echo esc_html(uok_field('awardee_initials', strtoupper(substr($aw->post_title, 0, 2)), $aw->ID)); ?></div>
+                <?php endif; ?>
+                <div class="awardee-full-name"><?php echo esc_html($aw->post_title); ?></div>
+                <div class="awardee-full-program"><?php echo wp_kses_post(uok_field('awardee_program', 'Morning Program', $aw->ID)); ?></div>
+                <div class="awardee-full-badge">&#127881; Congratulations!</div>
               </div>
-            <?php 
-                endwhile;
-                wp_reset_postdata();
-              else :
-                $sample_awardees = array(
-                  array('AK', 'Ahmed Khan', 'Morning Program — Computer Science'),
-                  array('SF', 'Sara Fatima', 'Morning Program — Chemistry'),
-                  array('MH', 'Muhammad Hassan', 'Morning Program — Economics'),
-                  array('FN', 'Fatima Noor', 'Morning Program — Biochemistry'),
-                  array('BA', 'Bilal Ali', 'Morning Program — Business Administration'),
-                  array('ZA', 'Zainab Ahmed', 'Morning Program — Physics'),
-                  array('UR', 'Usman Raza', 'Morning Program — Applied Physics'),
-                  array('AR', 'Ayesha Rehman', 'Morning Program — Commerce')
-                );
-                foreach ($sample_awardees as $s) :
-            ?>
-              <div class="col-12 col-sm-6 col-lg-3">
-                <div class="awardee-full-card">
-                  <div class="awardee-full-card-ribbon"><?php esc_html_e('Selected Awardee', 'uok-sfao'); ?></div>
-                  <div class="awardee-full-avatar">
-                    <span><?php echo esc_html($s[0]); ?></span>
-                  </div>
-                  <div class="awardee-full-name"><?php echo esc_html($s[1]); ?></div>
-                  <div class="awardee-full-program"><?php echo esc_html($s[2]); ?></div>
-                  <div class="awardee-full-badge">&#127881; <?php esc_html_e('Congratulations!', 'uok-sfao'); ?></div>
-                </div>
+            </div>
+            <?php endforeach; else : ?>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="awardee-full-card">
+                <div class="awardee-full-card-ribbon">Selected Awardee</div>
+                <div class="awardee-full-avatar">AK</div>
+                <div class="awardee-full-name">Ahmed Khan</div>
+                <div class="awardee-full-program">Morning Program</div>
+                <div class="awardee-full-badge">&#127881; Congratulations!</div>
               </div>
-            <?php 
-                endforeach;
-              endif; 
-            ?>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="awardee-full-card">
+                <div class="awardee-full-card-ribbon">Selected Awardee</div>
+                <div class="awardee-full-avatar">SF</div>
+                <div class="awardee-full-name">Sara Fatima</div>
+                <div class="awardee-full-program">Morning Program</div>
+                <div class="awardee-full-badge">&#127881; Congratulations!</div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="awardee-full-card">
+                <div class="awardee-full-card-ribbon">Selected Awardee</div>
+                <div class="awardee-full-avatar">MH</div>
+                <div class="awardee-full-name">Muhammad Hassan</div>
+                <div class="awardee-full-program">Morning Program</div>
+                <div class="awardee-full-badge">&#127881; Congratulations!</div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <div class="awardee-full-card">
+                <div class="awardee-full-card-ribbon">Selected Awardee</div>
+                <div class="awardee-full-avatar">FN</div>
+                <div class="awardee-full-name">Fatima Noor</div>
+                <div class="awardee-full-program">Morning Program</div>
+                <div class="awardee-full-badge">&#127881; Congratulations!</div>
+              </div>
+            </div>
+            <?php endif; ?>
           </div>
         </div>
       </section>
 
-      <!-- Past Awardees (Year-wise Accordion) -->
       <section class="awardees-history-section">
         <div class="container">
-          <h2 class="awardees-history-title"><?php esc_html_e("Previous Years' Awardees", 'uok-sfao'); ?></h2>
+          <h2 class="awardees-history-title">Previous Years&#8217; Awardees</h2>
           <p class="awardees-history-subtitle">
-            <?php esc_html_e('A record of students recognized by SFAO across scholarship cycles since 2006.', 'uok-sfao'); ?>
+            A record of students recognized by SFAO across scholarship cycles since 2006.
           </p>
 
-          <!-- 2024-25 -->
           <div class="awardees-year-block">
             <button class="awardees-year-toggle" data-target="ay2024">
-              <span><?php esc_html_e('Academic Year 2024–25', 'uok-sfao'); ?></span>
+              <span>Academic Year 2024&#8211;25</span>
               <span class="awardees-toggle-icon">+</span>
             </button>
-            <div class="awardees-year-content" id="ay2024" style="display:none;">
+            <div class="awardees-year-content" id="ay2024">
               <div class="awardees-sch-group">
                 <div class="awardees-sch-group-header">
-                  <span class="awardees-sch-group-name">Higher Education Commission (HEC) Need-Based Scholarship</span>
-                  <span class="awardees-sch-count">24 Awardees</span>
+                  <span class="awardees-sch-group-name">HEC Need-Based Scholarship</span>
+                  <span class="awardees-sch-count">12 Recipients</span>
                 </div>
                 <div class="awardees-names-grid">
-                  <span class="awardees-name-chip">Muhammad Bilal — Economics</span>
-                  <span class="awardees-name-chip">Areeba Siddiqui — Microbiology</span>
-                  <span class="awardees-name-chip">Syed Farhan Ali — Computer Science</span>
-                  <span class="awardees-name-chip">Nimra Tariq — Mass Comm.</span>
-                  <span class="awardees-name-chip">Zubair Ahmed — Chemistry</span>
-                  <span class="awardees-name-chip">Bushra Parveen — Botany</span>
-                  <span class="awardees-name-chip">Hamza Qureshi — Zoology</span>
-                  <span class="awardees-name-chip">Khadija Bano — Mathematics</span>
+                  <span class="awardees-name-chip">Ali Hassan</span>
+                  <span class="awardees-name-chip">Nida Rehman</span>
+                  <span class="awardees-name-chip">Usman Tariq</span>
+                  <span class="awardees-name-chip">Zara Malik</span>
+                  <span class="awardees-name-chip">Bilal Ahmed</span>
+                  <span class="awardees-name-chip">Sana Iqbal</span>
+                  <span class="awardees-name-chip">Haris Shah</span>
+                  <span class="awardees-name-chip">Maryam Khan</span>
+                  <span class="awardees-name-chip">Kamran Ali</span>
+                  <span class="awardees-name-chip">Rabia Noor</span>
+                  <span class="awardees-name-chip">Imran Siddiqui</span>
+                  <span class="awardees-name-chip">Laiba Farooq</span>
                 </div>
               </div>
-
+              <div class="awardees-sch-group">
+                <div class="awardees-sch-group-header">
+                  <span class="awardees-sch-group-name">Haier Funded Scholarship</span>
+                  <span class="awardees-sch-count">8 Recipients</span>
+                </div>
+                <div class="awardees-names-grid">
+                  <span class="awardees-name-chip">Hassan Raza</span>
+                  <span class="awardees-name-chip">Iqra Baig</span>
+                  <span class="awardees-name-chip">Shahzaib Ali</span>
+                  <span class="awardees-name-chip">Amna Sheikh</span>
+                  <span class="awardees-name-chip">Faisal Nawaz</span>
+                  <span class="awardees-name-chip">Uzma Rashid</span>
+                  <span class="awardees-name-chip">Talha Qureshi</span>
+                  <span class="awardees-name-chip">Hina Zaidi</span>
+                </div>
+              </div>
               <div class="awardees-sch-group">
                 <div class="awardees-sch-group-header">
                   <span class="awardees-sch-group-name">Sindh Education Endowment Fund (SEEF)</span>
-                  <span class="awardees-sch-count">18 Awardees</span>
+                  <span class="awardees-sch-count">15 Recipients</span>
                 </div>
                 <div class="awardees-names-grid">
-                  <span class="awardees-name-chip">Ali Raza — Pharmacy</span>
-                  <span class="awardees-name-chip">Mehwish Shah — Physiology</span>
-                  <span class="awardees-name-chip">Danish Hussain — Geology</span>
-                  <span class="awardees-name-chip">Hira Anwar — Food Science</span>
+                  <span class="awardees-name-chip">Omer Farhan</span>
+                  <span class="awardees-name-chip">Aisha Butt</span>
+                  <span class="awardees-name-chip">Jawad Hussain</span>
+                  <span class="awardees-name-chip">Saima Aslam</span>
+                  <span class="awardees-name-chip">Naveed Khan</span>
+                  <span class="awardees-name-chip">Komal Shafiq</span>
+                  <span class="awardees-name-chip">Adnan Mirza</span>
+                  <span class="awardees-name-chip">Nadia Javed</span>
+                  <span class="awardees-name-chip">Waseem Baig</span>
+                  <span class="awardees-name-chip">Tania Mehmood</span>
+                  <span class="awardees-name-chip">Arslan Riaz</span>
+                  <span class="awardees-name-chip">Sobia Waqar</span>
+                  <span class="awardees-name-chip">Farhan Akhtar</span>
+                  <span class="awardees-name-chip">Mehwish Zaman</span>
+                  <span class="awardees-name-chip">Salman Ghani</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 2023-24 -->
           <div class="awardees-year-block">
             <button class="awardees-year-toggle" data-target="ay2023">
-              <span><?php esc_html_e('Academic Year 2023–24', 'uok-sfao'); ?></span>
+              <span>Academic Year 2023&#8211;24</span>
               <span class="awardees-toggle-icon">+</span>
             </button>
             <div class="awardees-year-content" id="ay2023" style="display:none;">
               <div class="awardees-sch-group">
                 <div class="awardees-sch-group-header">
                   <span class="awardees-sch-group-name">Mitsubishi UFJ Foundation Scholarship</span>
-                  <span class="awardees-sch-count">8 Awardees</span>
+                  <span class="awardees-sch-count">6 Recipients</span>
                 </div>
                 <div class="awardees-names-grid">
-                  <span class="awardees-name-chip">Tariq Mehmood — Morning Program</span>
-                  <span class="awardees-name-chip">Sadia Javed — Morning Program</span>
-                  <span class="awardees-name-chip">Waqas Ur Rehman — Morning Program</span>
-                  <span class="awardees-name-chip">Kainat Fatima — Morning Program</span>
+                  <span class="awardees-name-chip">Asad Jamil</span>
+                  <span class="awardees-name-chip">Rukhsana Parveen</span>
+                  <span class="awardees-name-chip">Zahid Rauf</span>
+                  <span class="awardees-name-chip">Saman Tariq</span>
+                  <span class="awardees-name-chip">Aamir Saeed</span>
+                  <span class="awardees-name-chip">Ghazala Nisar</span>
+                </div>
+              </div>
+              <div class="awardees-sch-group">
+                <div class="awardees-sch-group-header">
+                  <span class="awardees-sch-group-name">Pakistan Bait-ul-Maal (PBM)</span>
+                  <span class="awardees-sch-count">20 Recipients</span>
+                </div>
+                <div class="awardees-names-grid">
+                  <span class="awardees-name-chip">Tariq Mehmood</span>
+                  <span class="awardees-name-chip">Fatima Bibi</span>
+                  <span class="awardees-name-chip">Zaheer Abbas</span>
+                  <span class="awardees-name-chip">Shaista Naz</span>
+                  <span class="awardees-name-chip">Rizwan Ullah</span>
+                  <span class="awardees-name-chip">Samina Khatoon</span>
+                  <span class="awardees-name-chip">Junaid Aslam</span>
+                  <span class="awardees-name-chip">Nafeesa Bibi</span>
+                  <span class="awardees-name-chip">Muzaffar Hussain</span>
+                  <span class="awardees-name-chip">Shahida Parveen</span>
+                  <span class="awardees-name-chip">Aftab Ahmad</span>
+                  <span class="awardees-name-chip">Zubeda Khatoon</span>
+                  <span class="awardees-name-chip">Waqas Anwar</span>
+                  <span class="awardees-name-chip">Rubina Hameed</span>
+                  <span class="awardees-name-chip">Sajid Iqbal</span>
+                  <span class="awardees-name-chip">Nasreen Akhtar</span>
+                  <span class="awardees-name-chip">Ghulam Mustafa</span>
+                  <span class="awardees-name-chip">Shakeela Bano</span>
+                  <span class="awardees-name-chip">Imtiaz Ahmad</span>
+                  <span class="awardees-name-chip">Kiran Naz</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 2022-23 -->
           <div class="awardees-year-block">
             <button class="awardees-year-toggle" data-target="ay2022">
-              <span><?php esc_html_e('Academic Year 2022–23', 'uok-sfao'); ?></span>
+              <span>Academic Year 2022&#8211;23</span>
               <span class="awardees-toggle-icon">+</span>
             </button>
             <div class="awardees-year-content" id="ay2022" style="display:none;">
               <div class="awardees-sch-group">
                 <div class="awardees-sch-group-header">
-                  <span class="awardees-sch-group-name">Balochistan Education Endowment Fund (BEEF)</span>
-                  <span class="awardees-sch-count">12 Awardees</span>
+                  <span class="awardees-sch-group-name">Sindh HEC Indigenous Scholarship</span>
+                  <span class="awardees-sch-count">63 Recipients (M.Phil / Ph.D.)</span>
                 </div>
-                <div class="awardees-names-grid">
-                  <span class="awardees-name-chip">Abdul Samad — International Relations</span>
-                  <span class="awardees-name-chip">Gul Bibi — Sociology</span>
-                  <span class="awardees-name-chip">Jamshed Khan — Psychology</span>
+                <p style="font-size:0.88rem;color:#888;margin:10px 0 0;font-style:italic;">
+                  Full list available at SFAO office. Selected candidates were individually notified.
+                </p>
+              </div>
+              <div class="awardees-sch-group">
+                <div class="awardees-sch-group-header">
+                  <span class="awardees-sch-group-name">Zakat &amp; Ushr Scholarship</span>
+                  <span class="awardees-sch-count">30 Recipients</span>
                 </div>
+                <p style="font-size:0.88rem;color:#888;margin:10px 0 0;font-style:italic;">
+                  Full list available at SFAO office. Selected candidates were individually notified.
+                </p>
               </div>
             </div>
           </div>
 
-          <!-- Archive note -->
           <div class="awardees-history-note">
             <span>&#8505;</span>
-            <div>
-              <strong><?php esc_html_e('Need older awardee records?', 'uok-sfao'); ?></strong>
-              <?php esc_html_e('Records for scholarship cycles prior to 2022 are maintained at the SFAO office archives. Enrolled students and alumni can visit Room #4, Ground Floor, Old Administration Building during office hours for official award verification certificates.', 'uok-sfao'); ?>
-            </div>
+            For complete records of all scholarship recipients prior to 2022, please visit the
+            <a href="https://www.uok.edu.pk/sfao/scholarships.php" target="_blank" rel="noopener noreferrer">
+              official SFAO scholarship page
+            </a>
+            or contact SFAO directly at
+            <a href="mailto:sfao@uok.edu.pk">sfao@uok.edu.pk</a>.
           </div>
-
         </div>
       </section>
 
-      <!-- Accordion Toggle Script -->
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          document.querySelectorAll('.awardees-year-toggle').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-              var targetId = this.getAttribute('data-target');
-              var content = document.getElementById(targetId);
-              if (!content) return;
-              var isClosed = content.style.display === 'none';
-              if (isClosed) {
-                content.style.display = 'block';
-                this.classList.add('open');
-              } else {
-                content.style.display = 'none';
-                this.classList.remove('open');
-              }
-            });
-          });
-        });
-      </script>
-
     </main>
+
+  <style>
+    /* ===== STATS BAR ===== */
+    .awardees-stats-bar {
+      background: linear-gradient(135deg, #1a3c2b 0%, #2d6e29 100%);
+      padding: 36px 0;
+    }
+    .awardees-stat-box {
+      padding: 16px 10px;
+    }
+    .awardees-stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .awardees-stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== INTRO ===== */
+    .awardees-intro-section {
+      padding: 56px 0 40px;
+      background: #fff;
+    }
+    .awardees-intro-box {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      background: #f4faf4;
+      border-left: 5px solid #379934;
+      border-radius: 10px;
+      padding: 28px 28px 24px;
+    }
+    .awardees-intro-icon {
+      font-size: 2.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .awardees-intro-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1a3c2b;
+      margin-bottom: 12px;
+    }
+    .awardees-intro-text {
+      font-size: 0.93rem;
+      color: #444;
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+    .awardees-intro-text:last-child { margin-bottom: 0; }
+
+    /* ===== FEATURED AWARDEES ===== */
+    .awardees-featured-section {
+      padding: 52px 0 48px;
+      background: #f9f9f9;
+    }
+    .awardees-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .awardees-year-tag {
+      display: inline-block;
+      background: #379934;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .awardees-section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a3c2b;
+      margin-bottom: 8px;
+    }
+    .awardees-section-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      max-width: 680px;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .awardees-sch-link {
+      font-size: 0.85rem;
+      color: #379934;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      border: 1.5px solid #379934;
+      padding: 6px 16px;
+      border-radius: 50px;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+    .awardees-sch-link:hover {
+      background: #379934;
+      color: #fff;
+    }
+
+    /* Awardee Full Card */
+    .awardee-full-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 18px 22px;
+      text-align: center;
+      border: 1px solid #e0efe0;
+      box-shadow: 0 4px 18px rgba(55,153,52,0.07);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .awardee-full-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(55,153,52,0.14);
+    }
+    .awardee-full-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #379934, #6abf69);
+    }
+    .awardee-full-card-ribbon {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+    .awardee-full-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #379934, #2d7a2a);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      box-shadow: 0 3px 12px rgba(55,153,52,0.25);
+      letter-spacing: 1px;
+    }
+    .awardee-full-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a3c2b;
+      margin-bottom: 4px;
+    }
+    .awardee-full-program {
+      font-size: 0.78rem;
+      color: #888;
+      margin-bottom: 14px;
+    }
+    .awardee-full-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #379934, #6abf69);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 50px;
+    }
+
+    /* ===== HISTORY SECTION ===== */
+    .awardees-history-section {
+      padding: 52px 0 60px;
+      background: #fff;
+    }
+    .awardees-history-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1a3c2b;
+      margin-bottom: 6px;
+    }
+    .awardees-history-subtitle {
+      font-size: 0.92rem;
+      color: #666;
+      margin-bottom: 32px;
+    }
+    .awardees-year-block {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .awardees-year-toggle {
+      width: 100%;
+      background: #fff;
+      border: none;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a3c2b;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+    }
+    .awardees-year-toggle:hover { background: #f4faf4; }
+    .awardees-year-toggle.open { background: #379934; color: #fff; }
+    .awardees-year-toggle.open .awardees-toggle-icon { transform: rotate(45deg); }
+    .awardees-toggle-icon {
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform 0.25s;
+    }
+    .awardees-year-content {
+      padding: 20px 22px 24px;
+      border-top: 1px solid #e8f5e9;
+      background: #fafff9;
+    }
+    .awardees-sch-group {
+      margin-bottom: 24px;
+    }
+    .awardees-sch-group:last-child { margin-bottom: 0; }
+    .awardees-sch-group-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #d0e8d0;
+    }
+    .awardees-sch-group-name {
+      font-size: 0.93rem;
+      font-weight: 700;
+      color: #1a3c2b;
+    }
+    .awardees-sch-count {
+      font-size: 0.78rem;
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+    .awardees-names-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .awardees-name-chip {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid #c8e6c9;
+      color: #333;
+      font-size: 0.82rem;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+    .awardees-history-note {
+      margin-top: 28px;
+      background: #e3f2fd;
+      border-left: 4px solid #1976d2;
+      padding: 14px 18px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #333;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .awardees-history-note span {
+      font-size: 1.1rem;
+      color: #1976d2;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .awardees-history-note a {
+      color: #1565c0;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .awardees-stat-number { font-size: 1.4rem; }
+      .awardees-intro-box { flex-direction: column; gap: 12px; }
+      .awardees-section-header { flex-direction: column; }
+    }
+  </style>
+
+  <script>
+    document.querySelectorAll('.awardees-year-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var targetId = this.getAttribute('data-target');
+        var content = document.getElementById(targetId);
+        var isOpen = content.style.display !== 'none';
+        if (isOpen) {
+          content.style.display = 'none';
+          this.classList.remove('open');
+        } else {
+          content.style.display = '';
+          this.classList.add('open');
+        }
+      });
+    });
+  </script>
 
 <?php
 get_footer();

@@ -249,6 +249,7 @@ function uok_lead_admin_metrics_banner() {
 		return;
 	}
 
+	// Calculate counts
 	$total_leads_obj = wp_count_posts( 'sfao_lead' );
 	$total_leads     = isset( $total_leads_obj->publish ) ? $total_leads_obj->publish : 0;
 
@@ -321,6 +322,7 @@ function uok_lead_admin_filters() {
 	$date_from       = isset( $_GET['date_from'] ) ? sanitize_text_field( wp_unslash( $_GET['date_from'] ) ) : '';
 	$date_to         = isset( $_GET['date_to'] ) ? sanitize_text_field( wp_unslash( $_GET['date_to'] ) ) : '';
 
+	// Get unique topics from database
 	$topics = $wpdb->get_col( $wpdb->prepare(
 		"SELECT DISTINCT meta_value FROM {$wpdb->postmeta} pm
 		INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
@@ -374,6 +376,7 @@ function uok_lead_filter_query( $query ) {
 
 	$meta_query = array( 'relation' => 'AND' );
 
+	// Filter by Topic
 	if ( ! empty( $_GET['filter_topic'] ) ) {
 		$topic = sanitize_text_field( wp_unslash( $_GET['filter_topic'] ) );
 		$meta_query[] = array(
@@ -391,6 +394,7 @@ function uok_lead_filter_query( $query ) {
 		);
 	}
 
+	// Filter by Status
 	if ( ! empty( $_GET['filter_status'] ) ) {
 		$status = sanitize_text_field( wp_unslash( $_GET['filter_status'] ) );
 		$meta_query[] = array(
@@ -412,6 +416,7 @@ function uok_lead_filter_query( $query ) {
 		$query->set( 'meta_query', $meta_query );
 	}
 
+	// Filter by Date Range
 	$date_from = ! empty( $_GET['date_from'] ) ? sanitize_text_field( wp_unslash( $_GET['date_from'] ) ) : '';
 	$date_to   = ! empty( $_GET['date_to'] ) ? sanitize_text_field( wp_unslash( $_GET['date_to'] ) ) : '';
 

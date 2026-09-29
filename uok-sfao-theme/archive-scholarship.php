@@ -1,193 +1,1548 @@
 <?php
 /**
- * The template for displaying Scholarship Archive / Listing (Latest Build)
+ * Scholarships archive (/scholarships/) — mirrors scholarship-outerpage.html of the static site.
+ * Rows come from the Scholarship posts (ordered by "Order"); the notice banner from Theme Settings.
  *
  * @package UOK_SFAO
  */
 
 get_header();
 
-$theme_uri = get_template_directory_uri();
+$scholarships = get_posts(array(
+  'post_type'      => 'scholarship',
+  'posts_per_page' => -1,
+  'orderby'        => 'menu_order',
+  'order'          => 'ASC',
+));
+$show_notice = function_exists('get_field') && get_field('show_notice_banner', 'option');
+$notice_text = uok_field('notice_banner_text', '', 'option');
 ?>
 
     <main role="main" class="home_content nav_space clearfix">
 
-      <!-- Hero Banner -->
       <section class="section-1 home_hero_slider overflow-hidden">
         <div class="container_content">
           <div class="image-container-top">
-            <img src="<?php echo esc_url($theme_uri . '/assets/images/uok/scholarship-outerpage-background.jpg'); ?>" alt="Scholarship Management" class="img-fluid w-100">
+            <img src="<?php echo esc_url(uok_img('uok/scholarship-outerpage-background.jpg')); ?>" alt="Scholarship Management"
+              class="img-fluid w-100">
+
             <div class="overlay-top d-flex flex-column justify-content-center align-items-center text-center">
-              <h1 class="text-white h1 mb-4"><?php esc_html_e('Scholarships 2025–26', 'uok-sfao'); ?></h1>
+              <h1 class="text-white h1 mb-4">Scholarship 2026</h1>
             </div>
+
           </div>
         </div>
       </section>
 
-      <!-- Breadcrumbs -->
       <section class="section-2 overflow-hidden">
         <div class="container">
           <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'uok-sfao'); ?></a></li>
-              <li class="breadcrumb-item active" aria-current="page"><?php esc_html_e('Scholarships 2025–26', 'uok-sfao'); ?></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="<?php echo esc_url(get_post_type_archive_link('scholarship')); ?>">Scholarships 2025&#8211;26</a></li>
             </ol>
           </nav>
         </div>
       </section>
 
-      <!-- Scholarship List Section -->
-      <section id="scholarship-section" class="scholarship-list-container">
-        <div class="container my-4">
-          
-          <div class="sch-tabs-nav mb-4">
-            <button class="sch-tab active" data-tab="current">
-              <?php esc_html_e('Current Scholarships', 'uok-sfao'); ?>
-            </button>
-          </div>
+        <section id="scholarship-section" class="scholarship-list-container">
+          <div class="container my-4">
+            <div class="sch-tabs-nav">
+              <button class="sch-tab active" data-tab="current">
+                Current Scholarships
+              </button>
+            </div>
+        
+            <div class="sch-tab-content" id="tab-current">
+        
+              <h2 class="scholarship-list-title py-5"> Scholarships 2025&#8211;26</h2>
 
-          <div class="sch-tab-content" id="tab-current">
-            <h2 class="scholarship-list-title"><?php esc_html_e('Merit & Need-Based Scholarships 2025–26', 'uok-sfao'); ?></h2>
-            <p class="scholarship-list-subtitle"><?php esc_html_e('Scholarship cycle running until mid-June 2026. Stay updated via SFAO for latest status.', 'uok-sfao'); ?></p>
-
-            <!-- Notice Banner -->
-            <?php 
-              $notice_active = function_exists('get_field') ? get_field('show_notice_banner', 'option') : false;
-              $notice_text = function_exists('get_field') ? get_field('notice_banner_text', 'option') : '';
-              if ($notice_active && !empty($notice_text)) :
-            ?>
-              <div class="sfao-notice-banner" id="sfao-notice-banner">
+              <div class="sfao-notice-banner" id="sfao-notice-banner"<?php echo $show_notice ? '' : ' style="display:none;"'; ?>>
                 <div class="sfao-notice-inner">
                   <span class="sfao-notice-icon">&#128226;</span>
                   <div class="sfao-notice-text">
-                    <strong><?php esc_html_e('Notice:', 'uok-sfao'); ?></strong> <?php echo wp_kses_post($notice_text); ?>
+                    <strong>Notice:</strong> <?php echo wp_kses_post($notice_text); ?>
                   </div>
-                  <button class="sfao-notice-close" onclick="document.getElementById('sfao-notice-banner').style.display='none'" title="Dismiss">&times;</button>
+                  <button class="sfao-notice-close" onclick="document.getElementById('sfao-notice-banner').style.display='none'"
+                    title="Dismiss">&times;</button>
                 </div>
               </div>
-            <?php endif; ?>
-
-            <!-- Filter Buttons -->
-            <div class="scholarship-filter-bar">
-              <button class="scholarship-filter-btn active" data-filter="all"><?php esc_html_e('All', 'uok-sfao'); ?> <span class="filter-count" id="count-all"></span></button>
-              <button class="scholarship-filter-btn filter-open" data-filter="open"><?php esc_html_e('Open', 'uok-sfao'); ?> <span class="filter-count" id="count-open"></span></button>
-              <button class="scholarship-filter-btn filter-closed" data-filter="closed"><?php esc_html_e('Closed', 'uok-sfao'); ?> <span class="filter-count" id="count-closed"></span></button>
-              <button class="scholarship-filter-btn filter-pending" data-filter="pending"><?php esc_html_e('Pending', 'uok-sfao'); ?> <span class="filter-count" id="count-pending"></span></button>
-              <button class="scholarship-filter-btn filter-upcoming" data-filter="upcoming"><?php esc_html_e('Upcoming', 'uok-sfao'); ?> <span class="filter-count" id="count-upcoming"></span></button>
-            </div>
-
-            <!-- Table Header -->
-            <div class="scholarship-table-header">
-              <div class="scholarship-col-name"><?php esc_html_e('Scholarship Name List', 'uok-sfao'); ?></div>
-              <div class="scholarship-col-deadline"><?php esc_html_e('Deadlines', 'uok-sfao'); ?></div>
-              <div class="scholarship-col-status"><?php esc_html_e('Status', 'uok-sfao'); ?></div>
-              <div class="scholarship-col-details"><?php esc_html_e('Details', 'uok-sfao'); ?></div>
-            </div>
-
-            <!-- Scholarships Loop -->
-            <div class="scholarship-table-body">
-              <?php if (have_posts()) : ?>
-                <?php while (have_posts()) : the_post(); 
-                  $deadline = function_exists('get_field') ? get_field('scholarship_deadline') : 'Ongoing';
-                  $status = function_exists('get_field') ? get_field('scholarship_status') : 'Open';
-                  $status_lower = strtolower($status);
-                  $status_class = 'status-' . $status_lower;
-                ?>
-                  <div class="scholarship-row" data-status="<?php echo esc_attr($status_lower); ?>">
-                    <div class="scholarship-col-name">
-                      <a href="<?php the_permalink(); ?>" class="text-reset text-decoration-none fw-medium">
-                        <?php the_title(); ?>
-                      </a>
-                    </div>
-                    <div class="scholarship-col-deadline">
-                      <?php echo esc_html($deadline ?: 'Ongoing'); ?>
-                    </div>
-                    <div class="scholarship-col-status">
-                      <span class="scholarship-status-badge <?php echo esc_attr($status_class); ?>">
-                        <?php echo esc_html($status ?: 'Open'); ?>
-                      </span>
-                    </div>
-                    <div class="scholarship-col-details">
-                      <a href="<?php the_permalink(); ?>" class="scholarship-view-details"><?php esc_html_e('View Details', 'uok-sfao'); ?></a>
-                    </div>
-                  </div>
-                <?php endwhile; ?>
-              <?php else : ?>
-                <!-- Fallback items -->
-                <div class="scholarship-row" data-status="closed">
-                  <div class="scholarship-col-name">Haier Funded Scholarships 2025-26 (Based on Need Cum Merit, Only for Morning Program Students)</div>
-                  <div class="scholarship-col-deadline">May 30, 2025</div>
-                  <div class="scholarship-col-status"><span class="scholarship-status-badge status-closed">Closed</span></div>
-                  <div class="scholarship-col-details"><a href="#" class="scholarship-view-details">View Details</a></div>
-                </div>
-
-                <div class="scholarship-row" data-status="open">
-                  <div class="scholarship-col-name">Ihsan Trust Qarz-e-Hasna (Interest-Free Loan Facility)</div>
-                  <div class="scholarship-col-deadline">Year Round</div>
-                  <div class="scholarship-col-status"><span class="scholarship-status-badge status-open">Open</span></div>
-                  <div class="scholarship-col-details"><a href="#" class="scholarship-view-details">View Details</a></div>
-                </div>
-
-                <div class="scholarship-row" data-status="pending">
-                  <div class="scholarship-col-name">Mitsubishi UFJ Foundation Scholarship 2025–26</div>
-                  <div class="scholarship-col-deadline">Notification in Progress</div>
-                  <div class="scholarship-col-status"><span class="scholarship-status-badge status-pending">Pending</span></div>
-                  <div class="scholarship-col-details"><a href="#" class="scholarship-view-details">View Details</a></div>
-                </div>
-
-                <div class="scholarship-row" data-status="upcoming">
-                  <div class="scholarship-col-name">Balochistan Education Endowment Fund (BEEF) Scholarship</div>
-                  <div class="scholarship-col-deadline">Announcement Coming Soon</div>
-                  <div class="scholarship-col-status"><span class="scholarship-status-badge status-upcoming">Upcoming</span></div>
-                  <div class="scholarship-col-details"><a href="#" class="scholarship-view-details">View Details</a></div>
-                </div>
-              <?php endif; ?>
-            </div>
-
-            <!-- Client-Side Filter Count Script -->
-            <script>
-              document.addEventListener('DOMContentLoaded', function() {
-                const rows = document.querySelectorAll('.scholarship-table-body .scholarship-row');
-                const filterBtns = document.querySelectorAll('.scholarship-filter-btn');
-
-                function updateCounts() {
-                  let total = rows.length;
-                  let counts = { all: total, open: 0, closed: 0, pending: 0, upcoming: 0 };
-
-                  rows.forEach(r => {
-                    let st = r.getAttribute('data-status');
-                    if (counts[st] !== undefined) counts[st]++;
-                  });
-
-                  for (let key in counts) {
-                    let el = document.getElementById('count-' + key);
-                    if (el) el.textContent = '(' + counts[key] + ')';
-                  }
+        
+              <div class="scholarship-filter-bar">
+                <button class="scholarship-filter-btn active" data-filter="all">All <span class="filter-count"
+                    id="count-all"></span></button>
+                    <button class="scholarship-filter-btn filter-upcoming" data-filter="upcoming">Upcoming <span
+                        class="filter-count" id="count-upcoming"></span></button>
+                <button class="scholarship-filter-btn filter-open" data-filter="open">Open <span class="filter-count"
+                    id="count-open"></span></button>
+                <button class="scholarship-filter-btn filter-closed" data-filter="closed">Closed <span class="filter-count"
+                    id="count-closed"></span></button>
+                <button class="scholarship-filter-btn filter-pending" data-filter="pending">Awaited <span class="filter-count"
+                    id="count-pending"></span></button>
+              </div>
+        
+              <style>
+                /* ---- Notice Banner ---- */
+                .sfao-notice-banner {
+                  background: #fff8e1;
+                  border: 1px solid #ffe082;
+                  border-left: 5px solid #f59e0b;
+                  border-radius: 8px;
+                  margin-bottom: 20px;
+                }
+        
+                .sfao-notice-inner {
+                  display: flex;
+                  align-items: flex-start;
+                  gap: 12px;
+                  padding: 14px 16px;
+                }
+        
+                .sfao-notice-icon {
+                  font-size: 1.2rem;
+                  line-height: 1.4;
+                  flex-shrink: 0;
+                }
+        
+                .sfao-notice-text {
+                  flex: 1;
+                  font-size: 0.9rem;
+                  color: #555;
+                  line-height: 1.6;
+                }
+        
+                .sfao-notice-text strong {
+                  color: #b45309;
+                }
+        
+                .sfao-notice-close {
+                  background: none;
+                  border: none;
+                  font-size: 1.3rem;
+                  color: #999;
+                  cursor: pointer;
+                  padding: 0 4px;
+                  line-height: 1;
+                  flex-shrink: 0;
+                }
+        
+                .sfao-notice-close:hover {
+                  color: #333;
+                }
+        
+                .scholarship-filter-bar {
+                  display: flex;
+                  gap: 10px;
+                  flex-wrap: wrap;
+                  margin-bottom: 18px;
+                }
+        
+                .scholarship-filter-btn {
+                  padding: 7px 20px;
+                  border-radius: 50px;
+                  border: 2px solid #d0d0d0;
+                  background: #fff;
+                  color: #555;
+                  font-size: 0.88rem;
+                  font-weight: 600;
+                  cursor: pointer;
+                  transition: all 0.2s;
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                }
+        
+                .scholarship-filter-btn:hover {
+                  border-color: #379934;
+                  color: #379934;
+                }
+        
+                .scholarship-filter-btn.active {
+                  background: #379934;
+                  border-color: #379934;
+                  color: #fff;
+                }
+        
+                .scholarship-filter-btn.filter-open.active {
+                  background: #198754;
+                  border-color: #198754;
+                }
+        
+                .scholarship-filter-btn.filter-open:not(.active):hover {
+                  border-color: #198754;
+                  color: #198754;
+                }
+        
+                .scholarship-filter-btn.filter-closed.active {
+                  background: #dc3545;
+                  border-color: #dc3545;
+                }
+        
+                .scholarship-filter-btn.filter-closed:not(.active):hover {
+                  border-color: #dc3545;
+                  color: #dc3545;
+                }
+        
+                .scholarship-filter-btn.filter-pending.active {
+                  background: #d39e00;
+                  border-color: #d39e00;
+                }
+        
+                .scholarship-filter-btn.filter-pending:not(.active):hover {
+                  border-color: #d39e00;
+                  color: #d39e00;
                 }
 
-                updateCounts();
+                .scholarship-filter-btn.filter-upcoming.active {
+                  background: #fd7e14;
+                  border-color: #fd7e14;
+                }
+        
+                .scholarship-filter-btn.filter-upcoming:not(.active):hover {
+                  border-color: #fd7e14;
+                  color: #fd7e14;
+                }
 
-                filterBtns.forEach(btn => {
-                  btn.addEventListener('click', function() {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    let filter = this.getAttribute('data-filter');
+                .filter-count {
+                  background: rgba(255, 255, 255, 0.25);
+                  border-radius: 50px;
+                  padding: 1px 8px;
+                  font-size: 0.78rem;
+                  font-weight: 700;
+                }
+        
+                .scholarship-filter-btn:not(.active) .filter-count {
+                  background: #f0f0f0;
+                  color: #555;
+                }
+        
+                .scholarship-no-results {
+                  text-align: center;
+                  padding: 40px 20px;
+                  color: #888;
+                  font-size: 0.95rem;
+                  display: none;
+                }
+        
+                /* ---- Section Divider ---- */
+                .scholarship-section-divider {
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  margin: 10px 0 4px;
+                  padding: 0 4px;
+                }
+        
+                .scholarship-section-divider::before,
+                .scholarship-section-divider::after {
+                  content: '';
+                  flex: 1;
+                  height: 1px;
+                  background: #d0d0d0;
+                }
+        
+                .scholarship-section-divider span {
+                  font-size: 0.78rem;
+                  font-weight: 700;
+                  color: #999;
+                  text-transform: uppercase;
+                  letter-spacing: 0.08em;
+                  white-space: nowrap;
+                }
+        
+                /* ---- Coming Soon ---- */
+                .scholarship-coming-soon {
+                  opacity: 0.45;
+                  cursor: default;
+                  pointer-events: none;
+                  font-style: italic;
+                }
+              </style>
+        
+              <div class="scholarship-no-results" id="scholarship-no-results">
+                No scholarships found for this status.
+              </div>
+        
+              <div class="scholarship-table-header">
+                <div class="scholarship-col-name">Scholarship Name List</div>
+                <div class="scholarship-col-deadline">Deadlines</div>
+                <div class="scholarship-col-status">Status</div>
+                <div class="scholarship-col-details">Details</div>
+              </div>
+        
+              <?php foreach ($scholarships as $sch) :
+                $status = strtolower((string) uok_field('scholarship_status', 'Open', $sch->ID));
+              ?>
+              <div class="scholarship-row">
+                <div class="scholarship-col-name"><?php echo wp_kses_post(uok_field('scholarship_list_name', esc_html(get_the_title($sch)), $sch->ID)); ?></div>
+                <div class="scholarship-col-deadline"><?php echo esc_html(uok_field('scholarship_deadline', '—', $sch->ID)); ?></div>
+                <div class="scholarship-col-status">
+                  <span class="scholarship-status-badge status-<?php echo esc_attr($status); ?>"><?php echo esc_html(ucfirst($status)); ?></span>
+                </div>
+                <div class="scholarship-col-details">
+                  <?php if (get_field('scholarship_coming_soon', $sch->ID)) : ?>
+                  <span class="scholarship-view-details scholarship-coming-soon">Coming Soon</span>
+                  <?php else : ?>
+                  <a href="<?php echo esc_url(get_permalink($sch)); ?>" class="scholarship-view-details">View Details</a>
+                  <?php endif; ?>
+                </div>
+              </div>
+              <?php endforeach; ?>
 
-                    rows.forEach(r => {
-                      if (filter === 'all' || r.getAttribute('data-status') === filter) {
-                        r.style.display = 'flex';
-                      } else {
-                        r.style.display = 'none';
-                      }
-                    });
-                  });
+              <div class="scholarship-footer-area">
+                <div class="scholarship-showing-text" id="scholarship-showing-text">Showing 1 to 6 of 6 entries</div>
+                <div class="scholarship-pagination" id="scholarship-pagination">
+                </div>
+              </div>
+        
+            </div><!-- /tab-current -->
+
+            <div class="sch-tab-content" id="tab-upcoming" style="display:none;">
+        
+              <h2 class="scholarship-list-title">Upcoming Scholarships</h2>
+              <p class="scholarship-list-subtitle">Scholarships with confirmed announcements — applications not yet open.
+              </p>
+        
+              <div class="scholarship-table-header">
+                <div class="scholarship-col-name">Scholarship Name List</div>
+                <div class="scholarship-col-deadline">Announcement Date</div>
+                <div class="scholarship-col-status">Status</div>
+                <div class="scholarship-col-details">Details</div>
+              </div>
+        
+              <div class="scholarship-row">
+                <div class="scholarship-col-name">Balochistan Education Endowment Fund (BEEF)</div>
+                <div class="scholarship-col-deadline">10 June 2026</div>
+                <div class="scholarship-col-status">
+                  <span class="scholarship-status-badge status-upcoming">Upcoming</span>
+                </div>
+                <div class="scholarship-col-details">
+                  <a href="<?php echo esc_url(uok_scholarship_url('balochistan-education-endowment-fund')); ?>" class="scholarship-view-details">View Details</a>
+                </div>
+              </div>
+        
+              <div class="scholarship-footer-area">
+                <div class="scholarship-showing-text">Showing 1 to 1 of 1 entries</div>
+              </div>
+        
+            </div>
+
+            <style>
+              /* ---- Tab Navigation ---- */
+              .sch-tabs-nav {
+                display: flex;
+                gap: 0;
+                border-bottom: 2px solid #e0e0e0;
+                margin-bottom: 28px;
+              }
+        
+              .sch-tab {
+                position: relative;
+                padding: 12px 28px;
+                border: none;
+                background: none;
+                font-size: 0.95rem;
+                font-weight: 600;
+                color: #777;
+                cursor: pointer;
+                border-bottom: 3px solid transparent;
+                margin-bottom: -2px;
+                transition: color 0.2s, border-color 0.2s;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+              }
+        
+              .sch-tab:hover {
+                color: #379934;
+              }
+        
+              .sch-tab.active {
+                color: #1a3c2b;
+                border-bottom-color: #379934;
+              }
+        
+              /* ---- Pulsing notification dot ---- */
+              .tab-notify-dot {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: #fd7e14;
+                box-shadow: 0 0 0 0 rgba(253, 126, 20, 0.6);
+                animation: pulse-dot 1.6s ease-in-out infinite;
+                flex-shrink: 0;
+              }
+        
+              @keyframes pulse-dot {
+                0% {
+                  box-shadow: 0 0 0 0 rgba(253, 126, 20, 0.6);
+                }
+        
+                70% {
+                  box-shadow: 0 0 0 8px rgba(253, 126, 20, 0);
+                }
+        
+                100% {
+                  box-shadow: 0 0 0 0 rgba(253, 126, 20, 0);
+                }
+              }
+        
+              /* ---- Upcoming status badge ---- */
+              .status-upcoming {
+                background-color: #fd7e14;
+              }
+            </style>
+        
+            <script>
+              document.querySelectorAll('.sch-tab').forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                  document.querySelectorAll('.sch-tab').forEach(function (t) { t.classList.remove('active'); });
+                  document.querySelectorAll('.sch-tab-content').forEach(function (c) { c.style.display = 'none'; });
+                  this.classList.add('active');
+                  var target = document.getElementById('tab-' + this.getAttribute('data-tab'));
+                  if (target) target.style.display = '';
                 });
               });
             </script>
+        
+          </div>
+        </section>
 
+      <section class="scholarship-processes-section">
+        <div class="container my-5">
+          <h2 class="processes-title">Scholarship Application Processes</h2>
+          <p class="processes-subtitle">University of Karachi — Student Financial Aid Office (SFAO)</p>
+
+          <div class="processes-table-wrapper">
+            <table class="processes-table">
+              <thead>
+                <tr>
+                  <th>Scholarship Type</th>
+                  <th>Criteria</th>
+                  <th>Process by</th>
+                  <th>Duration</th>
+                  <th>Standard Application Steps</th>
+                  <th>Primary Submission Location</th>
+                  <th>Key Mandatory Documents</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Need-Cum-Merit Based (Zakat & Ushr Govt of Sindh)</strong></td>
+                  <td>Need-cum-Merit</td>
+                  <td>SFAO</td>
+                  <td>Fiscal Year</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Download form from UoK SFAO</li>
+                      <li>Obtain Istehqaq Certificate from District Zakat Chairman</li>
+                      <li>Get endorsement from Department Chairperson</li>
+                    </ol>
+                  </td>
+                  <td>SFAO Office (Room #4, Ground Floor, Old Admin Building)</td>
+                  <td>Istehqaq Certificate, Sindh Domicile, Income Certificate, Fee Voucher</td>
+                </tr>
+
+                <tr>
+                  <td><strong>HEC-Needs Based Scholarship Program</strong></td>
+                  <td>Need (Upon selection) Subsequent renewals (Merit)</td>
+                  <td>SFAO</td>
+                  <td>Entire Degree Program</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Download HEC-prescribed form from HEC or SFAO website</li>
+                      <li>Fill details and attach financial proofs</li>
+                      <li>Appear for an interview if shortlisted</li>
+                      <li>Renewal of subsequent years on prescribed renewal forms</li>
+                    </ol>
+                  </td>
+                  <td>SFAO Office</td>
+                  <td>Salary Slips, Utility Bills (last 3 months), Academic Transcripts</td>
+                </tr>
+
+                <tr>
+                  <td><strong>Pakistan Bait-ul-Mal (PBM)</strong></td>
+                  <td>As per donor</td>
+                  <td>Donor</td>
+                  <td>As per donor</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Download PBM Education Assistance Form</li>
+                      <li>Get Bonafide Certificate signed by your Head of Department</li>
+                      <li>Submit to the PBM District Office matching your CNIC address</li>
+                    </ol>
+                  </td>
+                  <td>PBM District Office (Karachi-II: Quaidabad)</td>
+                  <td>PBM Bonafide Certificate, Student Card, Fee Structure, Father's CNIC</td>
+                </tr>
+
+                <tr>
+                  <td><strong>Sindh HEC Indigenous (M.Phil/Ph.D)</strong></td>
+                  <td>Merit Based</td>
+                  <td>SFAO</td>
+                  <td>Fiscal Year (One time)</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Download specific PG application form</li>
+                      <li>Ensure synopsis is approved by ASRB</li>
+                      <li>Get form endorsed by Supervisor and Chairperson</li>
+                    </ol>
+                  </td>
+                  <td>SFAO Office</td>
+                  <td>Approved Synopsis, CGPA Proforma (3.0+), Domicile, Employment status affidavit</td>
+                </tr>
+
+                <tr>
+                  <td><strong>Alumni / Private Funded (e.g., UKAA, Haier, PEF, TCF)</strong></td>
+                  <td>Need-Cum-Merit</td>
+                  <td>Donor</td>
+                  <td>As per donor</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Fill online Google Form (if required)</li>
+                      <li>Download and print hardcopy form</li>
+                      <li>Submit hard copy, if required</li>
+                    </ol>
+                  </td>
+                  <td>Department Chairperson's Office or Donor's specified location</td>
+                  <td>Bank Statements (6 months), Rs. 50 Stamp Paper Affidavit, Income Slip</td>
+                </tr>
+
+                <tr>
+                  <td><strong>Alumni/Welfare (e.g., UKAHA, Al-Rehman)</strong></td>
+                  <td>Need-Cum-Merit</td>
+                  <td>SFAO</td>
+                  <td>As per donor</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Download form from SFAO during announcement period</li>
+                      <li>Attach required academic and financial records</li>
+                      <li>Submit to SFAO within specific time slots</li>
+                    </ol>
+                  </td>
+                  <td>SFAO Office</td>
+                  <td>Statement of Purpose, Last semester mark sheet, Parents' CNIC</td>
+                </tr>
+
+                <tr>
+                  <td><strong>Mitsubishi UFJ Foundation</strong></td>
+                  <td>Merit Based</td>
+                  <td>SFAO</td>
+                  <td>Upto 2 years</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Download form from SFAO during announcement period</li>
+                      <li>Attach required academic and financial records</li>
+                      <li>Submit to SFAO within specific time slots</li>
+                      <li>Get form endorsed by Supervisor and Chairperson</li>
+                    </ol>
+                  </td>
+                  <td>SFAO Office</td>
+                  <td>Statement of Purpose, Student's CNIC and academic testimonials</td>
+                </tr>
+
+                <tr>
+                  <td><strong>BEEF/SEEF</strong></td>
+                  <td>Need-cum-Merit</td>
+                  <td>Donor</td>
+                  <td>Fiscal year</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Fill online Google Form (if required)</li>
+                      <li>Download and print hardcopy form</li>
+                      <li>Submit hard copy, if required</li>
+                    </ol>
+                  </td>
+                  <td>Donor's specified location</td>
+                  <td>Bank Statements (6 months), Rs. 50 Stamp Paper Affidavit, Income Slip</td>
+                </tr>
+
+                <tr>
+                  <td><strong>Coastal Region and Gawadar Students Scholarships by HEC</strong></td>
+                  <td>Need-cum-Merit</td>
+                  <td>HEC</td>
+                  <td>Entire degree program</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Follow guidelines provided by HEC</li>
+                    </ol>
+                  </td>
+                  <td>HEC</td>
+                  <td>As per advertisement by HEC</td>
+                </tr>
+
+                <tr>
+                  <td><strong>Ihsan Trust Interest Free Loan (IFL)</strong></td>
+                  <td>Need-Cum-Merit</td>
+                  <td>The Trust</td>
+                  <td>Entire degree subject to satisfactory academic performance</td>
+                  <td>
+                    <ol class="table-steps">
+                      <li>Fill online application form</li>
+                      <li>Appear for interview</li>
+                      <li>Approval from the Trust</li>
+                      <li>Post approval documents</li>
+                      <li>Release of funds to the University</li>
+                    </ol>
+                  </td>
+                  <td>Online + SFAO</td>
+                  <td>All documents to assess need</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="processes-note">
+            <i class="bi bi-exclamation-circle"></i>
+            <div>
+              <strong>Important Note:</strong> All scholarships require Department Chairperson's endorsement and
+              certified photocopies of documents (CNIC, Mark sheets, Domicile) unless specified. Morning Program
+              students have priority for most scholarships.
+            </div>
           </div>
         </div>
+
+        <style>
+          .scholarship-processes-section {
+            background: #fff;
+            padding: 50px 0;
+          }
+
+          .processes-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a3c2b;
+            text-align: center;
+            margin-bottom: 8px;
+          }
+
+          .processes-subtitle {
+            font-size: 0.98rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 32px;
+          }
+
+          .processes-table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          }
+
+          .processes-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            font-size: 0.88rem;
+          }
+
+          .processes-table thead {
+            background: linear-gradient(135deg, #379934 0%, #2d7a2a 100%);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+          }
+
+          .processes-table th {
+            color: #fff;
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: 700;
+            border: 1px solid #2d7a2a;
+            word-break: break-word;
+          }
+
+          .processes-table td {
+            padding: 14px 12px;
+            border: 1px solid #e0e0e0;
+            vertical-align: top;
+            color: #333;
+          }
+
+          .processes-table tbody tr {
+            transition: background-color 0.2s;
+          }
+
+          .processes-table tbody tr:hover {
+            background-color: #f9fdf9;
+          }
+
+          .processes-table tbody tr:nth-child(even) {
+            background-color: #f8fdf8;
+          }
+
+          .processes-table strong {
+            color: #1a3c2b;
+            display: block;
+            margin-bottom: 2px;
+          }
+
+          .table-steps {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.85rem;
+            color: #555;
+          }
+
+          .table-steps li {
+            margin-bottom: 4px;
+            line-height: 1.4;
+          }
+
+          .processes-note {
+            background: #e3f2fd;
+            border-left: 5px solid #0d6efd;
+            padding: 16px 20px;
+            border-radius: 6px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 0.93rem;
+            color: #1a3c2b;
+            line-height: 1.6;
+          }
+
+          .processes-note i {
+            font-size: 1.2rem;
+            color: #0d6efd;
+            flex-shrink: 0;
+            margin-top: 2px;
+          }
+
+          @media (max-width: 1024px) {
+            .processes-table {
+              font-size: 0.8rem;
+            }
+
+            .processes-table th,
+            .processes-table td {
+              padding: 10px 8px;
+            }
+
+            .table-steps {
+              font-size: 0.78rem;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .processes-title {
+              font-size: 1.5rem;
+            }
+
+            .processes-subtitle {
+              font-size: 0.9rem;
+            }
+
+            .processes-table {
+              font-size: 0.75rem;
+            }
+
+            .processes-table th,
+            .processes-table td {
+              padding: 8px 6px;
+            }
+
+            .table-steps {
+              font-size: 0.7rem;
+            }
+
+            .processes-note {
+              font-size: 0.85rem;
+            }
+          }
+        </style>
       </section>
+
+      <section class="steps-in-scholarships-section">
+        <div class="container my-5">
+          <h2 class="steps-title">Steps in Scholarships 2025&#8211;26</h2>
+          <p class="steps-subtitle">Track your scholarship application journey through these four key phases</p>
+
+          <div class="scholarship-timeline">
+            <div class="timeline-item">
+              <div class="timeline-number">
+                <div class="phase-badge phase-1">1</div>
+              </div>
+              <div class="timeline-content">
+                <h4 class="phase-title">Phase 1: Outreach & Access</h4>
+                <p class="phase-desc">Scholarship announcements are published on official platforms. Students learn
+                  about available opportunities and eligibility criteria through SFAO website, social media, and
+                  official communications.</p>
+              </div>
+            </div>
+
+            <div class="timeline-connector"></div>
+
+            <div class="timeline-item">
+              <div class="timeline-number">
+                <div class="phase-badge phase-2">2</div>
+              </div>
+              <div class="timeline-content">
+                <h4 class="phase-title">Phase 2: Scrutiny & Shortlisting</h4>
+                <p class="phase-desc">SFAO reviews all submitted applications, verifies documents, and checks
+                  eligibility criteria. Qualified candidates are shortlisted for further evaluation based on specified
+                  merit and need parameters.</p>
+              </div>
+            </div>
+
+            <div class="timeline-connector"></div>
+
+            <div class="timeline-item">
+              <div class="timeline-number">
+                <div class="phase-badge phase-3">3</div>
+              </div>
+              <div class="timeline-content">
+                <h4 class="phase-title">Phase 3: Selection Process</h4>
+                <p class="phase-desc">Selected candidates may be called for interviews (if required by the scholarship).
+                  Final selections are made by SFAO or donor organizations based on comprehensive evaluation. Results
+                  are announced officially.</p>
+              </div>
+            </div>
+
+            <div class="timeline-connector"></div>
+
+            <div class="timeline-item">
+              <div class="timeline-number">
+                <div class="phase-badge phase-4">4</div>
+              </div>
+              <div class="timeline-content">
+                <h4 class="phase-title">Phase 4: Disbursement & Closing</h4>
+                <p class="phase-desc">Approved scholarships are processed and funds are disbursed to students' accounts.
+                  Selected students receive notification and undergo final documentation. Cycle continues for subsequent
+                  academic terms.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="steps-info-box">
+            <i class="bi bi-info-circle"></i>
+            <div>
+              <strong>Current Cycle Status:</strong> Applications are being processed. Check the scholarship list below
+              for individual application deadlines and current status of each scholarship.
+            </div>
+          </div>
+        </div>
+
+        <style>
+          .steps-in-scholarships-section {
+            background: linear-gradient(135deg, #f0faf0 0%, #f8fdf8 100%);
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .steps-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a3c2b;
+            text-align: center;
+            margin-bottom: 8px;
+          }
+
+          .steps-subtitle {
+            font-size: 0.98rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+          }
+
+          .scholarship-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 32px;
+          }
+
+          .timeline-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            border-left: 4px solid #379934;
+            transition: all 0.3s ease;
+          }
+
+          .timeline-item:hover {
+            box-shadow: 0 4px 16px rgba(55, 153, 52, 0.12);
+            transform: translateX(4px);
+          }
+
+          .timeline-number {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .phase-badge {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #fff;
+          }
+
+          .phase-1 {
+            background: #379934;
+          }
+
+          .phase-2 {
+            background: #0d6efd;
+          }
+
+          .phase-3 {
+            background: #fd7e14;
+          }
+
+          .phase-4 {
+            background: #198754;
+          }
+
+          .timeline-content {
+            flex: 1;
+            padding-top: 2px;
+          }
+
+          .phase-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a3c2b;
+            margin: 0 0 8px 0;
+          }
+
+          .phase-desc {
+            font-size: 0.93rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+          }
+
+          .timeline-connector {
+            height: 8px;
+            background: linear-gradient(180deg, #379934 0%, #0d6efd 50%, #fd7e14 100%);
+            margin: -8px 0;
+            margin-left: 27px;
+            width: 2px;
+            opacity: 0.4;
+          }
+
+          .steps-info-box {
+            background: #e8f5e9;
+            border-left: 5px solid #379934;
+            padding: 16px 20px;
+            border-radius: 6px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 0.95rem;
+            color: #1a3c2b;
+            line-height: 1.6;
+          }
+
+          .steps-info-box i {
+            font-size: 1.3rem;
+            color: #379934;
+            flex-shrink: 0;
+            margin-top: 2px;
+          }
+
+          @media (max-width: 768px) {
+            .steps-title {
+              font-size: 1.5rem;
+            }
+
+            .timeline-item {
+              padding: 16px;
+              gap: 16px;
+            }
+
+            .phase-badge {
+              width: 48px;
+              height: 48px;
+              font-size: 1.2rem;
+            }
+
+            .timeline-number {
+              margin-top: 2px;
+            }
+          }
+        </style>
+      </section>
+
+      <section class="faq-section">
+        <div class="container my-5">
+          <h2 class="faq-main-title">Frequently Asked Questions (FAQs)</h2>
+          <p class="faq-main-subtitle">University Scholarships — Student Financial Aid Office (SFAO)</p>
+
+          <div class="faq-accordion" id="faqAccordion">
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq1">
+                <span>1. What are the official platforms for scholarship information?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq1">
+                <ul class="faq-links-list">
+                  <li><strong>Official Scholarship Page:</strong> <a href="https://www.uok.edu.pk/sfao/scholarships.php"
+                      target="_blank" rel="noopener noreferrer">https://www.uok.edu.pk/sfao/scholarships.php</a></li>
+                  <li><strong>KU Official Facebook Platform (KU Times):</strong> <a
+                      href="https://www.facebook.com/kutimes?mibextid=ZbWKwL" target="_blank"
+                      rel="noopener noreferrer">facebook.com/kutimes</a></li>
+                  <li><strong>KU Official WhatsApp Channel (KU Times):</strong> <a
+                      href="https://whatsapp.com/channel/0029Vap9QMDAO7RIzFDvuu2B" target="_blank"
+                      rel="noopener noreferrer">WhatsApp Channel Link</a></li>
+                  <li><strong>Official E-mail of SFAO:</strong> <a href="mailto:sfao@uok.edu.pk">sfao@uok.edu.pk</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq2">
+                <span>2. Are there extensions for the submission of scholarship forms?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq2">
+                <p>Extensions for the submission of scholarship forms are rare. For more details, please refer to the <a
+                    href="https://www.uok.edu.pk/sfao/scholarships.php" target="_blank"
+                    rel="noopener noreferrer">official scholarship page</a>.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq3">
+                <span>3. What is the deadline for submitting scholarship forms?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq3">
+                <p>Every scholarship has a different date of advertisement and deadline. Students are advised to
+                  carefully <strong>READ &amp; UNDERSTAND</strong> the scholarship advertisement uploaded on the <a
+                    href="https://www.uok.edu.pk/sfao/scholarships.php" target="_blank"
+                    rel="noopener noreferrer">Official Scholarship Page</a> where all such information is carefully
+                  mentioned by SFAO. For further inquiries, contact <a
+                    href="mailto:sfao@uok.edu.pk">sfao@uok.edu.pk</a>.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq4">
+                <span>4. How can I obtain information about scholarships at KU?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq4">
+                <p>By visiting any of the official platforms listed in <strong>Question 1</strong> above.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq5">
+                <span>5. Are students enrolled in both morning and evening programs eligible for scholarships?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq5">
+                <p>Only morning program students are eligible for scholarships unless specified in the scholarship
+                  advertisement.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq6">
+                <span>6. What financial assistance options are available for Evening Program students?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq6">
+                <p>Evening Program students at the University can apply for the <strong>Ihsan Trust Interest Free Loan
+                    Scheme</strong> on a prescribed form available at the official scholarship page. Applications for
+                  this facility are open throughout the year.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq7">
+                <span>7. Who is eligible to apply for the HEC Need-Based scholarship at KU?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq7">
+                <p>Morning program on-campus regular students whose family income is within <strong>Rs.
+                    45,000/-</strong> are eligible and can apply for the HEC Needs-Based Scholarship upon advertisement
+                  by SFAO.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq8">
+                <span>8. Can I apply for financial aid during the semester or year?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq8">
+                <p>Yes, you can apply for the <strong>Ihsan Trust Interest Free Loan Scheme</strong> at any time of the
+                  year.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq9">
+                <span>9. To whom will these scholarships be awarded?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq9">
+                <p>Students are encouraged to carefully read and understand the eligibility criteria for the specific
+                  scholarship program they intend to apply for.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq10">
+                <span>10. Can I submit manual applications to the financial aid office?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq10">
+                <p>No, applications must be submitted as per the procedure laid down in the scholarship advertisement.
+                  Generally the process involves two steps:</p>
+                <ol>
+                  <li>Download the scholarship application form from the official scholarship page and take a printout.
+                  </li>
+                  <li>Fill in the required details on the printed form and provide online data on the given link
+                    mentioned on the form. Once online data is provided, applicants must submit the complete application
+                    with required documents (hardcopy) to SFAO by the given deadline.</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq11">
+                <span>11. Can I apply for a scholarship before being admitted to KU?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq11">
+                <p>No, you must first gain admission to apply for scholarships. However, if you are facing financial
+                  difficulty you may apply for the <strong>Ihsan Trust Interest Free Loan</strong> facility after
+                  submitting your admission form.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq12">
+                <span>12. What documents are required with a scholarship application?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq12">
+                <p>A list of required documents is mentioned on the application form. Students should carefully
+                  <strong>READ and UNDERSTAND</strong> the particular scholarship form.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq13">
+                <span>13. Is it possible to change the online application after submission?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq13">
+                <p>Yes, if corrections are needed, the applicant can visit the SFAO office to make the necessary
+                  adjustments along with a written request for correction of particulars in online data.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq14">
+                <span>14. What happens if a student fails an examination and requests continuation of their
+                  scholarship?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq14">
+                <p>Renewal of scholarship for subsequent years is subject to satisfactory academic performance. Students
+                  who fail in course(s) may not be awarded subsequent installments. However, only exceptional cases
+                  which are beyond the student's control may be considered by SFAO subject to approval of the competent
+                  authority.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq15">
+                <span>15. How are students informed about their financial aid status at KU?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq15">
+                <p>SFAO notifies every piece of information on the official scholarship page and social media platforms.
+                  Students are advised to keep themselves updated and visit the official scholarship website on a
+                  <strong>weekly basis</strong> for updates on their status.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq16">
+                <span>16. Are there scholarships available for graduate programs?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq16">
+                <p>Yes, there are scholarships available for graduate programs.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq17">
+                <span>17. Can I receive multiple scholarships simultaneously?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq17">
+                <p>No, you cannot avail multiple scholarships simultaneously.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq18">
+                <span>18. Is a merit scholarship available at KU?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq18">
+                <p>Yes, the <strong>Mitsubishi UFJ Foundation</strong> provides merit-based scholarships.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq19">
+                <span>19. Can I submit documents online after submitting my financial aid application?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq19">
+                <p>No, in-person submission of documents in <strong>hard copy is mandatory</strong>.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq20">
+                <span>20. Can I apply for multiple scholarships?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq20">
+                <p>Yes, you can apply for multiple scholarships; however, once awarded, a scholarship will continue for
+                  the entire year or as per the criteria and duration of the respective scholarship.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq21">
+                <span>21. What should I do if I don't have the required documents?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq21">
+                <p>If you lack certain documents, include a written application explaining the situation along with your
+                  other documents. This does not constitute an exemption from required documents; however, SFAO may
+                  assess the situation keeping in view your written application.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" data-target="faq22">
+                <span>22. What if I don't have income proof (income certificate / pay slip)?</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer" id="faq22">
+                <p>Here are some alternatives:</p>
+                <ul>
+                  <li><strong>Bank Statement:</strong> If your family receives financial support from abroad, provide a
+                    bank statement for the last six months showing the credited funds.</li>
+                  <li><strong>Utility Bills:</strong> If your family's income comes from a privately owned business,
+                    attach an application detailing the source of income and include a utility bill from the business.
+                  </li>
+                  <li><strong>Affidavit:</strong>
+                    <ul>
+                      <li><em>For Drivers:</em> Submit a written application and an affidavit on stamp paper detailing
+                        the source of income and monthly salary.</li>
+                      <li><em>For Agriculture:</em> Provide an affidavit on stamp paper if the income is from
+                        agriculture.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Applications:</strong> If the employee does not receive a salary, submit an application
+                    clearly stating the employer's legal status and clarifying the situation.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div><!-- end faq-accordion -->
+        </div>
+      </section>
+
+      <style>
+        .faq-section {
+          background: #f8f9fa;
+          padding: 40px 0 60px;
+        }
+
+        .faq-main-title {
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: #1a3c2b;
+          margin-bottom: 6px;
+        }
+
+        .faq-main-subtitle {
+          font-size: 0.95rem;
+          color: #6c757d;
+          margin-bottom: 32px;
+        }
+
+        .faq-accordion {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .faq-item {
+          background: #fff;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          overflow: hidden;
+          transition: box-shadow 0.2s;
+        }
+
+        .faq-item:hover {
+          box-shadow: 0 2px 12px rgba(55, 153, 52, 0.10);
+        }
+
+        .faq-question {
+          width: 100%;
+          background: none;
+          border: none;
+          padding: 16px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          text-align: left;
+          font-size: 0.97rem;
+          font-weight: 600;
+          color: #1a3c2b;
+          gap: 12px;
+        }
+
+        .faq-question:hover {
+          background: #f0faf0;
+        }
+
+        .faq-question.active {
+          background: #379934;
+          color: #fff;
+        }
+
+        .faq-icon {
+          font-size: 1.4rem;
+          font-weight: 400;
+          line-height: 1;
+          flex-shrink: 0;
+          transition: transform 0.25s;
+        }
+
+        .faq-question.active .faq-icon {
+          transform: rotate(45deg);
+        }
+
+        .faq-answer {
+          display: none;
+          padding: 16px 20px 18px;
+          font-size: 0.93rem;
+          color: #333;
+          border-top: 1px solid #e8f5e9;
+          line-height: 1.7;
+        }
+
+        .faq-answer.open {
+          display: block;
+        }
+
+        .faq-answer a {
+          color: #379934;
+          text-decoration: underline;
+          word-break: break-word;
+        }
+
+        .faq-answer a:hover {
+          color: #1a3c2b;
+        }
+
+        .faq-answer ol,
+        .faq-answer ul {
+          padding-left: 20px;
+          margin-top: 8px;
+        }
+
+        .faq-answer li {
+          margin-bottom: 6px;
+        }
+
+        .faq-links-list {
+          list-style: none;
+          padding-left: 0;
+        }
+
+        .faq-links-list li {
+          padding: 4px 0;
+          border-bottom: 1px dashed #e0e0e0;
+        }
+
+        .faq-links-list li:last-child {
+          border-bottom: none;
+        }
+      </style>
+
+      <script>
+        document.querySelectorAll('.faq-question').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var targetId = this.getAttribute('data-target');
+            var answer = document.getElementById(targetId);
+            var isOpen = answer.classList.contains('open');
+            document.querySelectorAll('.faq-answer').forEach(function (a) { a.classList.remove('open'); });
+            document.querySelectorAll('.faq-question').forEach(function (b) { b.classList.remove('active'); });
+            if (!isOpen) {
+              answer.classList.add('open');
+              this.classList.add('active');
+            }
+          });
+        });
+      </script>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const allRows = Array.from(document.querySelector("#tab-current").querySelectorAll(".scholarship-row"));
+          const filterButtons = document.querySelectorAll(".scholarship-filter-btn");
+          const itemsPerPage = 6;
+          let currentPage = 1;
+          let currentFilter = "all";
+
+          const paginationContainer = document.getElementById("scholarship-pagination");
+          const showingText = document.getElementById("scholarship-showing-text");
+          const noResults = document.getElementById("scholarship-no-results");
+
+          // Populate count badges on filter buttons
+          function updateCounts() {
+            document.getElementById("count-all").textContent = allRows.length;
+            ["open", "closed", "pending", "upcoming"].forEach(function (status) {
+              var n = allRows.filter(function (row) {
+                var badge = row.querySelector(".scholarship-status-badge");
+                return badge && badge.classList.contains("status-" + status);
+              }).length;
+              document.getElementById("count-" + status).textContent = n;
+            });
+          }
+
+          function getFilteredRows() {
+            if (currentFilter === "all") return allRows;
+            return allRows.filter(function (row) {
+              var badge = row.querySelector(".scholarship-status-badge");
+              return badge && badge.classList.contains("status-" + currentFilter);
+            });
+          }
+
+          function renderTable() {
+            var filtered = getFilteredRows();
+            var totalItems = filtered.length;
+            var totalPages = Math.ceil(totalItems / itemsPerPage);
+
+            if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+            // Hide every row first
+            allRows.forEach(function (row) { row.style.display = "none"; });
+
+            if (totalItems === 0) {
+              noResults.style.display = "block";
+              showingText.innerHTML = "Showing 0 entries";
+              paginationContainer.innerHTML = "";
+              return;
+            }
+            noResults.style.display = "none";
+
+            // Show current page slice of filtered rows
+            var start = (currentPage - 1) * itemsPerPage;
+            var end = start + itemsPerPage;
+            for (var i = start; i < end && i < totalItems; i++) {
+              filtered[i].style.display = "";
+            }
+
+            var currentEnd = end > totalItems ? totalItems : end;
+            showingText.innerHTML = "Showing " + (start + 1) + " to " + currentEnd + " of " + totalItems + " entries";
+
+            // Show/hide "Rest of the Remaining" divider based on visible rows after it
+            var divider = document.querySelector('.scholarship-section-divider');
+            if (divider) {
+              var sibling = divider.nextElementSibling;
+              var anyVisible = false;
+              while (sibling && sibling.classList.contains('scholarship-row')) {
+                if (sibling.style.display !== 'none') { anyVisible = true; break; }
+                sibling = sibling.nextElementSibling;
+              }
+              divider.style.display = anyVisible ? '' : 'none';
+            }
+
+            renderPagination(totalPages);
+          }
+
+          function renderPagination(totalPages) {
+            paginationContainer.innerHTML = "";
+            if (totalPages <= 1) return;
+
+            var prevBtn = document.createElement("a");
+            prevBtn.href = "javascript:void(0)";
+            prevBtn.className = "scholarship-page-item";
+            prevBtn.innerHTML = "&lt;";
+            if (currentPage === 1) {
+              prevBtn.style.opacity = "0.5";
+              prevBtn.style.cursor = "not-allowed";
+            } else {
+              prevBtn.onclick = function () { currentPage--; renderTable(); };
+            }
+            paginationContainer.appendChild(prevBtn);
+
+            for (var i = 1; i <= totalPages; i++) {
+              (function (page) {
+                var pageBtn = document.createElement("a");
+                pageBtn.href = "javascript:void(0)";
+                pageBtn.className = "scholarship-page-item";
+                if (page === currentPage) pageBtn.classList.add("active");
+                pageBtn.innerHTML = page;
+                pageBtn.onclick = function () { currentPage = page; renderTable(); };
+                paginationContainer.appendChild(pageBtn);
+              })(i);
+            }
+
+            var nextBtn = document.createElement("a");
+            nextBtn.href = "javascript:void(0)";
+            nextBtn.className = "scholarship-page-item";
+            nextBtn.innerHTML = "&gt;";
+            if (currentPage === totalPages) {
+              nextBtn.style.opacity = "0.5";
+              nextBtn.style.cursor = "not-allowed";
+            } else {
+              nextBtn.onclick = function () { currentPage++; renderTable(); };
+            }
+            paginationContainer.appendChild(nextBtn);
+          }
+
+          // Filter button click
+          filterButtons.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              filterButtons.forEach(function (b) { b.classList.remove("active"); });
+              this.classList.add("active");
+              currentFilter = this.getAttribute("data-filter");
+              currentPage = 1;
+              renderTable();
+            });
+          });
+
+          updateCounts();
+          renderTable();
+        });
+      </script>
 
     </main>
 

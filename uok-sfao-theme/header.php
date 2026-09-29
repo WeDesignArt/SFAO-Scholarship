@@ -55,11 +55,10 @@
                   } else {
                     echo '<ul>';
                     echo '<li><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/about-us')) . '">About Us</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/stories')) . '">Stories</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/awardees')) . '">Awardees</a></li>';
+                    echo '<li><a href="' . esc_url(uok_page_url('about-us')) . '">About Us</a></li>';
+                    echo '<li class="d-none"><a href="' . esc_url(uok_page_url('stories')) . '">Stories</a></li>';
                     echo '<li><a href="' . esc_url(get_post_type_archive_link('scholarship')) . '">Scholarships</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/contact')) . '">Contact Us</a></li>';
+                    echo '<li><a href="' . esc_url(uok_page_url('contact-us')) . '">Contact Us</a></li>';
                     echo '</ul>';
                   }
                 ?>

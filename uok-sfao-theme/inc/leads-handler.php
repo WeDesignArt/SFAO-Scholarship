@@ -24,6 +24,19 @@ function uok_handle_lead_submission() {
 	$subject   = isset( $_POST['subject'] ) ? sanitize_text_field( wp_unslash( $_POST['subject'] ) ) : 'General Scholarship Inquiry';
 	$message   = isset( $_POST['message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['message'] ) ) : '';
 
+	// Contact page form: department becomes the topic, roll number is kept with the message.
+	$department = isset( $_POST['department'] ) ? sanitize_text_field( wp_unslash( $_POST['department'] ) ) : '';
+	if ( 'other' === $department ) {
+		$department = isset( $_POST['other_department'] ) ? sanitize_text_field( wp_unslash( $_POST['other_department'] ) ) : '';
+	}
+	if ( $department ) {
+		$subject = $department;
+	}
+	$student_id = isset( $_POST['student_id'] ) ? sanitize_text_field( wp_unslash( $_POST['student_id'] ) ) : '';
+	if ( $student_id && $message ) {
+		$message = 'Student ID / Roll No: ' . $student_id . "\n\n" . $message;
+	}
+
 	if ( empty( $full_name ) ) {
 		wp_send_json_error( array( 'message' => __( 'Please enter your full name.', 'uok-sfao' ) ) );
 	}
@@ -47,6 +60,7 @@ function uok_handle_lead_submission() {
 		wp_send_json_error( array( 'message' => __( 'Something went wrong while submitting. Please try again later.', 'uok-sfao' ) ) );
 	}
 
+	// Update meta keys for both formats (backward compatible)
 	update_post_meta( $lead_id, 'full_name', $full_name );
 	update_post_meta( $lead_id, 'email', $email );
 	update_post_meta( $lead_id, 'phone', $phone );

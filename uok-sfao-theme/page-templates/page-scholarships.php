@@ -141,6 +141,7 @@ $faq_subtitle = function_exists('get_field') && get_field('faq_subtitle', $post_
                   endwhile;
                   wp_reset_postdata();
                 else :
+                  // 17 Default Scholarships from latest build
                   $default_list = array(
                     array('The Higher Education Commission (HEC) Need-Based Scholarship', 'Jun 25, 2025', 'closed'),
                     array('Need-Cum-Merit Scholarships — Zakat & Ushr Department, Government of Sindh', '—', 'closed'),
@@ -315,35 +316,55 @@ $faq_subtitle = function_exists('get_field') && get_field('faq_subtitle', $post_
           <p class="steps-subtitle"><?php echo esc_html($steps_subtitle); ?></p>
 
           <div class="scholarship-timeline">
+            <!-- Phase 1 -->
             <div class="timeline-item">
-              <div class="timeline-number"><div class="phase-badge phase-1">1</div></div>
+              <div class="timeline-number">
+                <div class="phase-badge phase-1">1</div>
+              </div>
               <div class="timeline-content">
                 <h4 class="phase-title">Phase 1: Announcement &amp; Form Distribution</h4>
-                <p class="phase-desc">SFAO issues official notifications through KU Times, department notice boards, and the official portal. Application forms become available at SFAO Room #04 and online. Students must review eligibility criteria carefully.</p>
+                <p class="phase-desc">
+                  SFAO issues official notifications through KU Times, department notice boards, and the official portal. Application forms become available at SFAO Room #04 and online. Students must review eligibility criteria carefully.
+                </p>
               </div>
             </div>
 
+            <!-- Phase 2 -->
             <div class="timeline-item">
-              <div class="timeline-number"><div class="phase-badge phase-2">2</div></div>
+              <div class="timeline-number">
+                <div class="phase-badge phase-2">2</div>
+              </div>
               <div class="timeline-content">
                 <h4 class="phase-title">Phase 2: Document Verification &amp; Submission</h4>
-                <p class="phase-desc">Completed applications with verified income slips, utility bills, and department endorsements must be submitted before the announced deadline. SFAO verifies all documentation.</p>
+                <p class="phase-desc">
+                  Completed applications with verified income slips, utility bills, and department endorsements must be submitted before the announced deadline. SFAO verifies all documentation.
+                </p>
               </div>
             </div>
 
+            <!-- Phase 3 -->
             <div class="timeline-item">
-              <div class="timeline-number"><div class="phase-badge phase-3">3</div></div>
+              <div class="timeline-number">
+                <div class="phase-badge phase-3">3</div>
+              </div>
               <div class="timeline-content">
                 <h4 class="phase-title">Phase 3: Scrutiny &amp; Interview by Committee</h4>
-                <p class="phase-desc">Shortlisted candidates are invited for an in-person interview before the Institutional Scholarship Award Committee (ISAC) or donor representatives to assess authentic financial need and merit.</p>
+                <p class="phase-desc">
+                  Shortlisted candidates are invited for an in-person interview before the Institutional Scholarship Award Committee (ISAC) or donor representatives to assess authentic financial need and merit.
+                </p>
               </div>
             </div>
 
+            <!-- Phase 4 -->
             <div class="timeline-item">
-              <div class="timeline-number"><div class="phase-badge phase-4">4</div></div>
+              <div class="timeline-number">
+                <div class="phase-badge phase-4">4</div>
+              </div>
               <div class="timeline-content">
                 <h4 class="phase-title">Phase 4: Award Notification &amp; Fund Disbursement</h4>
-                <p class="phase-desc">Final selected candidates list is displayed on the SFAO notice board. Scholarship cheques are distributed at official award ceremonies or adjusted directly against university tuition fee challans.</p>
+                <p class="phase-desc">
+                  Final selected candidates list is displayed on the SFAO notice board. Scholarship cheques are distributed at official award ceremonies or adjusted directly against university tuition fee challans.
+                </p>
               </div>
             </div>
           </div>
@@ -365,45 +386,59 @@ $faq_subtitle = function_exists('get_field') && get_field('faq_subtitle', $post_
           <p class="faq-main-subtitle text-center"><?php echo esc_html($faq_subtitle); ?></p>
 
           <div class="faq-accordion" id="scholarshipOuterFaq">
-            <div class="faq-item">
-              <button class="faq-question active">
-                <span>How many scholarship slots are available for Sindh HEC Indigenous?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer open">
-                63 scholarship slots are provided each year. Each successful candidate is awarded Rs. 230,000 for tuition and academic expenses.
+            <?php if (function_exists('have_rows') && have_rows('scholarship_faq_items', $post_id)) : ?>
+              <?php while (have_rows('scholarship_faq_items', $post_id)) : the_row(); ?>
+                <div class="faq-item">
+                  <button class="faq-question">
+                    <span><?php echo esc_html(get_sub_field('faq_question')); ?></span>
+                    <span class="faq-icon">+</span>
+                  </button>
+                  <div class="faq-answer">
+                    <?php echo wp_kses_post(get_sub_field('faq_answer')); ?>
+                  </div>
+                </div>
+              <?php endwhile; ?>
+            <?php else : ?>
+              <div class="faq-item">
+                <button class="faq-question active">
+                  <span>How many scholarship slots are available for Sindh HEC Indigenous?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer open">
+                  63 scholarship slots are provided each year. Each successful candidate is awarded Rs. 230,000 for tuition and academic expenses.
+                </div>
               </div>
-            </div>
 
-            <div class="faq-item">
-              <button class="faq-question">
-                <span>What is the duration of HEC Need-Based Scholarships?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                The scholarship covers the entire duration of the 4-year undergraduate or graduate degree program, provided the student maintains satisfactory GPA performance each semester.
+              <div class="faq-item">
+                <button class="faq-question">
+                  <span>What is the duration of HEC Need-Based Scholarships?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  The scholarship covers the entire duration of the 4-year undergraduate or graduate degree program, provided the student maintains satisfactory GPA performance each semester.
+                </div>
               </div>
-            </div>
 
-            <div class="faq-item">
-              <button class="faq-question">
-                <span>Who is eligible for the Ihsan Trust Qarz-e-Hasna facility?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                Both morning and evening program students at the University of Karachi can apply for Ihsan Trust interest-free loans year-round. Repayment begins after completion of graduation and employment.
+              <div class="faq-item">
+                <button class="faq-question">
+                  <span>Who is eligible for the Ihsan Trust Qarz-e-Hasna facility?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  Both morning and evening program students at the University of Karachi can apply for Ihsan Trust interest-free loans year-round. Repayment begins after completion of graduation and employment.
+                </div>
               </div>
-            </div>
 
-            <div class="faq-item">
-              <button class="faq-question">
-                <span>Where can I find interview schedules and selected candidate lists?</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                All interview schedules and selected candidate lists are displayed on the SFAO Notice Board at Room #04, Ground Floor, Old Administration Building, and announced via the KU Times page.
+              <div class="faq-item">
+                <button class="faq-question">
+                  <span>Where can I find interview schedules and selected candidate lists?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  All interview schedules and selected candidate lists are displayed on the SFAO Notice Board at Room #04, Ground Floor, Old Administration Building, and announced via the KU Times page.
+                </div>
               </div>
-            </div>
+            <?php endif; ?>
           </div>
 
           <script>

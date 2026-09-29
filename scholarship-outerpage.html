@@ -120,636 +120,638 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item active" aria-current="page"><a href="index.html">Home</a></li>
               <!-- <li class="breadcrumb-item active" aria-current="page"><a href="calendar.html">Scholarships</a></li> -->
-              <li class="breadcrumb-item active" aria-current="page"><a href="scholarship-outerpage.html">Scholarships 2025&#8211;26</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="scholarship-outerpage.html">Scholarships
+                  2025&#8211;26</a></li>
             </ol>
           </nav>
         </div>
       </section>
 
-        <!-- ================= SCHOLARSHIP LIST SECTION ================= -->
-        
-        
-        <section id="scholarship-section" class="scholarship-list-container">
-          <div class="container my-4">
-            <!-- ===== TABS NAV ===== -->
-            <div class="sch-tabs-nav">
-              <button class="sch-tab active" data-tab="current">
-                Current Scholarships
-              </button>
-              <!-- <button class="sch-tab" data-tab="upcoming">
+      <!-- ================= SCHOLARSHIP LIST SECTION ================= -->
+
+
+      <section id="scholarship-section" class="scholarship-list-container">
+        <div class="container my-4">
+          <!-- ===== TABS NAV ===== -->
+          <div class="sch-tabs-nav">
+            <button class="sch-tab active" data-tab="current">
+              Current Scholarships
+            </button>
+            <!-- <button class="sch-tab" data-tab="upcoming">
                       Upcoming Scholarships
                       <span class="tab-notify-dot" title="New announcements available!"></span>
                     </button> -->
-            </div>
-        
-            <!-- ===== CURRENT TAB ===== -->
-            <div class="sch-tab-content" id="tab-current">
-        
-              <h2 class="scholarship-list-title py-5"> Scholarships 2025&#8211;26</h2>
-             
-        
-              <!-- ===================================================
+          </div>
+
+          <!-- ===== CURRENT TAB ===== -->
+          <div class="sch-tab-content" id="tab-current">
+
+            <h2 class="scholarship-list-title py-5"> Scholarships 2025&#8211;26</h2>
+
+
+            <!-- ===================================================
                        NOTICE / NEWS BANNER
                        To show: set style="display:block" on #sfao-notice-banner
                        To hide: set style="display:none"
                        Edit the message text between the <strong> and </p> tags
                   =================================================== -->
-              <div class="sfao-notice-banner" id="sfao-notice-banner" style="display:none;">
-                <div class="sfao-notice-inner">
-                  <span class="sfao-notice-icon">&#128226;</span>
-                  <div class="sfao-notice-text">
-                    <strong>Notice:</strong> [Edit this message — e.g., "Selected students for Haier Scholarship 2025-26
-                    are requested to visit SFAO office by June 30, 2026."]
-                  </div>
-                  <button class="sfao-notice-close" onclick="document.getElementById('sfao-notice-banner').style.display='none'"
-                    title="Dismiss">&times;</button>
+            <div class="sfao-notice-banner" id="sfao-notice-banner" style="display:none;">
+              <div class="sfao-notice-inner">
+                <span class="sfao-notice-icon">&#128226;</span>
+                <div class="sfao-notice-text">
+                  <strong>Notice:</strong> [Edit this message — e.g., "Selected students for Haier Scholarship 2025-26
+                  are requested to visit SFAO office by June 30, 2026."]
                 </div>
+                <button class="sfao-notice-close"
+                  onclick="document.getElementById('sfao-notice-banner').style.display='none'"
+                  title="Dismiss">&times;</button>
               </div>
-        
-              <div class="scholarship-filter-bar">
-                <button class="scholarship-filter-btn active" data-filter="all">All <span class="filter-count"
-                    id="count-all"></span></button>
-                    <button class="scholarship-filter-btn filter-upcoming" data-filter="upcoming">Upcoming <span
-                        class="filter-count" id="count-upcoming"></span></button>
-                <button class="scholarship-filter-btn filter-open" data-filter="open">Open <span class="filter-count"
-                    id="count-open"></span></button>
-                <button class="scholarship-filter-btn filter-closed" data-filter="closed">Closed <span class="filter-count"
-                    id="count-closed"></span></button>
-                <button class="scholarship-filter-btn filter-pending" data-filter="pending">Awaited <span class="filter-count"
-                    id="count-pending"></span></button>
-              </div>
-        
-              <style>
-                /* ---- Notice Banner ---- */
-                .sfao-notice-banner {
-                  background: #fff8e1;
-                  border: 1px solid #ffe082;
-                  border-left: 5px solid #f59e0b;
-                  border-radius: 8px;
-                  margin-bottom: 20px;
-                }
-        
-                .sfao-notice-inner {
-                  display: flex;
-                  align-items: flex-start;
-                  gap: 12px;
-                  padding: 14px 16px;
-                }
-        
-                .sfao-notice-icon {
-                  font-size: 1.2rem;
-                  line-height: 1.4;
-                  flex-shrink: 0;
-                }
-        
-                .sfao-notice-text {
-                  flex: 1;
-                  font-size: 0.9rem;
-                  color: #555;
-                  line-height: 1.6;
-                }
-        
-                .sfao-notice-text strong {
-                  color: #b45309;
-                }
-        
-                .sfao-notice-close {
-                  background: none;
-                  border: none;
-                  font-size: 1.3rem;
-                  color: #999;
-                  cursor: pointer;
-                  padding: 0 4px;
-                  line-height: 1;
-                  flex-shrink: 0;
-                }
-        
-                .sfao-notice-close:hover {
-                  color: #333;
-                }
-        
-                .scholarship-filter-bar {
-                  display: flex;
-                  gap: 10px;
-                  flex-wrap: wrap;
-                  margin-bottom: 18px;
-                }
-        
-                .scholarship-filter-btn {
-                  padding: 7px 20px;
-                  border-radius: 50px;
-                  border: 2px solid #d0d0d0;
-                  background: #fff;
-                  color: #555;
-                  font-size: 0.88rem;
-                  font-weight: 600;
-                  cursor: pointer;
-                  transition: all 0.2s;
-                  display: flex;
-                  align-items: center;
-                  gap: 6px;
-                }
-        
-                .scholarship-filter-btn:hover {
-                  border-color: #379934;
-                  color: #379934;
-                }
-        
-                .scholarship-filter-btn.active {
-                  background: #379934;
-                  border-color: #379934;
-                  color: #fff;
-                }
-        
-                .scholarship-filter-btn.filter-open.active {
-                  background: #198754;
-                  border-color: #198754;
-                }
-        
-                .scholarship-filter-btn.filter-open:not(.active):hover {
-                  border-color: #198754;
-                  color: #198754;
-                }
-        
-                .scholarship-filter-btn.filter-closed.active {
-                  background: #dc3545;
-                  border-color: #dc3545;
-                }
-        
-                .scholarship-filter-btn.filter-closed:not(.active):hover {
-                  border-color: #dc3545;
-                  color: #dc3545;
-                }
-        
-                .scholarship-filter-btn.filter-pending.active {
-                  background: #d39e00;
-                  border-color: #d39e00;
-                }
-        
-                .scholarship-filter-btn.filter-pending:not(.active):hover {
-                  border-color: #d39e00;
-                  color: #d39e00;
-                }
-        
-        
-                .scholarship-filter-btn.filter-upcoming.active {
-                  background: #fd7e14;
-                  border-color: #fd7e14;
-                }
-        
-                .scholarship-filter-btn.filter-upcoming:not(.active):hover {
-                  border-color: #fd7e14;
-                  color: #fd7e14;
-                }
-        
-        
-                .filter-count {
-                  background: rgba(255, 255, 255, 0.25);
-                  border-radius: 50px;
-                  padding: 1px 8px;
-                  font-size: 0.78rem;
-                  font-weight: 700;
-                }
-        
-                .scholarship-filter-btn:not(.active) .filter-count {
-                  background: #f0f0f0;
-                  color: #555;
-                }
-        
-                .scholarship-no-results {
-                  text-align: center;
-                  padding: 40px 20px;
-                  color: #888;
-                  font-size: 0.95rem;
-                  display: none;
-                }
-        
-                /* ---- Section Divider ---- */
-                .scholarship-section-divider {
-                  display: flex;
-                  align-items: center;
-                  gap: 12px;
-                  margin: 10px 0 4px;
-                  padding: 0 4px;
-                }
-        
-                .scholarship-section-divider::before,
-                .scholarship-section-divider::after {
-                  content: '';
-                  flex: 1;
-                  height: 1px;
-                  background: #d0d0d0;
-                }
-        
-                .scholarship-section-divider span {
-                  font-size: 0.78rem;
-                  font-weight: 700;
-                  color: #999;
-                  text-transform: uppercase;
-                  letter-spacing: 0.08em;
-                  white-space: nowrap;
-                }
-        
-                /* ---- Coming Soon ---- */
-                .scholarship-coming-soon {
-                  opacity: 0.45;
-                  cursor: default;
-                  pointer-events: none;
-                  font-style: italic;
-                }
-              </style>
-        
-              <div class="scholarship-no-results" id="scholarship-no-results">
-                No scholarships found for this status.
-              </div>
-        
-              <div class="scholarship-table-header">
-                <div class="scholarship-col-name">Scholarship Name List</div>
-                <div class="scholarship-col-deadline">Deadlines</div>
-                <div class="scholarship-col-status">Status</div>
-                <div class="scholarship-col-details">Details</div>
-              </div>
-        
-              <!-- 1. HEC Need-Based Scholarship -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">The Higher Education Commission (HEC)<br>Need-Based Scholarship</div>
-                <div class="scholarship-col-deadline">Jun 25, 2025</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-2.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 2. Zakat & Ushr -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Need-Cum-Merit Scholarships — Zakat &amp; Ushr<br>Department, Government
-                  of Sindh</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-10.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 3. SEEF -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Sindh Education Endowment Fund (SEEF)</div>
-                <div class="scholarship-col-deadline">Aug 20, 2025</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-3.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 4. BEEF (Upcoming) -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Balochistan Education Endowment Fund (BEEF)</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-upcoming">Upcoming</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-4.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 5. HEC-Gawadar (no page yet) -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">HEC Scholarships for Students from Gawadar</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-upcoming">Upcoming</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <span class="scholarship-view-details scholarship-coming-soon">Coming Soon</span>
-                </div>
-              </div>
-        
-              <!-- 6. Coastal Region Balochistan (no page yet) -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Coastal Region Higher Education Scholarship<br>Program for Balochistan
-                </div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-upcoming">Upcoming</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <span class="scholarship-view-details scholarship-coming-soon">Coming Soon</span>
-                </div>
-              </div>
-        
-              <!-- 7. Pakistan Bait-ul-Maal -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Pakistan Bait-ul-Maal (PBM) Scholarships for University<br>of Karachi
-                  Students</div>
-                <div class="scholarship-col-deadline">Nov 05, 2025</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-6.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 8. Sindh HEC Indigenous -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Sindh HEC Indigenous Scholarship<br>(M.Phil / Ph.D. Students)</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-7.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 9. BISP -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Benazir Income Support Program (BISP)<br>HEC Need-Based Undergraduate
-                  Scholarship</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-17.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 10. TCF -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">The Citizens Foundation (TCF)<br>Tertiary Education Support Program
-                </div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-pending">Pending</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-12.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 11. Mitsubishi -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Mitsubishi UFJ Foundation Scholarship<br>(Merit-Based, Morning Program)
-                </div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-11.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 12. PEF -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Professional Education Foundation (PEF)<br>Scholarship 2026 (BBA &amp;
-                  CS/IT)</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-16.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 13. Al-Rehman Welfare Trust (no page yet) -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Scholarships by Al-Rehman Welfare Trust</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-upcoming">Upcoming</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <span class="scholarship-view-details scholarship-coming-soon">Coming Soon</span>
-                </div>
-              </div>
-        
-              <!-- 14. UKAA – Houston, USA -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">University of Karachi Alumni Association<br>(UKAA) Scholarship –
-                  Houston, USA</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-pending">Pending</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-8.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- 15. UKAHA – Houston, Texas -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">UKAHA Need-Based Financial Assistance Program<br>(Morning Program
-                  Students Only)</div>
-                <div class="scholarship-col-deadline">Jun 2025</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-9.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-        
-        
-              <!-- Haier -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Haier Funded Scholarships 2025-26 (Based on Need<br>Cum Merit, Only for
-                  Morning Program Students)</div>
-                <div class="scholarship-col-deadline">May 30, 2025</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-1.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- Khairpur -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">KHAIRPUR NEED CUM MERIT (For Morning<br>Students Only)</div>
-                <div class="scholarship-col-deadline">Oct 21, 2025</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-5.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- USAID -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">USAID Merit &amp; Needs-Based Scholarship Program<br>(50% Seats Reserved
-                  for Female Students)</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-13.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- Bismillah Bibi -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Bismillah Bibi &amp; Mrs. Talat Jamil Scholarship Trust<br>(Science
-                  &amp; Pharmacy Faculties)</div>
-                <div class="scholarship-col-deadline">—</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-closed">Closed</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-15.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <!-- LAST: Ihsan Trust -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Ihsan Trust Qarz-e-Hasna<br>(Interest-Free Loan — Morning &amp; Evening
-                  Program)</div>
-                <div class="scholarship-col-deadline">Year Round</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-open">Open</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-14.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <div class="scholarship-footer-area">
-                <div class="scholarship-showing-text" id="scholarship-showing-text">Showing 1 to 6 of 6 entries</div>
-                <div class="scholarship-pagination" id="scholarship-pagination">
-                  <!-- Generated by JS -->
-                </div>
-              </div>
-        
-            </div><!-- /tab-current -->
-        
-            <!-- ===== UPCOMING TAB ===== -->
-        
-            <div class="sch-tab-content" id="tab-upcoming" style="display:none;">
-        
-              <h2 class="scholarship-list-title">Upcoming Scholarships</h2>
-              <p class="scholarship-list-subtitle">Scholarships with confirmed announcements — applications not yet open.
-              </p>
-        
-              <div class="scholarship-table-header">
-                <div class="scholarship-col-name">Scholarship Name List</div>
-                <div class="scholarship-col-deadline">Announcement Date</div>
-                <div class="scholarship-col-status">Status</div>
-                <div class="scholarship-col-details">Details</div>
-              </div>
-        
-              <!-- Upcoming Item 1 -->
-              <div class="scholarship-row">
-                <div class="scholarship-col-name">Balochistan Education Endowment Fund (BEEF)</div>
-                <div class="scholarship-col-deadline">10 June 2026</div>
-                <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-upcoming">Upcoming</span>
-                </div>
-                <div class="scholarship-col-details">
-                  <a href="scholarship-innerpage-4.html" class="scholarship-view-details">View Details</a>
-                </div>
-              </div>
-        
-              <div class="scholarship-footer-area">
-                <div class="scholarship-showing-text">Showing 1 to 1 of 1 entries</div>
-              </div>
-        
             </div>
-        
-            <!-- /tab-upcoming -->
-        
+
+            <div class="scholarship-filter-bar">
+              <button class="scholarship-filter-btn active" data-filter="all">All <span class="filter-count"
+                  id="count-all"></span></button>
+              <button class="scholarship-filter-btn filter-upcoming" data-filter="upcoming">Upcoming <span
+                  class="filter-count" id="count-upcoming"></span></button>
+              <button class="scholarship-filter-btn filter-open" data-filter="open">Open <span class="filter-count"
+                  id="count-open"></span></button>
+              <button class="scholarship-filter-btn filter-closed" data-filter="closed">Closed <span
+                  class="filter-count" id="count-closed"></span></button>
+              <button class="scholarship-filter-btn filter-pending" data-filter="pending">Awaited <span
+                  class="filter-count" id="count-pending"></span></button>
+            </div>
+
             <style>
-              /* ---- Tab Navigation ---- */
-              .sch-tabs-nav {
+              /* ---- Notice Banner ---- */
+              .sfao-notice-banner {
+                background: #fff8e1;
+                border: 1px solid #ffe082;
+                border-left: 5px solid #f59e0b;
+                border-radius: 8px;
+                margin-bottom: 20px;
+              }
+
+              .sfao-notice-inner {
                 display: flex;
-                gap: 0;
-                border-bottom: 2px solid #e0e0e0;
-                margin-bottom: 28px;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 14px 16px;
               }
-        
-              .sch-tab {
-                position: relative;
-                padding: 12px 28px;
-                border: none;
-                background: none;
-                font-size: 0.95rem;
-                font-weight: 600;
-                color: #777;
-                cursor: pointer;
-                border-bottom: 3px solid transparent;
-                margin-bottom: -2px;
-                transition: color 0.2s, border-color 0.2s;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-              }
-        
-              .sch-tab:hover {
-                color: #379934;
-              }
-        
-              .sch-tab.active {
-                color: #1a3c2b;
-                border-bottom-color: #379934;
-              }
-        
-              /* ---- Pulsing notification dot ---- */
-              .tab-notify-dot {
-                display: inline-block;
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background: #fd7e14;
-                box-shadow: 0 0 0 0 rgba(253, 126, 20, 0.6);
-                animation: pulse-dot 1.6s ease-in-out infinite;
+
+              .sfao-notice-icon {
+                font-size: 1.2rem;
+                line-height: 1.4;
                 flex-shrink: 0;
               }
-        
-              @keyframes pulse-dot {
-                0% {
-                  box-shadow: 0 0 0 0 rgba(253, 126, 20, 0.6);
-                }
-        
-                70% {
-                  box-shadow: 0 0 0 8px rgba(253, 126, 20, 0);
-                }
-        
-                100% {
-                  box-shadow: 0 0 0 0 rgba(253, 126, 20, 0);
-                }
+
+              .sfao-notice-text {
+                flex: 1;
+                font-size: 0.9rem;
+                color: #555;
+                line-height: 1.6;
               }
-        
-              /* ---- Upcoming status badge ---- */
-              .status-upcoming {
-                background-color: #fd7e14;
+
+              .sfao-notice-text strong {
+                color: #b45309;
+              }
+
+              .sfao-notice-close {
+                background: none;
+                border: none;
+                font-size: 1.3rem;
+                color: #999;
+                cursor: pointer;
+                padding: 0 4px;
+                line-height: 1;
+                flex-shrink: 0;
+              }
+
+              .sfao-notice-close:hover {
+                color: #333;
+              }
+
+              .scholarship-filter-bar {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-bottom: 18px;
+              }
+
+              .scholarship-filter-btn {
+                padding: 7px 20px;
+                border-radius: 50px;
+                border: 2px solid #d0d0d0;
+                background: #fff;
+                color: #555;
+                font-size: 0.88rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+              }
+
+              .scholarship-filter-btn:hover {
+                border-color: #379934;
+                color: #379934;
+              }
+
+              .scholarship-filter-btn.active {
+                background: #379934;
+                border-color: #379934;
+                color: #fff;
+              }
+
+              .scholarship-filter-btn.filter-open.active {
+                background: #198754;
+                border-color: #198754;
+              }
+
+              .scholarship-filter-btn.filter-open:not(.active):hover {
+                border-color: #198754;
+                color: #198754;
+              }
+
+              .scholarship-filter-btn.filter-closed.active {
+                background: #dc3545;
+                border-color: #dc3545;
+              }
+
+              .scholarship-filter-btn.filter-closed:not(.active):hover {
+                border-color: #dc3545;
+                color: #dc3545;
+              }
+
+              .scholarship-filter-btn.filter-pending.active {
+                background: #d39e00;
+                border-color: #d39e00;
+              }
+
+              .scholarship-filter-btn.filter-pending:not(.active):hover {
+                border-color: #d39e00;
+                color: #d39e00;
+              }
+
+
+              .scholarship-filter-btn.filter-upcoming.active {
+                background: #fd7e14;
+                border-color: #fd7e14;
+              }
+
+              .scholarship-filter-btn.filter-upcoming:not(.active):hover {
+                border-color: #fd7e14;
+                color: #fd7e14;
+              }
+
+
+              .filter-count {
+                background: rgba(255, 255, 255, 0.25);
+                border-radius: 50px;
+                padding: 1px 8px;
+                font-size: 0.78rem;
+                font-weight: 700;
+              }
+
+              .scholarship-filter-btn:not(.active) .filter-count {
+                background: #f0f0f0;
+                color: #555;
+              }
+
+              .scholarship-no-results {
+                text-align: center;
+                padding: 40px 20px;
+                color: #888;
+                font-size: 0.95rem;
+                display: none;
+              }
+
+              /* ---- Section Divider ---- */
+              .scholarship-section-divider {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin: 10px 0 4px;
+                padding: 0 4px;
+              }
+
+              .scholarship-section-divider::before,
+              .scholarship-section-divider::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: #d0d0d0;
+              }
+
+              .scholarship-section-divider span {
+                font-size: 0.78rem;
+                font-weight: 700;
+                color: #999;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                white-space: nowrap;
+              }
+
+              /* ---- Coming Soon ---- */
+              .scholarship-coming-soon {
+                opacity: 0.45;
+                cursor: default;
+                pointer-events: none;
+                font-style: italic;
               }
             </style>
-        
-            <script>
-              document.querySelectorAll('.sch-tab').forEach(function (tab) {
-                tab.addEventListener('click', function () {
-                  document.querySelectorAll('.sch-tab').forEach(function (t) { t.classList.remove('active'); });
-                  document.querySelectorAll('.sch-tab-content').forEach(function (c) { c.style.display = 'none'; });
-                  this.classList.add('active');
-                  var target = document.getElementById('tab-' + this.getAttribute('data-tab'));
-                  if (target) target.style.display = '';
-                });
-              });
-            </script>
-        
+
+            <div class="scholarship-no-results" id="scholarship-no-results">
+              No scholarships found for this status.
+            </div>
+
+            <div class="scholarship-table-header">
+              <div class="scholarship-col-name">Scholarship Name List</div>
+              <div class="scholarship-col-deadline">Deadlines</div>
+              <div class="scholarship-col-status">Status</div>
+              <div class="scholarship-col-details">Details</div>
+            </div>
+
+            <!-- 1. HEC Need-Based Scholarship -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">The Higher Education Commission (HEC)<br>Need-Based Scholarship</div>
+              <div class="scholarship-col-deadline">Jun 25, 2025</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-2.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 2. Zakat & Ushr -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Need-Cum-Merit Scholarships — Zakat &amp; Ushr<br>Department, Government
+                of Sindh</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-10.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 3. SEEF -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Sindh Education Endowment Fund (SEEF)</div>
+              <div class="scholarship-col-deadline">Aug 20, 2025</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-3.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 4. BEEF (Upcoming) -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Balochistan Education Endowment Fund (BEEF)</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-upcoming">Upcoming</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-4.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 5. HEC-Gawadar (no page yet) -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">HEC Scholarships for Students from Gawadar</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-upcoming">Upcoming</span>
+              </div>
+              <div class="scholarship-col-details">
+                <span class="scholarship-view-details scholarship-coming-soon">Coming Soon</span>
+              </div>
+            </div>
+
+            <!-- 6. Coastal Region Balochistan (no page yet) -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Coastal Region Higher Education Scholarship<br>Program for Balochistan
+              </div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-upcoming">Upcoming</span>
+              </div>
+              <div class="scholarship-col-details">
+                <span class="scholarship-view-details scholarship-coming-soon">Coming Soon</span>
+              </div>
+            </div>
+
+            <!-- 7. Pakistan Bait-ul-Maal -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Pakistan Bait-ul-Maal (PBM) Scholarships for University<br>of Karachi
+                Students</div>
+              <div class="scholarship-col-deadline">Nov 05, 2025</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-6.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 8. Sindh HEC Indigenous -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Sindh HEC Indigenous Scholarship<br>(M.Phil / Ph.D. Students)</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-7.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 9. BISP -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Benazir Income Support Program (BISP)<br>HEC Need-Based Undergraduate
+                Scholarship</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-17.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 10. TCF -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">The Citizens Foundation (TCF)<br>Tertiary Education Support Program
+              </div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-pending">Pending</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-12.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 11. Mitsubishi -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Mitsubishi UFJ Foundation Scholarship<br>(Merit-Based, Morning Program)
+              </div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-11.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 12. PEF -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Professional Education Foundation (PEF)<br>Scholarship 2026 (BBA &amp;
+                CS/IT)</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-16.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 13. Al-Rehman Welfare Trust (no page yet) -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Scholarships by Al-Rehman Welfare Trust</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-upcoming">Upcoming</span>
+              </div>
+              <div class="scholarship-col-details">
+                <span class="scholarship-view-details scholarship-coming-soon">Coming Soon</span>
+              </div>
+            </div>
+
+            <!-- 14. UKAA – Houston, USA -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">University of Karachi Alumni Association<br>(UKAA) Scholarship –
+                Houston, USA</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-pending">Pending</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-8.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- 15. UKAHA – Houston, Texas -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">UKAHA Need-Based Financial Assistance Program<br>(Morning Program
+                Students Only)</div>
+              <div class="scholarship-col-deadline">Jun 2025</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-9.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+
+
+            <!-- Haier -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Haier Funded Scholarships 2025-26 (Based on Need<br>Cum Merit, Only for
+                Morning Program Students)</div>
+              <div class="scholarship-col-deadline">May 30, 2025</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-1.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- Khairpur -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">KHAIRPUR NEED CUM MERIT (For Morning<br>Students Only)</div>
+              <div class="scholarship-col-deadline">Oct 21, 2025</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-5.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- USAID -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">USAID Merit &amp; Needs-Based Scholarship Program<br>(50% Seats Reserved
+                for Female Students)</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-13.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- Bismillah Bibi -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Bismillah Bibi &amp; Mrs. Talat Jamil Scholarship Trust<br>(Science
+                &amp; Pharmacy Faculties)</div>
+              <div class="scholarship-col-deadline">—</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-closed">Closed</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-15.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <!-- LAST: Ihsan Trust -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Ihsan Trust Qarz-e-Hasna<br>(Interest-Free Loan — Morning &amp; Evening
+                Program)</div>
+              <div class="scholarship-col-deadline">Year Round</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-open">Open</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-14.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <div class="scholarship-footer-area">
+              <div class="scholarship-showing-text" id="scholarship-showing-text">Showing 1 to 6 of 6 entries</div>
+              <div class="scholarship-pagination" id="scholarship-pagination">
+                <!-- Generated by JS -->
+              </div>
+            </div>
+
+          </div><!-- /tab-current -->
+
+          <!-- ===== UPCOMING TAB ===== -->
+
+          <div class="sch-tab-content" id="tab-upcoming" style="display:none;">
+
+            <h2 class="scholarship-list-title">Upcoming Scholarships</h2>
+            <p class="scholarship-list-subtitle">Scholarships with confirmed announcements — applications not yet open.
+            </p>
+
+            <div class="scholarship-table-header">
+              <div class="scholarship-col-name">Scholarship Name List</div>
+              <div class="scholarship-col-deadline">Announcement Date</div>
+              <div class="scholarship-col-status">Status</div>
+              <div class="scholarship-col-details">Details</div>
+            </div>
+
+            <!-- Upcoming Item 1 -->
+            <div class="scholarship-row">
+              <div class="scholarship-col-name">Balochistan Education Endowment Fund (BEEF)</div>
+              <div class="scholarship-col-deadline">10 June 2026</div>
+              <div class="scholarship-col-status">
+                <span class="scholarship-status-badge status-upcoming">Upcoming</span>
+              </div>
+              <div class="scholarship-col-details">
+                <a href="scholarship-innerpage-4.html" class="scholarship-view-details">View Details</a>
+              </div>
+            </div>
+
+            <div class="scholarship-footer-area">
+              <div class="scholarship-showing-text">Showing 1 to 1 of 1 entries</div>
+            </div>
+
           </div>
-        </section>
+
+          <!-- /tab-upcoming -->
+
+          <style>
+            /* ---- Tab Navigation ---- */
+            .sch-tabs-nav {
+              display: flex;
+              gap: 0;
+              border-bottom: 2px solid #e0e0e0;
+              margin-bottom: 28px;
+            }
+
+            .sch-tab {
+              position: relative;
+              padding: 12px 28px;
+              border: none;
+              background: none;
+              font-size: 0.95rem;
+              font-weight: 600;
+              color: #777;
+              cursor: pointer;
+              border-bottom: 3px solid transparent;
+              margin-bottom: -2px;
+              transition: color 0.2s, border-color 0.2s;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            }
+
+            .sch-tab:hover {
+              color: #379934;
+            }
+
+            .sch-tab.active {
+              color: #1a3c2b;
+              border-bottom-color: #379934;
+            }
+
+            /* ---- Pulsing notification dot ---- */
+            .tab-notify-dot {
+              display: inline-block;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: #fd7e14;
+              box-shadow: 0 0 0 0 rgba(253, 126, 20, 0.6);
+              animation: pulse-dot 1.6s ease-in-out infinite;
+              flex-shrink: 0;
+            }
+
+            @keyframes pulse-dot {
+              0% {
+                box-shadow: 0 0 0 0 rgba(253, 126, 20, 0.6);
+              }
+
+              70% {
+                box-shadow: 0 0 0 8px rgba(253, 126, 20, 0);
+              }
+
+              100% {
+                box-shadow: 0 0 0 0 rgba(253, 126, 20, 0);
+              }
+            }
+
+            /* ---- Upcoming status badge ---- */
+            .status-upcoming {
+              background-color: #fd7e14;
+            }
+          </style>
+
+          <script>
+            document.querySelectorAll('.sch-tab').forEach(function (tab) {
+              tab.addEventListener('click', function () {
+                document.querySelectorAll('.sch-tab').forEach(function (t) { t.classList.remove('active'); });
+                document.querySelectorAll('.sch-tab-content').forEach(function (c) { c.style.display = 'none'; });
+                this.classList.add('active');
+                var target = document.getElementById('tab-' + this.getAttribute('data-tab'));
+                if (target) target.style.display = '';
+              });
+            });
+          </script>
+
+        </div>
+      </section>
 
       <!-- ================= SCHOLARSHIP APPLICATION PROCESSES CHART ================= -->
       <section class="scholarship-processes-section">
@@ -1332,7 +1334,7 @@
         </style>
       </section>
 
-   
+
 
       <!-- ================= Faq's SECTION ================= -->
 
@@ -1930,7 +1932,7 @@
 
     <section class="section-5 overflow-hidden clearfix clear position-relative ">
       <div class="image-container-bottom">
-        <img src="./images/uok/newsletterbg.jpg" alt="Newsletter" class="img-fluid w-100" />
+        <img src="./images/uok/banner_sponsoser2.jpg" alt="Newsletter" class="img-fluid w-100" />
 
         <div class="overlay-bottom d-flex flex-column justify-content-center align-items-center text-center">
           <!-- <h5 class="text-white">Subscribe to Our Newsletter</h5> -->

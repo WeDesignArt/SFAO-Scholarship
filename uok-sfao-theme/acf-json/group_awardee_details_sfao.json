@@ -1,0 +1,90 @@
+{
+    "key": "group_awardee_details_sfao",
+    "title": "Awardee Details",
+    "fields": [
+        {
+            "key": "field_aw_photo",
+            "label": "Profile Picture \/ Photo (Optional)",
+            "name": "awardee_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Upload awardee's photograph. If left empty, avatar initials will be displayed automatically.",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_aw_initials",
+            "label": "Avatar Initials (e.g. AK, SF, MH)",
+            "name": "awardee_initials",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Used as fallback if no profile picture is uploaded.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "AK",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_aw_program",
+            "label": "Awarded Scholarship Name (e.g. Mitsubishi UFJ Foundation Scholarship 2025–26)",
+            "name": "awardee_program",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Mitsubishi UFJ Foundation Scholarship 2025–26",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "awardee"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": false,
+    "modified": 1790682304
+}

@@ -25,6 +25,7 @@ function uok_add_export_buttons_to_leads_list( $which ) {
 		return;
 	}
 
+	// Build URL preserving active query parameters (filters/date)
 	$current_params = array(
 		'action'        => 'uok_export_leads',
 		'export_type'   => 'all',
@@ -181,6 +182,9 @@ add_action( 'admin_post_uok_export_leads', 'uok_handle_export_all_leads' );
 
 /**
  * Helper function to generate and stream the CSV file to the browser.
+ *
+ * @param array|null $post_ids Specific lead post IDs to export, or null for query export.
+ * @param array|null $filters  Active filters if doing a filtered export.
  */
 function uok_generate_leads_csv( $post_ids = null, $filters = null ) {
 	if ( ob_get_level() ) {
@@ -198,8 +202,10 @@ function uok_generate_leads_csv( $post_ids = null, $filters = null ) {
 
 	$output = fopen( 'php://output', 'w' );
 
+	// UTF-8 BOM for proper Urdu/Unicode rendering in Microsoft Excel
 	fputs( $output, "\xEF\xBB\xBF" );
 
+	// CSV Header row
 	$headers = array(
 		'Lead ID',
 		'Status',
@@ -225,6 +231,7 @@ function uok_generate_leads_csv( $post_ids = null, $filters = null ) {
 	if ( $is_selected ) {
 		$query_args['post__in'] = array_map( 'intval', $post_ids );
 	} elseif ( ! empty( $filters ) && is_array( $filters ) ) {
+		// Apply Date filters
 		$date_from = ! empty( $filters['date_from'] ) ? $filters['date_from'] : '';
 		$date_to   = ! empty( $filters['date_to'] ) ? $filters['date_to'] : '';
 

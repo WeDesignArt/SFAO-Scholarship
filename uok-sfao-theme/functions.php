@@ -218,6 +218,49 @@ if (function_exists('acf_add_options_page')) {
 }
 
 /**
+ * ACF value, falling back to the static-site text when the field is empty.
+ * With UOK_SEED defined (one-off seed run), the default is written into the current page's field instead.
+ */
+function uok_field($name, $default = '', $post_id = false) {
+    if (defined('UOK_SEED') && $post_id === false && function_exists('update_field') && is_string($default) && $default !== '') {
+        update_field($name, $default, $post_id);
+        return $default;
+    }
+    $value = function_exists('get_field') ? get_field($name, $post_id) : null;
+    return ($value === null || $value === '' || $value === false || $value === array()) ? $default : $value;
+}
+
+/**
+ * Theme image URL (assets/images/...).
+ */
+function uok_img($path) {
+    return get_template_directory_uri() . '/assets/images/' . ltrim($path, '/');
+}
+
+/**
+ * ACF image field URL, falling back to a theme image.
+ */
+function uok_img_field($name, $default_path, $post_id = false) {
+    $img = function_exists('get_field') ? get_field($name, $post_id) : null;
+    if (is_array($img) && !empty($img['url'])) return $img['url'];
+    if (is_numeric($img) && $img) return wp_get_attachment_url($img);
+    return uok_img($default_path);
+}
+
+/**
+ * Permalink of a page / scholarship by slug (permalinks here include index.php, so never hardcode paths).
+ */
+function uok_page_url($slug) {
+    $page = get_page_by_path($slug);
+    return $page ? get_permalink($page) : home_url('/');
+}
+
+function uok_scholarship_url($slug) {
+    $post = get_page_by_path($slug, OBJECT, 'scholarship');
+    return $post ? get_permalink($post) : get_post_type_archive_link('scholarship');
+}
+
+/**
  * Auto Sync ACF JSON Fields
  */
 add_filter('acf/settings/save_json', function ($path) {

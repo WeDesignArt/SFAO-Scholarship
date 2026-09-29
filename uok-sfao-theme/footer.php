@@ -9,25 +9,25 @@ $theme_uri = get_template_directory_uri();
 
 // ACF Theme Options for Newsletter
 $newsletter_bg = function_exists('get_field') ? get_field('newsletter_bg', 'option') : null;
-$newsletter_bg_url = ($newsletter_bg && is_array($newsletter_bg)) ? $newsletter_bg['url'] : $theme_uri . '/assets/images/uok/newsletterbg.jpg';
-$newsletter_subheading = function_exists('get_field') ? get_field('newsletter_subheading', 'option') : 'Subscribe to Our Newsletter';
-$newsletter_heading_1  = function_exists('get_field') ? get_field('newsletter_heading_1', 'option') : 'Updates from Students';
-$newsletter_heading_2  = function_exists('get_field') ? get_field('newsletter_heading_2', 'option') : 'Financial Aid Office (SFAO)';
-$newsletter_btn_text   = function_exists('get_field') ? get_field('newsletter_btn_text', 'option') : 'Subscribe Now';
-$newsletter_btn_url    = function_exists('get_field') ? get_field('newsletter_btn_url', 'option') : '#';
+$newsletter_bg_url = ($newsletter_bg && is_array($newsletter_bg)) ? $newsletter_bg['url'] : $theme_uri . '/assets/images/uok/banner_sponsoser2.jpg';
+$newsletter_subheading = uok_field('newsletter_subheading', '', 'option');
+$newsletter_heading_1 = uok_field('newsletter_heading_1', 'Updates from Students', 'option');
+$newsletter_heading_2 = uok_field('newsletter_heading_2', 'Financial Aid Office (SFAO)', 'option');
+$newsletter_btn_text = uok_field('newsletter_btn_text', 'Remain Connected via SFAO Page', 'option');
+$newsletter_btn_url = uok_field('newsletter_btn_url', home_url('/'), 'option');
 
 // ACF Theme Options for Footer Info
 $footer_logo = function_exists('get_field') ? get_field('footer_logo', 'option') : null;
 $footer_logo_url = ($footer_logo && is_array($footer_logo)) ? $footer_logo['url'] : $theme_uri . '/assets/images/uok/footer-logo.png';
-$footer_about_text = function_exists('get_field') ? get_field('footer_about_text', 'option') : 'We Don\'t Just Work With Concrete And We Work With People <strong>We Are Approachable</strong>, With Even Our Highest Work';
-$footer_facebook  = function_exists('get_field') ? get_field('facebook_url', 'option') : '#';
-$footer_youtube   = function_exists('get_field') ? get_field('youtube_url', 'option') : '#';
-$footer_instagram = function_exists('get_field') ? get_field('instagram_url', 'option') : '#';
+$footer_about_text = uok_field('footer_about_text', 'We Don\'t Just Work With Concrete And We Work With People <strong>We Are Approachable</strong>, With Even Our Highest Work', 'option');
+$footer_facebook = uok_field('facebook_url', '', 'option');
+$footer_youtube = uok_field('youtube_url', '', 'option');
+$footer_instagram = uok_field('instagram_url', '', 'option');
 
-$footer_address = function_exists('get_field') ? get_field('footer_address', 'option') : 'Administration Building (Old), Ground Floor, Room #04, University of Karachi – 75270';
-$footer_phone   = function_exists('get_field') ? get_field('footer_phone', 'option') : '+92-21-99261383';
-$footer_email   = function_exists('get_field') ? get_field('footer_email', 'option') : 'sfao@uok.edu.pk';
-$copyright_text = function_exists('get_field') ? get_field('copyright_text', 'option') : 'University of Karachi | All Rights Reserved.';
+$footer_address = uok_field('footer_address', 'Administration Building (Old), Ground Floor, Room #04, University of Karachi – 75270', 'option');
+$footer_phone = uok_field('footer_phone', '+92-21-99261383', 'option');
+$footer_email = uok_field('footer_email', 'sfao@uok.edu.pk', 'option');
+$copyright_text = uok_field('copyright_text', 'University of Karachi | All Rights Reserved.', 'option');
 ?>
 
     <!-- newsletter start -->
@@ -60,14 +60,13 @@ $copyright_text = function_exists('get_field') ? get_field('copyright_text', 'op
 
           <!-- Logo & About -->
           <div class="col-md-4 mb-4">
-            <a href="<?php echo esc_url(home_url('/')); ?>">
-              <img src="<?php echo esc_url($footer_logo_url); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="footer-logo mb-3">
-            </a>
+            <img src="<?php echo esc_url($footer_logo_url); ?>" alt="University of Karachi" class="footer-logo mb-3">
 
             <p class="footer-text">
               <?php echo wp_kses_post($footer_about_text); ?>
             </p>
 
+            <?php if ($footer_facebook || $footer_youtube || $footer_instagram) : ?>
             <div class="social-icons mt-3">
               <?php if (!empty($footer_facebook)): ?>
                 <a href="<?php echo esc_url($footer_facebook); ?>" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
@@ -79,10 +78,11 @@ $copyright_text = function_exists('get_field') ? get_field('copyright_text', 'op
                 <a href="<?php echo esc_url($footer_instagram); ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
               <?php endif; ?>
             </div>
+            <?php endif; ?>
           </div>
 
           <!-- Divider -->
-          <div class="col-md-1 d-none d-md-block">
+          <div class="col-md-1 ">
             <div class="vertical-line"></div>
           </div>
 
@@ -96,17 +96,17 @@ $copyright_text = function_exists('get_field') ? get_field('copyright_text', 'op
               </li>
               <li>
                 <span class="icon-circle"><i class="bi bi-telephone-fill"></i></span>
-                <a href="tel:<?php echo esc_attr(preg_replace('/[^0-9+]/', '', $footer_phone)); ?>"><?php echo esc_html($footer_phone); ?></a>
+                <?php echo esc_html($footer_phone); ?>
               </li>
               <li>
                 <span class="icon-circle"><i class="bi bi-envelope"></i></span>
-                <a href="mailto:<?php echo esc_attr($footer_email); ?>"><?php echo esc_html($footer_email); ?></a>
+                <?php echo esc_html($footer_email); ?>
               </li>
             </ul>
           </div>
 
           <!-- Divider -->
-          <div class="col-md-1 d-none d-md-block">
+          <div class="col-md-1 ">
             <div class="vertical-line"></div>
           </div>
 
@@ -125,10 +125,9 @@ $copyright_text = function_exists('get_field') ? get_field('copyright_text', 'op
                   } else {
                     echo '<ul class="footer-links">';
                     echo '<li><a href="' . esc_url(home_url('/')) . '"><i class="bi bi-check-circle-fill me-2"></i>Home</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/about-us')) . '"><i class="bi bi-check-circle-fill me-2"></i>About Us</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/stories')) . '"><i class="bi bi-check-circle-fill me-2"></i>Stories</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/awardees')) . '"><i class="bi bi-check-circle-fill me-2"></i>Awardees</a></li>';
-                    echo '<li><a href="' . esc_url(get_post_type_archive_link('scholarship')) . '"><i class="bi bi-check-circle-fill me-2"></i>Scholarships</a></li>';
+                    echo '<li><a href="' . esc_url(uok_page_url('about-us')) . '"><i class="bi bi-check-circle-fill me-2"></i>About Us</a></li>';
+                    echo '<li><a href="' . esc_url(uok_page_url('stories')) . '"><i class="bi bi-check-circle-fill me-2 "></i>Stories</a></li>';
+                    echo '<li><a href="' . esc_url(get_post_type_archive_link('scholarship')) . '"><i class="bi bi-check-circle-fill me-2 "></i>Scholarships</a></li>';
                     echo '</ul>';
                   }
                 ?>
@@ -143,9 +142,7 @@ $copyright_text = function_exists('get_field') ? get_field('copyright_text', 'op
                     ));
                   } else {
                     echo '<ul class="footer-links">';
-                    echo '<li><a href="' . esc_url(home_url('/contact')) . '"><i class="bi bi-check-circle-fill me-2"></i>Contact Us</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/#faq')) . '"><i class="bi bi-check-circle-fill me-2"></i>FAQ\'s</a></li>';
-                    echo '<li><a href="' . esc_url(home_url('/events')) . '"><i class="bi bi-check-circle-fill me-2"></i>Events</a></li>';
+                    echo '<li><a href="' . esc_url(uok_page_url('contact-us')) . '"><i class="bi bi-check-circle-fill me-2 "></i>Contact Us</a></li>';
                     echo '</ul>';
                   }
                 ?>
@@ -183,11 +180,10 @@ $copyright_text = function_exists('get_field') ? get_field('copyright_text', 'op
             } else {
               echo '<ul>';
               echo '<li><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
-              echo '<li><a href="' . esc_url(home_url('/about-us')) . '">About Us</a></li>';
-              echo '<li><a href="' . esc_url(home_url('/stories')) . '">Stories</a></li>';
-              echo '<li><a href="' . esc_url(home_url('/awardees')) . '">Awardees</a></li>';
+              echo '<li><a href="' . esc_url(uok_page_url('about-us')) . '">About Us</a></li>';
+              echo '<li><a href="' . esc_url(uok_page_url('stories')) . '">Stories</a></li>';
               echo '<li><a href="' . esc_url(get_post_type_archive_link('scholarship')) . '">Scholarships</a></li>';
-              echo '<li><a href="' . esc_url(home_url('/contact')) . '">Contact Us</a></li>';
+              echo '<li><a href="' . esc_url(uok_page_url('contact-us')) . '">Contact Us</a></li>';
               echo '</ul>';
             }
           ?>
