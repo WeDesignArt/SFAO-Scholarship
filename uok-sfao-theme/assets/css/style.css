@@ -1378,6 +1378,13 @@ a.seemore-btn:active {
   color: #fff !important;
 }
 
+.status-donor {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+  width: auto !important;
+  min-width: 80px;
+}
+
 /* ---- Tab Navigation ---- */
 .sch-tabs-nav {
   display: flex;

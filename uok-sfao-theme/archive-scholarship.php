@@ -14,7 +14,8 @@ $scholarships = get_posts(array(
   'orderby'        => 'menu_order',
   'order'          => 'ASC',
 ));
-$show_notice = function_exists('get_field') && get_field('show_notice_banner', 'option');
+$status_labels = array('pending' => 'Awaited', 'donor' => 'Managed by Donor');
+$show_notice =function_exists('get_field') && get_field('show_notice_banner', 'option');
 $notice_text = uok_field('notice_banner_text', '', 'option');
 ?>
 
@@ -277,7 +278,7 @@ $notice_text = uok_field('notice_banner_text', '', 'option');
                 <div class="scholarship-col-name"><?php echo wp_kses_post(uok_field('scholarship_list_name', esc_html(get_the_title($sch)), $sch->ID)); ?></div>
                 <div class="scholarship-col-deadline"><?php echo esc_html(uok_field('scholarship_deadline', '—', $sch->ID)); ?></div>
                 <div class="scholarship-col-status">
-                  <span class="scholarship-status-badge status-<?php echo esc_attr($status); ?>"><?php echo esc_html(ucfirst($status)); ?></span>
+                  <span class="scholarship-status-badge status-<?php echo esc_attr($status); ?>"><?php echo esc_html($status_labels[$status] ?? ucfirst($status)); ?></span>
                 </div>
                 <div class="scholarship-col-details">
                   <?php if (get_field('scholarship_coming_soon', $sch->ID)) : ?>

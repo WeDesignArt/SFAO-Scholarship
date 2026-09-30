@@ -37,8 +37,9 @@
             "choices": {
                 "Open": "Open",
                 "Closed": "Closed",
-                "Pending": "Pending",
-                "Upcoming": "Upcoming"
+                "Pending": "Awaited",
+                "Upcoming": "Upcoming",
+                "Donor": "Managed by Donor"
             },
             "default_value": "Open",
             "multiple": 0,
@@ -645,6 +646,7 @@
                     "max": 0,
                     "rows_per_page": 20,
                     "collapsed": "",
+                    "parent_repeater": "field_sch_candidates",
                     "sub_fields": [
                         {
                             "key": "field_cand_name",
@@ -709,8 +711,7 @@
                             "append": "",
                             "parent_repeater": "field_cand_students"
                         }
-                    ],
-                    "parent_repeater": "field_sch_candidates"
+                    ]
                 }
             ]
         }
@@ -733,5 +734,5 @@
     "active": true,
     "description": "",
     "show_in_rest": false,
-    "modified": 1790682305
+    "modified": 1790747066
 }
